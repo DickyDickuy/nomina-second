@@ -8,17 +8,17 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* PIL brand fonts */
+  /* NOMINA brand fonts */
   --font-heading: "Bebas Neue", "Bebas Neue Fallback", Impact, sans-serif;
   --font-body: "News Cycle", "News Cycle Fallback", Arial, sans-serif;
   --font-sans: var(--font-body);
 
-  /* PIL brand colors */
-  --color-pil-red: #ccff00;
-  --color-pil-black: oklch(0 0 0);
-  --color-pil-white: oklch(1 0 0);
-  --color-pil-offwhite: oklch(0.97 0 0);
-  --color-pil-dark: oklch(0.15 0 0);
+  /* NOMINA brand colors */
+  --color-nomina-red: #ccff00;
+  --color-nomina-black: oklch(0 0 0);
+  --color-nomina-white: oklch(1 0 0);
+  --color-nomina-offwhite: oklch(0.97 0 0);
+  --color-nomina-dark: oklch(0.15 0 0);
 
   /* shadcn token mapping */
   --color-sidebar-ring: var(--sidebar-ring);
@@ -140,7 +140,7 @@
   }
 }
 
-/* PIL Custom Animations */
+/* NOMINA Custom Animations */
 @keyframes hero-blur-in {
   0% {
     opacity: 0;
@@ -182,7 +182,7 @@
 
 .service-row:hover {
   background-color: #ccff00;
-  color: oklch(0 0 0);
+  color: oklch(1 0 0);
 }
 
 /* Arrow button hover animation */
@@ -217,3 +217,4 @@
 .animate-marquee-reverse {
   animation: marquee-reverse 40s linear infinite;
 }
+/* Trigger HMR */

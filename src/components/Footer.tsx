@@ -1,4 +1,4 @@
-import { PilLogoDark } from "@/components/icons";
+import { NominaLogoDark } from "@/components/icons";
 import {
   InstagramIcon,
   LinkedInIcon,
@@ -13,7 +13,7 @@ const SITE_LINKS = [
   { label: "SERVICES", href: "#services" },
   { label: "CAREERS", href: "#" },
   { label: "CONTACT", href: "#" },
-  { label: "PIL STARTER", href: "#" },
+  { label: "NOMINA STARTER", href: "#" },
   { label: "PRIVACY & COOKIE", href: "#" },
   { label: "TERMS OF USE", href: "#" },
   { label: "CLIENTS", href: "#clients" },
@@ -73,9 +73,9 @@ const SERVICE_CATEGORIES = [
 
 export function Footer() {
   return (
-    <footer className="bg-pil-black text-white">
+    <footer className="bg-nomina-black text-white">
       {/* Decorative top bar — animated blocks pattern */}
-      <div className="h-16 md:h-20 bg-pil-dark overflow-hidden flex items-end">
+      <div className="h-16 md:h-20 bg-nomina-dark overflow-hidden flex items-end">
         <div className="flex gap-[2px] w-full h-full items-end px-2">
           {Array.from({ length: 60 }).map((_, i) => (
             <div
@@ -95,9 +95,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-8">
           {/* Logo and company info */}
           <div className="md:col-span-4">
-            <PilLogoDark />
+            <NominaLogoDark />
             <div className="mt-6 space-y-1 text-sm text-white/70">
-              <p className="font-bold text-white text-sm">PIL SRL</p>
+              <p className="font-bold text-white text-sm">NOMINA SRL</p>
               <p>Via Carlo Botta, 8 20135 Milano (MI)</p>
               <p className="mt-3">
                 phone{" "}
@@ -107,10 +107,10 @@ export function Footer() {
               </p>
               <p>
                 <a
-                  href="mailto:info@pilcommunication.com"
+                  href="mailto:info@nominacommunication.com"
                   className="hover:text-white transition-colors"
                 >
-                  info@pilcommunication.com
+                  info@nominacommunication.com
                 </a>
               </p>
             </div>
@@ -188,7 +188,7 @@ export function Footer() {
       <div className="border-t border-white/10 px-6 md:px-12 lg:px-16 py-5">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-[11px] text-white/40">
-            © 2026 PIL SRL All rights reserved. · P.iva 14097620968
+            © 2026 NOMINA SRL All rights reserved. · P.iva 14097620968
           </p>
 
           <div className="flex items-center gap-4">
@@ -205,7 +205,7 @@ export function Footer() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-[11px] text-white/40 font-bold">PIL SRL</span>
+            <span className="text-[11px] text-white/40 font-bold">NOMINA SRL</span>
             <LanguageSwitcher variant="dark" />
           </div>
         </div>

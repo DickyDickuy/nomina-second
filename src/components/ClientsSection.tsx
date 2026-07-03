@@ -41,7 +41,7 @@ export function ClientsSection() {
         {/* Heading */}
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <h2
-            className="font-heading font-bold text-pil-black uppercase text-center leading-[0.95] tracking-tight pb-10"
+            className="font-heading font-bold text-nomina-black uppercase text-center leading-[0.95] tracking-tight pb-10"
             style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
           >
             We Have Collaborated With

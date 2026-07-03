@@ -15,8 +15,8 @@ export function LanguageSwitcher({ className, variant = "light" }: LanguageSwitc
         className={cn(
           "h-8 w-8 flex items-center justify-center text-xs font-bold uppercase rounded-sm transition-colors duration-200",
           variant === "light"
-            ? "bg-pil-red text-pil-black border border-pil-red"
-            : "bg-pil-red text-pil-black border border-pil-red"
+            ? "bg-nomina-red text-nomina-black border border-nomina-red"
+            : "bg-nomina-red text-nomina-black border border-nomina-red"
         )}
       >
         EN
@@ -26,8 +26,8 @@ export function LanguageSwitcher({ className, variant = "light" }: LanguageSwitc
         className={cn(
           "h-8 w-8 flex items-center justify-center text-xs font-bold uppercase rounded-sm transition-colors duration-200",
           variant === "light"
-            ? "border border-pil-red text-pil-black hover:bg-pil-red hover:text-pil-black"
-            : "border border-pil-red text-white hover:bg-pil-red hover:text-pil-black"
+            ? "border border-nomina-red text-nomina-black hover:bg-nomina-red hover:text-nomina-black"
+            : "border border-nomina-red text-white hover:bg-nomina-red hover:text-nomina-black"
         )}
       >
         ID

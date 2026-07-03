@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { PilLogo } from "@/components/icons";
+import { NominaLogo } from "@/components/icons";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MenuIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
@@ -13,7 +13,7 @@ const NAV_LINKS = [
   { label: "CLIENTS", href: "#clients" },
   { label: "CAREERS", href: "#" },
   { label: "CONTACT", href: "#" },
-  { label: "PIL STARTER", href: "#" },
+  { label: "NOMINA STARTER", href: "#" },
 ];
 
 export function Navbar() {
@@ -47,7 +47,7 @@ export function Navbar() {
       >
         {/* Scroll Progress Bar */}
         <div 
-          className="absolute bottom-0 left-0 h-[3px] bg-pil-red transition-all duration-150 ease-out z-10"
+          className="absolute bottom-0 left-0 h-[3px] bg-nomina-red transition-all duration-150 ease-out z-10"
           style={{ width: `${scrollProgress}%` }}
         />
 
@@ -59,7 +59,7 @@ export function Navbar() {
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <PilLogo className="text-pil-red scale-[0.55] origin-left" />
+            <NominaLogo className="text-nomina-red scale-[0.55] origin-left" />
           </div>
 
           {/* Desktop links */}
@@ -68,7 +68,7 @@ export function Navbar() {
               <a
                 key={link.label}
                 href={link.href}
-                className="h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-pil-black hover:bg-pil-red transition-colors duration-200"
+                className="h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red transition-colors duration-200"
               >
                 {link.label}
               </a>
@@ -83,7 +83,7 @@ export function Navbar() {
           {/* Mobile menu button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-pil-red"
+            className="md:hidden text-nomina-red"
             aria-label="Toggle menu"
           >
             <MenuIcon className="w-7 h-7" />
@@ -95,10 +95,10 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-[60] bg-white flex flex-col">
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-            <PilLogo className="text-pil-red scale-[0.6] origin-left" />
+            <NominaLogo className="text-nomina-red scale-[0.6] origin-left" />
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-bold text-pil-black"
+              className="text-2xl font-bold text-nomina-black"
               aria-label="Close menu"
             >
               ✕
@@ -110,7 +110,7 @@ export function Navbar() {
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-8 py-4 text-lg font-bold uppercase tracking-wider text-pil-black hover:bg-pil-red hover:text-white transition-colors duration-200"
+                className="px-8 py-4 text-lg font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
               >
                 {link.label}
               </a>

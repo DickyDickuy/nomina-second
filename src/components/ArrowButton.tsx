@@ -25,7 +25,7 @@ export function ArrowButton({
       <span
         className={cn(
           "flex items-center justify-center w-12 h-12 rounded-none",
-          variant === "light" ? "bg-pil-red text-white" : "bg-pil-red text-white"
+          variant === "light" ? "bg-nomina-red text-white" : "bg-nomina-red text-white"
         )}
       >
         <ArrowRightIcon className="w-5 h-5" />
@@ -33,7 +33,7 @@ export function ArrowButton({
       <span
         className={cn(
           "text-sm font-bold uppercase tracking-wider",
-          variant === "dark" ? "text-white" : "text-pil-black"
+          variant === "dark" ? "text-white" : "text-nomina-black"
         )}
       >
         {label}

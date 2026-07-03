@@ -25,7 +25,7 @@ const LOCATION = {
 
 /**
  * Live weather widget for Jakarta Selatan using Open-Meteo API (free, no key).
- * Matches the layout of pilcommunication.com's hero weather bar.
+ * Matches the layout of nominacommunication.com's hero weather bar.
  */
 export function WeatherWidget({ className }: WeatherWidgetProps) {
   const [time, setTime] = useState("");
@@ -90,12 +90,12 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 text-pil-black text-[11px] font-bold uppercase tracking-wide",
+        "flex items-center gap-4 text-nomina-black text-[11px] font-bold uppercase tracking-wide",
         className
       )}
     >
       {/* Red square accent dot */}
-      <span className="hidden md:block w-2.5 h-2.5 bg-pil-red shrink-0" />
+      <span className="hidden md:block w-2.5 h-2.5 bg-nomina-red shrink-0" />
 
       {/* Location label */}
       <span className="hidden md:inline whitespace-nowrap">

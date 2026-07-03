@@ -4,16 +4,16 @@ interface IconProps {
   className?: string;
 }
 
-/** PIL wordmark logo — "pil." with "20 YEARS OF PEOPLE." tagline */
-export function PilLogo({ className }: IconProps) {
+/** NOMINA wordmark logo — "nomina." with "20 YEARS OF PEOPLE." tagline */
+export function NominaLogo({ className }: IconProps) {
   return (
     <div className={cn("flex flex-col items-start leading-none", className)}>
       <div className="relative">
-        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-pil-red opacity-40 absolute -top-1 -left-1">
+        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-nomina-red opacity-40 absolute -top-1 -left-1">
           20
         </span>
         <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight relative z-10">
-          pil.
+          nomina.
         </span>
       </div>
       <span className="text-[0.5rem] font-bold uppercase tracking-[0.15em] mt-0.5">
@@ -23,16 +23,16 @@ export function PilLogo({ className }: IconProps) {
   );
 }
 
-/** PIL logo for dark backgrounds */
-export function PilLogoDark({ className }: IconProps) {
+/** NOMINA logo for dark backgrounds */
+export function NominaLogoDark({ className }: IconProps) {
   return (
     <div className={cn("flex flex-col items-start leading-none text-white", className)}>
       <div className="relative">
-        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-pil-red opacity-40 absolute -top-1 -left-1">
+        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-nomina-red opacity-40 absolute -top-1 -left-1">
           20
         </span>
         <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight relative z-10">
-          pil.
+          nomina.
         </span>
       </div>
       <span className="text-[0.5rem] font-bold uppercase tracking-[0.15em] mt-0.5">
