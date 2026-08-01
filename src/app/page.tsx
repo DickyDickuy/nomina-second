@@ -21,3 +21,4 @@ export default function Home() {
     </>
   );
 }
+// Updated brand colors to Scarlet Red #FF3800

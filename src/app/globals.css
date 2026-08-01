@@ -14,7 +14,7 @@
   --font-sans: var(--font-body);
 
   /* NOMINA brand colors */
-  --color-nomina-red: #ccff00;
+  --color-nomina-red: #ff3800;
   --color-nomina-black: oklch(0 0 0);
   --color-nomina-white: oklch(1 0 0);
   --color-nomina-offwhite: oklch(0.97 0 0);
@@ -66,7 +66,7 @@
   --card-foreground: oklch(0 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0 0 0);
-  --primary: #ccff00;
+  --primary: #ff3800;
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0 0 0);
@@ -86,7 +86,7 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0 0 0);
-  --sidebar-primary: #ccff00;
+  --sidebar-primary: #ff3800;
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0 0 0);
@@ -101,7 +101,7 @@
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.15 0 0);
   --popover-foreground: oklch(0.985 0 0);
-  --primary: #ccff00;
+  --primary: #ff3800;
   --primary-foreground: oklch(1 0 0);
   --secondary: oklch(0.2 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -120,7 +120,7 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: oklch(0.15 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: #ccff00;
+  --sidebar-primary: #ff3800;
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.2 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
@@ -181,7 +181,7 @@
 }
 
 .service-row:hover {
-  background-color: #ccff00;
+  background-color: #ff3800;
   color: oklch(1 0 0);
 }
 
@@ -217,4 +217,4 @@
 .animate-marquee-reverse {
   animation: marquee-reverse 40s linear infinite;
 }
-/* Trigger HMR */
+/* Trigger CSS recompile - Scarlet Red #FF3800 */

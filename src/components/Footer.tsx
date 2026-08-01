@@ -7,6 +7,8 @@ import {
 } from "@/components/icons";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
+import Tetris from "@/components/Tetris";
+
 const SITE_LINKS = [
   { label: "ABOUT", href: "#about" },
   { label: "SPECIAL 20", href: "#special-20" },
@@ -74,19 +76,16 @@ const SERVICE_CATEGORIES = [
 export function Footer() {
   return (
     <footer className="bg-nomina-black text-white">
-      {/* Decorative top bar — animated blocks pattern */}
-      <div className="h-16 md:h-20 bg-nomina-dark overflow-hidden flex items-end">
-        <div className="flex gap-[2px] w-full h-full items-end px-2">
-          {Array.from({ length: 60 }).map((_, i) => (
-            <div
-              key={i}
-              className="bg-white/10 flex-1"
-              style={{
-                height: `${20 + Math.sin(i * 0.5) * 30 + Math.random() * 20}%`,
-              }}
-            />
-          ))}
-        </div>
+      {/* Decorative top bar — Tetris strip */}
+      <div className="w-full h-24 sm:h-28 md:h-32 bg-white overflow-hidden relative">
+        <Tetris
+          cellSize={16}
+          gap={1}
+          dropSpeed={0.6}
+          movement={4}
+          boardColor="transparent"
+          gridColor="transparent"
+        />
       </div>
 
       {/* Main footer content */}
