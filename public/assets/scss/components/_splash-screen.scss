@@ -1,0 +1,25 @@
+@use "../utils" as *;
+
+.splash-screen-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    overflow: hidden; /* Changed from overflow-y: auto */
+    background: #1A1D1A;
+
+    & .tp-about-us-area {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+
+    // Mobile: keep the hero title inside the viewport.
+    @media (max-width: 767px) {
+        .tp-hero-2-title {
+            font-size: clamp(48px, 12vw, 84px);
+            line-height: 0.95;
+            white-space: normal;
+            word-break: break-word;
+        }
+    }
+}

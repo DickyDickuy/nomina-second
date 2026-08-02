@@ -1,0 +1,356 @@
+/* ============================================================
+   Registration Page — Scoped CSS Module
+   Matches the minimalist editorial aesthetic of target.png.
+   Background: #1b1b1d (matches CreativeAgencyFooter)
+   ============================================================ */
+
+.registrationSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #1b1b1d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+}
+
+/* ---- Left Panel: Image Card (Floating/Inset) ---- */
+.imagePanel {
+  width: 44%;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: 620px;
+  /* Tall portrait card, extends above heading and below form fields */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.heroImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* Subtle overlay on the image matching the theme */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+      transparent 70%,
+      rgba(27, 27, 29, 0.4) 100%);
+  pointer-events: none;
+}
+
+/* ---- Right Panel: Form ---- */
+.formPanel {
+  flex: 1;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.formContainer {
+  width: 100%;
+}
+
+/* ---- Typography ---- */
+.heading {
+  font-family: var(--font-playfair-display), "Playfair Display", serif;
+  font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  font-style: italic;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 48px;
+  line-height: 1.7;
+  max-width: 460px;
+}
+
+/* ---- Grid Layout ---- */
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px 32px;
+  margin-bottom: 40px;
+}
+
+/* ---- Field Group ---- */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.fieldGroupFull {
+  grid-column: span 2;
+}
+
+.label {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  margin-bottom: 12px;
+}
+
+/* ---- Minimalist Underline Inputs ---- */
+.input,
+.select {
+  width: 100% !important;
+  padding: 12px 0 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 0.9375rem !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  transition: border-color 0.3s ease !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.25) !important;
+  font-weight: 300 !important;
+}
+
+.input:focus,
+.select:focus {
+  border-bottom-color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* ---- Select Wrapper ---- */
+.selectWrapper {
+  position: relative;
+}
+
+.select {
+  cursor: pointer;
+  padding-right: 28px !important;
+}
+
+.select option {
+  background: #1b1b1d;
+  color: #ffffff;
+  padding: 10px;
+}
+
+.selectArrow {
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.625rem;
+  transition: color 0.2s ease;
+}
+
+/* ---- Submit Button (Full Width to match Email) ---- */
+.submitButton {
+  display: block;
+  width: 100% !important;
+  /* Full width to match inputs */
+  padding: 8px 36px !important;
+  /* Thinner padding (-2px) */
+  background: #2a2a2c !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 6px !important;
+  font-family: var(--font-inter), sans-serif !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  cursor: pointer !important;
+  position: relative !important;
+  overflow: hidden !important;
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.25s ease, box-shadow 0.35s ease !important;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #353537 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0) !important;
+}
+
+.submitButton:disabled {
+  opacity: 0.45 !important;
+  cursor: not-allowed !important;
+}
+
+/* ---- Toast Notification ---- */
+.toastContainer {
+  margin-top: 24px;
+  overflow: hidden;
+}
+
+.toast {
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.toastSuccess {
+  background: rgba(34, 197, 94, 0.1);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+
+.toastError {
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+.toastIcon {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Validation Error ---- */
+.inputError {
+  border-bottom-color: rgba(239, 68, 68, 0.6) !important;
+}
+
+.fieldError {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  color: #f87171;
+  margin-top: 6px;
+}
+
+/* ============================================================
+   Responsive Breakpoints
+   ============================================================ */
+
+/* Tablet & Smaller Desktop */
+@media (max-width: 1024px) {
+  .container {
+    gap: 40px;
+    padding: 0 32px;
+  }
+
+  .imagePanel {
+    width: 40%;
+  }
+
+  .imageWrapper {
+    height: 520px;
+  }
+}
+
+/* Mobile & Small Tablet */
+@media (max-width: 768px) {
+  .registrationSection {
+    padding: 60px 0;
+  }
+
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 48px;
+    padding: 0 24px;
+  }
+
+  .imagePanel {
+    width: 100%;
+  }
+
+  .imageWrapper {
+    height: 400px;
+  }
+
+  .formPanel {
+    max-width: 100%;
+  }
+
+  .submitButton {
+    width: 100% !important;
+    /* Full width for better UX on small touchscreens */
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+    gap: 36px;
+  }
+
+  .imageWrapper {
+    height: 300px;
+  }
+
+  .formGrid {
+    grid-template-columns: 1fr;
+    /* Single column for inputs */
+    gap: 28px;
+  }
+
+  .fieldGroupFull {
+    grid-column: span 1;
+  }
+
+  .heading {
+    font-size: 2.25rem;
+  }
+}

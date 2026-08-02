@@ -1,0 +1,90 @@
+@use "../utils" as *;
+
+/*----------------------------------------*/
+/*  2.1 Back to top
+/*----------------------------------------*/
+
+.back-to-top-wrapper {
+    position: fixed;
+    right: 50px;
+    bottom: 0;
+    height: 44px;
+    width: 44px;
+    cursor: pointer;
+    display: block;
+    border-radius: 50%;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    @extend %transition;
+
+    @media #{$xs} {
+        right: 20px;
+        bottom: 20px;
+    }
+    &.back-to-top-btn-show {
+        visibility: visible;
+        opacity: 1;
+        bottom: 50px;
+    }
+}
+
+.back-to-top-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--tp-common-black);
+    @include tp-transition(all, 0.3s);
+    background: var(--tp-common-white);
+    box-shadow: 0px 8px 16px rgba(3, 4, 28, 0.3);
+    & svg {
+        @include tp-transform(translateY(0));
+    }
+    &:hover {
+        @include tp-transform(translateY(-4px));
+    }
+}
+
+.audio-toggle-wrapper {
+    position: fixed;
+    right: 50px;
+    bottom: 0;
+    height: 44px;
+    width: 44px;
+    display: block;
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    @extend %transition;
+
+    @media #{$xs} {
+        right: 20px;
+        bottom: 20px;
+    }
+
+    &.audio-toggle-btn-show {
+        visibility: visible;
+        opacity: 1;
+        bottom: 104px;
+    }
+}
+
+.audio-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    color: var(--tp-common-black);
+    @include tp-transition(all, 0.3s);
+    background: var(--tp-common-white);
+    box-shadow: 0px 8px 16px rgba(3, 4, 28, 0.3);
+
+    &:hover {
+        @include tp-transform(translateY(-4px));
+    }
+}

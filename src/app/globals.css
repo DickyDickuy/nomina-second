@@ -194,9 +194,247 @@
   transform: translateX(4px);
 }
 
-/* Nav transition */
+/* Nav transition & links */
 .nav-bar {
   transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-bar-link {
+  color: oklch(0 0 0) !important;
+  text-decoration: none !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+}
+
+.nav-bar-link:hover {
+  background-color: #ff3800 !important;
+  color: #ffffff !important;
+}
+
+/* Clean, Static Footer Text (No stretch, no GSAP text transform distortion) */
+.tp-footer-area,
+.tp-copyright-area,
+.tp-footer-area *,
+.tp-copyright-area * {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.tp-footer-widget-title,
+.tp-footer-widget-title-sm {
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  white-space: normal !important;
+}
+
+.tp-footer-vertical-stretch,
+.tp-footer-static-logo,
+.tp-copyright-big-text {
+  transform: none !important;
+  scale: none !important;
+  font-family: var(--tp-ff-clash-semibold, "Clash Display", sans-serif) !important;
+  font-size: 23vw !important;
+  letter-spacing: -0.03em !important;
+  line-height: 0.8 !important;
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin: 0 auto !important;
+}
+
+.tp-copyright-big-text span {
+  transform: none !important;
+  display: inline-block !important;
+  will-change: auto !important;
+}
+
+/* Clean Light Mode Contact & Application Form Styling */
+.tp-contact-us-form-wrapper,
+.tp-contact-us-wrap,
+.tp-contact-us-content,
+.tp-application-form-wrap,
+.tp-contact-form-wrap {
+  background: #ffffff !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 24px !important;
+  padding: 55px 65px !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04) !important;
+}
+
+@media (max-width: 991px) {
+  .tp-contact-us-form-wrapper,
+  .tp-contact-us-wrap,
+  .tp-contact-us-content,
+  .tp-application-form-wrap,
+  .tp-contact-form-wrap {
+    padding: 35px 30px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .tp-contact-us-form-wrapper,
+  .tp-contact-us-wrap,
+  .tp-contact-us-content,
+  .tp-application-form-wrap,
+  .tp-contact-form-wrap {
+    padding: 25px 20px !important;
+  }
+}
+
+.tp-contact-us-title,
+.tp-contact-us-info-title,
+.cn-contactform-support-text span {
+  color: #111111 !important;
+}
+
+.tp-contact-form-input label {
+  color: #111111 !important;
+  font-weight: 600 !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+.tp-contact-form-input input,
+.tp-contact-form-input textarea {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+  color: #111111 !important;
+  padding: 14px 18px !important;
+  transition: all 0.25s ease-in-out !important;
+}
+
+.tp-contact-form-input input::placeholder,
+.tp-contact-form-input textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+.tp-contact-form-input input:hover,
+.tp-contact-form-input textarea:hover {
+  background: #ffffff !important;
+  border-color: #94a3b8 !important;
+}
+
+.tp-contact-form-input input:focus,
+.tp-contact-form-input textarea:focus {
+  background: #ffffff !important;
+  border-color: #ff3800 !important;
+  box-shadow: 0 0 0 3px rgba(255, 56, 0, 0.15) !important;
+  outline: none !important;
+}
+
+/* Fix Footer Social Icons Centering */
+.tp-footer-widget-social {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.tp-footer-widget-social a {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50% !important;
+  background-color: rgba(0, 0, 0, 0.08) !important;
+  color: #1b1b1d !important;
+  transition: all 0.25s ease !important;
+  padding: 0 !important;
+}
+
+.tp-footer-widget-social a span {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.tp-footer-widget-social a svg {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  margin: auto !important;
+}
+
+/* Perfect centering for tp-btn-black-circle SVG arrow */
+.tp-btn-black-circle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.tp-btn-black-circle > svg {
+  display: block !important;
+  margin: 0 !important;
+  transform: none !important;
+}
+
+/* Reverted Dark Footer Styling */
+.tp-footer-style-6 {
+  background-color: #121315 !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-title {
+  color: #ffffff !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-title-sm {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-info a {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-info a:hover {
+  color: #FF3203 !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-menu ul li a,
+.footer-main .tp-footer-widget-menu ul li a {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-menu ul li a:hover,
+.footer-main .tp-footer-widget-menu ul li a:hover {
+  background-color: #FF3203 !important;
+  color: #ffffff !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-social a {
+  background-color: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-social a svg {
+  color: #ffffff !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-social a svg path {
+  stroke: #ffffff !important;
+}
+
+.tp-footer-style-6 .tp-footer-widget-social a:hover {
+  background-color: #FF3203 !important;
+  color: #ffffff !important;
+}
+
+.tp-copyright-style-6 {
+  background-color: #121315 !important;
+}
+
+.tp-copyright-style-6 .tp-footer-static-logo,
+.tp-copyright-style-6 .tp-copyright-big-text span {
+  color: #FF3203 !important;
 }
 
 /* Marquee infinite scroll */
@@ -217,4 +455,39 @@
 .animate-marquee-reverse {
   animation: marquee-reverse 40s linear infinite;
 }
+
+/* ==========================================================================
+   PROTECT HOME PAGE FROM AGNTIX GLOBAL CSS LEAKAGE
+   (Prevents styles from `agntix-globals.scss` overriding Tailwind utility classes 
+   when soft-navigating from an inner page via Next.js router)
+   ========================================================================== */
+#nomina-home h1,
+#nomina-home h2,
+#nomina-home h3,
+#nomina-home h4,
+#nomina-home h5,
+#nomina-home h6 {
+  font-family: var(--font-heading) !important;
+  margin: 0 !important;
+  line-height: inherit;
+}
+
+#nomina-home p {
+  font-family: var(--font-body) !important;
+  margin: 0 !important;
+}
+
+#nomina-home a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+#nomina-home .font-heading {
+  font-family: var(--font-heading) !important;
+}
+
+#nomina-home .font-body {
+  font-family: var(--font-body) !important;
+}
+
 /* Trigger CSS recompile - Scarlet Red #FF3800 */

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { NominaLogo } from "@/components/icons";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MenuIcon } from "@/components/icons";
@@ -11,20 +12,25 @@ const NAV_LINKS = [
   { label: "SPECIAL 20", href: "#special-20" },
   { label: "SERVICES", href: "#services" },
   { label: "CLIENTS", href: "#clients" },
-  { label: "CAREERS", href: "#" },
-  { label: "CONTACT", href: "#" },
-  { label: "NOMINA STARTER", href: "#" },
+  { label: "CAREERS", href: "/career" },
+  { label: "CONTACT", href: "/contact" },
+  { label: "NOMINA STARTER", href: "/portfolio" },
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+  const isLandingPage = pathname === "/";
+  
+  const [scrolled, setScrolled] = useState(!isLandingPage);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
   useEffect(() => {
     function handleScroll() {
-      // Transition when scrolled past the hero section (viewport height minus navbar height)
-      setScrolled(window.scrollY >= window.innerHeight - 58);
+      if (isLandingPage) {
+        // Transition when scrolled past the hero section (viewport height minus navbar height)
+        setScrolled(window.scrollY >= window.innerHeight - 58);
+      }
       
       // Calculate scroll progress
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -35,13 +41,15 @@ export function Navbar() {
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isLandingPage]);
 
   return (
     <>
       <nav
+        style={{ zIndex: 999999 }}
         className={cn(
-          "nav-bar sticky top-0 z-50 w-full h-[58px] flex items-center bg-white",
+          "nav-bar w-full h-[58px] flex items-center bg-white",
+          isLandingPage ? "sticky top-0" : "fixed top-0 left-0",
           scrolled ? "shadow-md" : ""
         )}
       >
@@ -59,20 +67,36 @@ export function Navbar() {
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <NominaLogo className="text-nomina-red scale-[0.55] origin-left" />
+            <a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>
+              <NominaLogo className="text-nomina-red scale-[0.55] origin-left hover:opacity-80 transition-opacity" />
+            </a>
           </div>
 
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-0 flex-1 justify-center h-full">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red transition-colors duration-200"
-              >
+            {NAV_LINKS.map((link) => {
+              const isHashLink = link.href.startsWith('#');
+              const targetHref = isHashLink && !isLandingPage ? `/${link.href}` : link.href;
+              
+              return (
+                <a
+                  key={link.label}
+                  href={targetHref}
+                  onClick={(e) => {
+                    if (isHashLink && !isLandingPage) {
+                      e.preventDefault();
+                      window.location.href = targetHref;
+                    } else if (!isHashLink) {
+                      e.preventDefault();
+                      window.location.href = targetHref;
+                    }
+                  }}
+                  className="nav-bar-link h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
+                >
                 {link.label}
               </a>
-            ))}
+              );
+            })}
           </div>
 
           {/* Desktop language switcher */}
@@ -105,16 +129,31 @@ export function Navbar() {
             </button>
           </div>
           <div className="flex flex-col flex-1 py-8">
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="px-8 py-4 text-lg font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
-              >
-                {link.label}
-              </a>
-            ))}
+              {NAV_LINKS.map((link) => {
+                const isHashLink = link.href.startsWith('#');
+                const targetHref = isHashLink && !isLandingPage ? `/${link.href}` : link.href;
+                
+                return (
+                  <a
+                    key={link.label}
+                    href={targetHref}
+                    onClick={(e) => {
+                      if (isHashLink && !isLandingPage) {
+                        e.preventDefault();
+                        window.location.href = targetHref;
+                      } else if (!isHashLink) {
+                        e.preventDefault();
+                        window.location.href = targetHref;
+                      } else {
+                        setMobileMenuOpen(false);
+                      }
+                    }}
+                    className="px-8 py-4 text-lg font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
           </div>
           <div className="px-8 pb-8">
             <LanguageSwitcher variant="light" />

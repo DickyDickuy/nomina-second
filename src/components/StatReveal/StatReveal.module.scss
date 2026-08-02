@@ -1,0 +1,157 @@
+.statRevealContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+  padding: 6rem 5%;
+  overflow: hidden;
+  width: 100%;
+}
+
+.statBlockWrapper {
+  display: flex;
+  align-items: stretch;
+  width: fit-content;
+  max-width: 100%;
+}
+
+.alignRight {
+  align-self: flex-end;
+}
+
+.alignLeft {
+  align-self: flex-start;
+}
+
+.numberBlock {
+  padding: 2rem 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-family: "BBStrataProSEF-Bold", "Inter", sans-serif;
+  font-size: 5rem;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: pre-wrap;
+  word-break: break-all;
+  letter-spacing: -0.02em;
+  max-width: 100%;
+  text-align: right;
+}
+
+.numberCharContainer {
+  display: inline-flex;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.05em;
+}
+
+.numberCharInner {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.mainChar {
+  display: inline-block;
+  line-height: 0.9;
+}
+
+.ghostChar {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 0.9;
+  opacity: 0;
+  filter: blur(1px);
+  transition: opacity 0.1s ease-out;
+}
+
+.isAnimating .ghostChar {
+  opacity: 0.5;
+}
+
+.labelBar {
+  padding: 2rem 3rem;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-inter), "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  max-width: 450px;
+  min-width: 300px;
+  flex-shrink: 0;
+}
+
+.labelInner {
+  display: inline-block;
+}
+
+.desktopNumber {
+  display: inline-flex;
+}
+
+.mobileNumber {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktopNumber {
+    display: none !important;
+  }
+  .mobileNumber {
+    display: inline-flex !important;
+  }
+}
+
+.statBlockWrapper {
+  flex-direction: column;
+}
+
+.alignRight {
+  align-items: flex-end;
+}
+
+.alignLeft {
+  align-items: flex-start;
+}
+
+.numberBlock {
+  justify-content: flex-end;
+  font-size: 4rem;
+  padding: 1.5rem 2.5rem;
+}
+
+.labelBar {
+  padding: 1.5rem 2.5rem;
+  font-size: 1.25rem;
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.alignRight .numberBlock, .alignRight .labelBar {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.alignLeft .numberBlock, .alignLeft .labelBar {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+@media (max-width: 576px) {
+  .numberBlock {
+    font-size: 2.5rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .labelBar {
+    padding: 1rem 1.5rem;
+    font-size: 1.1rem;
+  }
+}

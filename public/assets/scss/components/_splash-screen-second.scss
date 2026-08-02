@@ -1,0 +1,256 @@
+@use "../utils" as *;
+
+.splash-screen-second-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    overflow: hidden;
+    background: #0d1117; // fallback dark background
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-onest), sans-serif;
+
+    &.day-mode {
+        background: #f0f7ff;
+    }
+
+    &.theme-loading {
+        background: #0d1117;
+
+        .splash-sky-bg,
+        .splash-stickers-container,
+        .splash-content-overlay {
+            opacity: 0 !important;
+            pointer-events: none;
+        }
+    }
+
+    // Sky background layer
+    .splash-sky-bg {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        z-index: 1;
+        will-change: transform;
+        transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    // Centered overlay container for text & button
+    .splash-content-overlay {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+        height: 100%;
+        padding: 8vh 24px;
+        pointer-events: none;
+        transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    // Dynamic Header Title
+    .splash-header-wrapper {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        max-width: 680px;
+        padding: 45px 65px;
+        border-radius: 32px;
+    }
+
+    .splash-headline {
+        margin: 0;
+        line-height: 1;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        will-change: transform, opacity;
+    }
+
+    .splash-text-pressure {
+        width: 100%;
+        display: block;
+    }
+
+    // Get Started capsule button wrapper
+    .splash-action-btn-wrapper {
+        margin-top: 16px;
+        pointer-events: auto;
+    }
+
+    .splash-action-btn {
+        // Inherits glassmorphic design from .liquid-glass class.
+        // We only retain alignment, spacing, and transition controls.
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        will-change: transform, opacity;
+
+        // Custom theme hover styles for splash button
+        .night-mode & {
+            &:hover {
+                box-shadow:
+                    inset 0 1px 2px rgba(255, 255, 255, 0.25),
+                    0 8px 30px rgba(0, 0, 0, 0.5),
+                    0 0 25px rgba(255, 0, 128, 0.25);
+            }
+        }
+    }
+
+    // Parallax Stickers container
+    .splash-stickers-container {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+        overflow: hidden;
+        transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    // Individual sticker elements
+    .splash-sticker {
+        position: absolute;
+        display: block;
+        transform-origin: center center;
+        will-change: transform, opacity;
+        filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.12));
+        transition: filter 0.5s ease;
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        // Tactile depth lighting shadows for dark mode
+        .night-mode & {
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
+        }
+
+        // Hover effect for mouse hover over stickers on desktops (if interactive)
+        pointer-events: auto;
+        cursor: grab;
+        &:active {
+            cursor: grabbing;
+        }
+
+        // Ratios and configurations of specific stickers based on mockup:
+
+        // 1. Visa card: Top Left
+        &.sticker-visa {
+            width: clamp(55px, 14vw, 190px);
+            top: 15%;
+            left: 10%;
+            transform: rotate(-14deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 20px rgba(124, 58, 237, 0.3))
+                    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            }
+        }
+
+        // 2. Stablecoin Keychain: Top Right
+        &.sticker-stablecoin {
+            width: clamp(45px, 11vw, 150px);
+            top: 8%;
+            right: 12%;
+            transform: rotate(22deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.4))
+                    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            }
+        }
+
+        // 3. Banana Sticker (Nano Banana): Top Center Left
+        &.sticker-banana {
+            width: clamp(40px, 9vw, 120px);
+            top: 25%;
+            left: 36%;
+            transform: rotate(-8deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 15px rgba(234, 179, 8, 0.4))
+                    drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+            }
+        }
+
+        // 4. UglyCash Green Square: Center Right
+        &.sticker-uglycash {
+            width: clamp(45px, 10vw, 140px);
+            top: 32%;
+            right: 28%;
+            transform: rotate(12deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 18px rgba(34, 197, 94, 0.4))
+                    drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+            }
+        }
+
+        // 5. Orange Starfish: Bottom Left
+        &.sticker-starfish {
+            width: clamp(55px, 14vw, 190px);
+            bottom: 22%;
+            left: 10%;
+            transform: rotate(-25deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 22px rgba(249, 115, 22, 0.4))
+                    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+            }
+        }
+
+        // 6. Blue Venmo Ticket: Bottom Center Right
+        &.sticker-venmo {
+            width: clamp(45px, 11vw, 155px);
+            bottom: 28%;
+            right: 26%;
+            transform: rotate(10deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 18px rgba(59, 130, 246, 0.4))
+                drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+            }
+        }
+
+        // 7. Yellow Money Order Ticket: Bottom Right
+        &.sticker-ticket {
+            width: clamp(50px, 12vw, 170px);
+            bottom: 12%;
+            right: 8%;
+            transform: rotate(32deg);
+
+            .night-mode & {
+                filter: drop-shadow(0 0 18px rgba(253, 224, 71, 0.3))
+                    drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+            }
+        }
+    }
+
+    // Mobile: reduce the text container padding so the headline stays in-bounds.
+    @media (max-width: 767px) {
+        .splash-content-overlay {
+            padding: 10vh 16px;
+        }
+
+        .splash-header-wrapper {
+            max-width: 100%;
+            padding: 18px 14px;
+            border-radius: 24px;
+        }
+    }
+}

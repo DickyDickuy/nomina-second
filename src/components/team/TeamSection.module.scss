@@ -1,0 +1,257 @@
+/* ═══════════════════════════════════════════════════════════════
+   TeamSection.module.scss
+   Premium team grid with hover-reveal (desktop) & accordion (mobile/tablet)
+   ═══════════════════════════════════════════════════════════════ */
+
+@use "sass:math";
+
+/* ─── Design Tokens ─── */
+$text-dark: var(--tp-common-black, #111111);
+$text-role: rgba(17, 17, 17, 0.6);
+$separator: rgba(17, 17, 17, 0.1);
+$separator-hover: rgba(17, 17, 17, 0.3);
+$image-ratio: math.div(16, 10); // optimized horizontal ratio for team images
+
+/* ─── Section Root ─── */
+.section {
+  position: relative;
+  padding: 140px 0 100px;
+  overflow: hidden;
+}
+
+/* ─── Header ─── */
+.header {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 40px;
+  margin-bottom: 80px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--tp-ff-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: $text-role;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-family: var(--tp-ff-clash-semibold, "Clash Display", sans-serif);
+  font-weight: 700;
+  font-size: clamp(60px, 12vw, 150px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  color: var(--tp-common-red-3, #ff3203);
+  text-transform: uppercase;
+  margin: 0;
+  max-width: 100%;
+}
+
+/* ─── Grid Container ─── */
+.grid {
+  max-width: 1480px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── Team Item Row ─── */
+.item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid $separator;
+  transition: border-color 0.4s ease;
+
+  &:last-child {
+    border-bottom: 1px solid $separator;
+  }
+}
+
+/* ─── Cell (each column = one person) ─── */
+.cell {
+  padding: 36px 20px 36px 0;
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  cursor: pointer;
+}
+
+.cellRight {
+  padding-left: 20px;
+}
+
+/* ─── Index Number ─── */
+.index {
+  font-family: var(--tp-ff-body);
+  font-size: 11px;
+  font-weight: 400;
+  color: $text-role;
+  letter-spacing: 1px;
+  min-width: 24px;
+  flex-shrink: 0;
+  transition: color 0.35s ease;
+}
+
+/* ─── Name / Role Block ─── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-family: var(--tp-ff-clash-semibold, "Clash Display", sans-serif);
+  font-weight: 500;
+  font-size: clamp(22px, 2.6vw, 38px);
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: $text-dark;
+  margin: 0;
+  transition: color 0.35s ease, opacity 0.35s ease;
+}
+
+.role {
+  font-family: var(--font-inter), "Inter", sans-serif;
+  font-size: clamp(11px, 1vw, 13px);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(17, 17, 17, 0.88);
+  transition: color 0.35s ease;
+}
+
+/* ─── Desktop Hover States (per-cell, not per-row) ─── */
+@media (min-width: 769px) {
+  /* Highlight the individual cell being hovered */
+  .cell:hover .name {
+    color: $text-dark;
+    opacity: 1;
+  }
+
+  .cell:hover .index {
+    color: $text-dark;
+  }
+
+  /* Dim ALL cells when any cell in the grid is hovered,
+     then un-dim the one being hovered via the rule above */
+  .grid:hover .cell:not(:hover) .name {
+    opacity: 0.3;
+  }
+
+  .grid:hover .cell:not(:hover) .index {
+    color: rgba(138, 138, 130, 0.4);
+  }
+}
+
+/* ─── Floating Image (Desktop) — rendered via portal at body level ─── */
+.floatingImage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 400px;
+  height: 250px;
+  z-index: 9990;
+  pointer-events: none;
+  opacity: 1;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.18),
+    0 8px 20px rgba(0, 0, 0, 0.08);
+  will-change: transform;
+  transform-origin: center center;
+}
+
+.floatingImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+/* Hide floating image on tablet/mobile */
+@media (max-width: 768px) {
+  .floatingImage {
+    display: none !important;
+  }
+}
+
+/* ─── Accordion Image (Mobile/Tablet) ─── */
+.accordionWrap {
+  overflow: hidden;
+  height: 0;
+  will-change: height;
+}
+
+.accordionInner {
+  padding: 0 0 24px;
+}
+
+.accordionImgWrap {
+  width: 100%;
+  aspect-ratio: $image-ratio;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.accordionImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+/* Show accordion only on tablet/mobile */
+@media (min-width: 769px) {
+  .accordionWrap {
+    display: none !important;
+  }
+}
+
+/* ─── Mobile/Tablet Layout ─── */
+@media (max-width: 768px) {
+  .section {
+    padding: 80px 0 60px;
+  }
+
+  .header {
+    padding: 0 24px;
+    margin-bottom: 48px;
+  }
+
+  .grid {
+    padding: 0 24px;
+  }
+
+  .item {
+    grid-template-columns: 1fr;
+  }
+
+  .cell {
+    padding: 28px 0;
+  }
+
+  .cellRight {
+    padding-left: 0;
+  }
+
+  .name {
+    font-size: clamp(20px, 5vw, 28px);
+  }
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  .floatingImage,
+  .accordionWrap,
+  .name,
+  .index,
+  .item {
+    transition: none !important;
+  }
+}
