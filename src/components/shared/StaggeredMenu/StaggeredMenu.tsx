@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 import styles from "./StaggeredMenu.module.scss";
 
@@ -404,34 +405,6 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         };
     }, [closeMenu, closeOnClickAway, open]);
 
-    // On mobile / iPhone view ONLY: Fade out top-left header logo when scrolling reaches the footer
-    React.useEffect(() => {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const mm = gsap.matchMedia();
-        mm.add("(max-width: 767px)", () => {
-            const logoEl = document.querySelector<HTMLElement>(`.${styles.logo}`);
-            const footerEl = document.querySelector(".tp-footer-area") || document.querySelector(".tp-copyright-area");
-
-            if (!logoEl || !footerEl) return;
-
-            ScrollTrigger.create({
-                trigger: footerEl,
-                start: "top 85%",
-                onEnter: () => {
-                    gsap.to(logoEl, { opacity: 0, duration: 0.35, ease: "power2.out" });
-                },
-                onLeaveBack: () => {
-                    gsap.to(logoEl, { opacity: 1, duration: 0.35, ease: "power2.out" });
-                },
-            });
-        });
-
-        return () => {
-            mm.revert();
-        };
-    }, []);
-
     return (
         <div
             className={`${styles.wrapper} ${isFixed ? styles.fixedWrapper : ""} ${className || ""}`}
@@ -446,11 +419,6 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             </div>
 
             <header className={styles.header} aria-label="Main navigation header">
-                <div className={styles.logo} aria-label="Logo">
-                    <a href="/" aria-label="Go to home page" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>
-                        <Image width={110} height={32} src={logoUrl} alt="Nomina Creative" className={styles.logoImg} priority />
-                    </a>
-                </div>
                 <button
                     ref={toggleBtnRef}
                     className={styles.toggle}
@@ -514,6 +482,10 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             </ul>
                         </div>
                     )}
+
+                    <div className="mt-8 pt-8 border-t border-white/20">
+                        <LanguageSwitcher variant="light" />
+                    </div>
                 </div>
             </aside>
         </div>

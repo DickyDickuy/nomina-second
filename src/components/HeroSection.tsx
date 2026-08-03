@@ -39,7 +39,9 @@ export function HeroSection() {
         {/* Right side: Weather + Language */}
         <div className="flex items-start gap-4 md:gap-6">
           <WeatherWidget />
-          <LanguageSwitcher variant="light" />
+          <div className="hidden md:block">
+            <LanguageSwitcher variant="light" />
+          </div>
         </div>
       </div>
     </section>

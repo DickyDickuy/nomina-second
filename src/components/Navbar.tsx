@@ -4,26 +4,35 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { NominaLogo } from "@/components/icons";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { MenuIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
+import StaggeredMenu from "./shared/StaggeredMenu/StaggeredMenu";
 
 const NAV_LINKS = [
   { label: "ABOUT", href: "#about" },
-  { label: "SPECIAL 20", href: "#special-20" },
+  { label: "ARCHIVE", href: "#special-20" },
   { label: "SERVICES", href: "#services" },
   { label: "CLIENTS", href: "#clients" },
   { label: "CAREERS", href: "/career" },
   { label: "CONTACT", href: "/contact" },
-  { label: "NOMINA STARTER", href: "/portfolio" },
+  { label: "PORTOFOLIO", href: "/portfolio" },
 ];
 
 export function Navbar() {
   const pathname = usePathname();
   const isLandingPage = pathname === "/";
-  
+
   const [scrolled, setScrolled] = useState(!isLandingPage);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  const staggeredMenuItems = NAV_LINKS.map(link => {
+    const isHashLink = link.href.startsWith('#');
+    const targetHref = isHashLink && !isLandingPage ? `/${link.href}` : link.href;
+    return {
+      label: link.label,
+      ariaLabel: link.label,
+      link: targetHref
+    };
+  });
 
   useEffect(() => {
     function handleScroll() {
@@ -31,7 +40,7 @@ export function Navbar() {
         // Transition when scrolled past the hero section (viewport height minus navbar height)
         setScrolled(window.scrollY >= window.innerHeight - 58);
       }
-      
+
       // Calculate scroll progress
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
@@ -54,7 +63,7 @@ export function Navbar() {
         )}
       >
         {/* Scroll Progress Bar */}
-        <div 
+        <div
           className="absolute bottom-0 left-0 h-[3px] bg-nomina-red transition-all duration-150 ease-out z-10"
           style={{ width: `${scrollProgress}%` }}
         />
@@ -77,7 +86,7 @@ export function Navbar() {
             {NAV_LINKS.map((link) => {
               const isHashLink = link.href.startsWith('#');
               const targetHref = isHashLink && !isLandingPage ? `/${link.href}` : link.href;
-              
+
               return (
                 <a
                   key={link.label}
@@ -93,8 +102,8 @@ export function Navbar() {
                   }}
                   className="nav-bar-link h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
                 >
-                {link.label}
-              </a>
+                  {link.label}
+                </a>
               );
             })}
           </div>
@@ -105,61 +114,20 @@ export function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-nomina-red"
-            aria-label="Toggle menu"
-          >
-            <MenuIcon className="w-7 h-7" />
-          </button>
+          <div className="md:hidden flex items-center h-full -mr-2">
+            <StaggeredMenu
+              isFixed={true}
+              position="right"
+              colors={["#ff3800", "#ff9100ff", "#ffffff"]}
+              items={staggeredMenuItems}
+              displaySocials={false}
+              menuButtonColor="#111111"
+              openMenuButtonColor="#ffffff"
+              logoUrl="/assets/img/logo/logo-white.png"
+            />
+          </div>
         </div>
       </nav>
-
-      {/* Mobile menu overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-[60] bg-white flex flex-col">
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-            <NominaLogo className="text-nomina-red scale-[0.6] origin-left" />
-            <button
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-2xl font-bold text-nomina-black"
-              aria-label="Close menu"
-            >
-              ✕
-            </button>
-          </div>
-          <div className="flex flex-col flex-1 py-8">
-              {NAV_LINKS.map((link) => {
-                const isHashLink = link.href.startsWith('#');
-                const targetHref = isHashLink && !isLandingPage ? `/${link.href}` : link.href;
-                
-                return (
-                  <a
-                    key={link.label}
-                    href={targetHref}
-                    onClick={(e) => {
-                      if (isHashLink && !isLandingPage) {
-                        e.preventDefault();
-                        window.location.href = targetHref;
-                      } else if (!isHashLink) {
-                        e.preventDefault();
-                        window.location.href = targetHref;
-                      } else {
-                        setMobileMenuOpen(false);
-                      }
-                    }}
-                    className="px-8 py-4 text-lg font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-          </div>
-          <div className="px-8 pb-8">
-            <LanguageSwitcher variant="light" />
-          </div>
-        </div>
-      )}
     </>
   );
 }

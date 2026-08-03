@@ -8,7 +8,7 @@ const SERVICES = [
     href: "#",
   },
   {
-    title: "PR . DIGITAL PR",
+    title: "Technical & Custom Production",
     href: "#",
   },
   {
@@ -16,7 +16,7 @@ const SERVICES = [
     href: "#",
   },
   {
-    title: "AI . INTELLIGENT SYSTEMS",
+    title: "SaaS Management",
     href: "#",
   },
 ];
