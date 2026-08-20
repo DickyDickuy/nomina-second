@@ -1,0 +1,18 @@
+# AI Website Cloner Template
+
+> Clone any website into a clean, modern Next.js codebase using AI coding agents.
+
+## Core Context & Memory
+- [AGENTS.md](/AGENTS.md): Aturan utama, konvensi kode, alur kerja multi-agent, dan prinsip desain.
+- [BRAIN.md](/BRAIN.md): Memori persisten dinamis (fokus saat ini, brainstorming aktif, keputusan arsitektur).
+- [CHANGELOG.md](/CHANGELOG.md): Riwayat perubahan berbasis AI, catatan pencegah regresi bug, dan rilis versi.
+
+## Repository Map
+- `/src/app`: Rute halaman Next.js App Router, layout, dan route handlers.
+- `/src/components`: Komponen UI (primitives `ui/` dari shadcn, ikon kustom `icons.tsx`, dan komponen modular).
+- `/src/lib`: Helper dan fungsi utilitas bersama (seperti `cn()` utility).
+- `/src/hooks`: Custom React hooks yang dapat digunakan kembali.
+- `/src/types`: Definisi tipe data dan antarmuka TypeScript.
+- `/public`: Aset statis (gambar, video, font, dan metadata SEO/favicon).
+- `/docs`: Dokumentasi proyek, catatan riset target, referensi desain, dan panduan inspeksi.
+- `/scripts`: Skrip otomatisasi (download aset, sinkronisasi aturan agen multi-platform).

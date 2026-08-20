@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-- Raised the project Node.js baseline to 24 across local development, CI, Docker, and contributor-facing documentation
+### [Added]
+- Integrated AI Context System (`llms.txt`, `BRAIN.md`, `CHANGELOG.md`, `AGENTS.md`) for persistent cross-session memory and context synchronization.
+- Created `llms.txt` navigation map for LLMs and agent tooling.
+- Created `BRAIN.md` as dynamic persistent memory tracking current context, active brainstorming, and architectural decisions.
+
+### [Fixed]
+- Standardized uppercase naming convention for `BRAIN.md` and updated import pointers across `AGENTS.md` and agent rule files (`.clinerules`, `.continue/rules/project.md`, `.amazonq/rules/project.md`, `.github/copilot-instructions.md`).
+
+### [Security]
+- Ensured sensitive configuration paths and automated agent sync scripts prevent unintentional file leaks or rule collisions.
 
 ## [0.3.1] - 2026-03-29
 

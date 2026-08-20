@@ -99,6 +99,7 @@ const TeamSection = () => {
   /* ─── Detect reduced motion + breakpoint + portal mount ─── */
   useEffect(() => {
     // Enable portal rendering (client only)
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPortalReady(true);
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");

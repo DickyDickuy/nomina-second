@@ -31,12 +31,12 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                                 <h4 className="tp-footer-widget-title-sm pre mb-25">Quick links</h4>
                                 <div className="tp-footer-widget-menu">
                                     <ul>
-                                        <li><a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>Home</a></li>{" "}
-                                        <li><a href="/about" onClick={(e) => { e.preventDefault(); window.location.href = '/about'; }}>About Us</a></li>{" "}
-                                        <li><a href="/portfolio" onClick={(e) => { e.preventDefault(); window.location.href = '/portfolio'; }}>Portfolio</a></li>{" "}
-                                        <li><a href="/career" onClick={(e) => { e.preventDefault(); window.location.href = '/career'; }}>Career</a></li>{" "}
-                                        <li><a href="/job-application" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application'; }}>Career Application</a></li>{" "}
-                                        <li><a href="/contact" onClick={(e) => { e.preventDefault(); window.location.href = '/contact'; }}>Contact Us</a></li>
+                                        <li><Link href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>Home</Link></li>{" "}
+                                        <li><Link href="/about" onClick={(e) => { e.preventDefault(); window.location.href = '/about'; }}>About Us</Link></li>{" "}
+                                        <li><Link href="/portfolio" onClick={(e) => { e.preventDefault(); window.location.href = '/portfolio'; }}>Portfolio</Link></li>{" "}
+                                        <li><Link href="/career" onClick={(e) => { e.preventDefault(); window.location.href = '/career'; }}>Career</Link></li>{" "}
+                                        <li><Link href="/job-application" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application'; }}>Career Application</Link></li>{" "}
+                                        <li><Link href="/contact" onClick={(e) => { e.preventDefault(); window.location.href = '/contact'; }}>Contact Us</Link></li>
                                     </ul>
                                 </div>
                             </div>

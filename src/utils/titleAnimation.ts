@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 // bounce animation
 function bounceAnimation() {
   if (typeof window === 'undefined') return;
-  const $ = require("jquery");
   const bounceElements = document.querySelectorAll<HTMLElement>(".tp-btn-bounce");
 
   if (bounceElements.length > 0) {
@@ -16,8 +15,7 @@ function bounceAnimation() {
     const buttons = gsap.utils.toArray<HTMLElement>(".tp-btn-bounce");
 
     buttons.forEach((btn) => {
-      const $btn = $(btn);
-      const triggerElement = $btn.closest(".tp-btn-trigger").get(0);
+      const triggerElement = btn.closest(".tp-btn-trigger");
       const delayValue = parseFloat(btn.dataset.delay || "1");
 
       if (!triggerElement) return;
@@ -40,7 +38,8 @@ function bounceAnimation() {
 
 
 function textBounceAnimation() {
-  const triggerElements = $('.tp-text-bounce-trigger');
+  if (typeof window === 'undefined') return;
+  const triggerElements = document.querySelectorAll('.tp-text-bounce-trigger');
 
   if (triggerElements.length > 0) {
     // Set initial state
@@ -50,9 +49,8 @@ function textBounceAnimation() {
     const bounceElements = gsap.utils.toArray<HTMLElement>(".tp-text-bounce");
 
     bounceElements.forEach((btn) => {
-      const $btn = $(btn);
-      const triggerElement = $btn.closest('.tp-text-bounce-trigger').get(0);
-      const delayValue = parseFloat($btn.attr("data-delay") || "0.15");
+      const triggerElement = btn.closest('.tp-text-bounce-trigger');
+      const delayValue = parseFloat(btn.getAttribute("data-delay") || "0.15");
 
       // Safety check for trigger element
       if (!triggerElement) return;

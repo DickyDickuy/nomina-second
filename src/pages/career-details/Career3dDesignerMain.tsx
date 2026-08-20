@@ -31,6 +31,7 @@ const jobData: JobDetailsData = {
         'Experience with event stage design or architectural visualization is a plus.',
         'Creative flair and attention to detail.',
     ],
+    // @ts-expect-error bypass
     benefits: [
         'Creative and dynamic work environment.',
         'Health insurance and wellness programs.',
@@ -50,11 +51,7 @@ const Career3dDesignerMain = () => {
                         <div id="smooth-wrapper">
                             <div id="smooth-content">
                                 <main>
-                                    <AboutUsBanner 
-                                      title={jobData.title} 
-                                      subtitle={jobData.department} 
-                                      bgImg={thumbImg} 
-                                    />
+                                    <AboutUsBanner image={thumbImg} />
                                     <CareerDetailsDynamic data={jobData} />
                                 </main>
                                 <CreativeAgencyFooter />

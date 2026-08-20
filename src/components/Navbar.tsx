@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NominaLogo } from "@/components/icons";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -76,9 +77,9 @@ export function Navbar() {
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <a href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>
+            <Link href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>
               <NominaLogo className="text-nomina-red scale-[0.55] origin-left hover:opacity-80 transition-opacity" />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop links */}

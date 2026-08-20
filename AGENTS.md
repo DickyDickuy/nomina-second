@@ -58,8 +58,16 @@ scripts/            # Asset download scripts
 ```
 
 ## MOST IMPORTANT NOTES
+- **Persistent Memory & Context Sync:** ALWAYS maintain persistent context across sessions using `BRAIN.md`, `CHANGELOG.md`, and `llms.txt`.
 - When launching Claude Code agent teams, ALWAYS have each teammate work in their own worktree branch and merge everyone's work at the end, resolving any merge conflicts smartly since you are basically serving the orchestrator role and have full context to our goals, work given, work achieved, and desired outcomes.
 - After editing `AGENTS.md`, run `bash scripts/sync-agent-rules.sh` to regenerate platform-specific instruction files.
 - After editing `.claude/skills/clone-website/SKILL.md`, run `node scripts/sync-skills.mjs` to regenerate the skill for all platforms.
 
+## AI Context Synchronization Rules (WAJIB DIPATUHI)
+Setiap kali sebuah Task atau Artifact selesai dikerjakan di Antigravity, Agen WAJIB memperbarui file secara berantai:
+1. Pindahkan fokus yang sudah selesai dari `BRAIN.md` (`# Current Context`) ke dalam `CHANGELOG.md` sebagai catatan historis baru.
+2. Perbarui isi `# Current Context` di `BRAIN.md` dengan rencana tugas berikutnya.
+3. Jika ada perubahan struktur folder atau dokumen baru, perbarui peta navigasi di `llms.txt`.
+
 @docs/research/INSPECTION_GUIDE.md
+@BRAIN.md

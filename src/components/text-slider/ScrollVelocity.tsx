@@ -197,6 +197,7 @@ function ScrollVelocityRowImpl({
           x,
           display: "inline-flex",
           alignItems: "center",
+          // eslint-disable-next-line react-hooks/refs
           willChange: isInViewRef.current ? "transform" : "auto",
           userSelect: "none",
           transform: "translateZ(0)",

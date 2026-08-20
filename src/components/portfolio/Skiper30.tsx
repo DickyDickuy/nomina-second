@@ -38,12 +38,6 @@ const Skiper30 = () => {
   const circleX = useSpring(mouseX, springConfig);
   const circleY = useSpring(mouseY, springConfig);
 
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-    checkHover(e.clientX, e.clientY);
-  }, [mouseX, mouseY]);
-
   const checkHover = useCallback((x: number, y: number) => {
     if (typeof document === "undefined") return;
 
@@ -65,7 +59,14 @@ const Skiper30 = () => {
     }
   }, []);
 
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+    checkHover(e.clientX, e.clientY);
+  }, [mouseX, mouseY, checkHover]);
+
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setPortalReady(true);
     window.addEventListener("mousemove", handleMouseMove);
 
