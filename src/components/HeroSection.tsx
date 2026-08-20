@@ -1,47 +1,81 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { NominaLogo } from "@/components/icons";
 import { WeatherWidget } from "@/components/WeatherWidget";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  // Mobile Battery & Performance Optimization:
+  // Auto-pause video playback when user scrolls out of viewport, resume when visible.
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section className="relative h-[calc(100dvh-58px)] w-full overflow-hidden bg-nomina-red">
-      {/* Background Video */}
+    <section className="relative h-[calc(100svh-58px)] min-h-[500px] w-full overflow-hidden bg-nomina-black">
+      {/* Background Video with Mobile Performance & Fallback Optimizations */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover z-0 opacity-90 transition-opacity duration-700"
       >
         <source src="/videos/special20-showreel-1080.mp4" type="video/mp4" />
       </video>
 
-      {/* Red overlay with animated "20" text — visible when video is dark/between cuts */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-        <span
-          className="font-heading text-white text-[35vw] md:text-[30vw] leading-none select-none opacity-90"
-          style={{
-            animation: "hero-blur-in 2s ease-out forwards",
-            textShadow: "0 0 80px rgba(255,255,255,0.3)",
-          }}
-        >
-          20
-        </span>
-      </div>
+      {/* Subtle Scrim Gradient Overlays for Visual Balance & Readability */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/50 via-transparent to-black/60 pointer-events-none" />
 
-      {/* Top bar: Logo + Weather + Language */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex items-start justify-between px-6 md:px-12 pt-6 md:pt-8">
+      {/* Top Header Bar: Logo + Weather + Language (Aligned vertically with StaggeredMenu at h-[58px]) */}
+      <div className="absolute top-0 left-0 right-0 z-20 h-[58px] flex items-center justify-between px-6 md:px-12">
         {/* NOMINA Logo */}
         <NominaLogo className="text-nomina-red" />
 
         {/* Right side: Weather + Language */}
-        <div className="flex items-start gap-4 md:gap-6">
+        <div className="flex items-center gap-4 md:gap-6">
           <WeatherWidget />
           <div className="hidden md:block">
             <LanguageSwitcher variant="light" />
           </div>
+        </div>
+      </div>
+
+      {/* Bottom Hero Overlay Branding & Scroll Indicator for Mobile */}
+      <div className="absolute bottom-6 left-6 right-6 z-20 flex items-end justify-between pointer-events-none">
+        {/* Circular Nomina Badge */}
+        <div className="w-10 h-10 rounded-full bg-nomina-black/80 backdrop-blur-sm text-white flex items-center justify-center font-bold text-sm tracking-tighter border border-white/20 shadow-lg">
+          N
+        </div>
+
+        {/* Hero Tagline */}
+        <div className="text-right text-white">
+          <p className="text-[10px] md:text-xs uppercase tracking-widest font-mono text-white/70">
+            Special Edition
+          </p>
+          <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-white">
+            20 Years of People
+          </p>
         </div>
       </div>
     </section>
