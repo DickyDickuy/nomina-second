@@ -9,10 +9,11 @@
 
 ## Repository Map
 - `/src/app`: Rute halaman Next.js App Router, layout, dan route handlers.
+- `/src/actions`: Next.js Server Actions untuk operasi server-side yang aman (mis. PocketBase).
 - `/src/components`: Komponen UI (primitives `ui/` dari shadcn, ikon kustom `icons.tsx`, dan komponen modular).
-- `/src/lib`: Helper dan fungsi utilitas bersama (seperti `cn()` utility).
+- `/src/lib`: Helper dan fungsi utilitas bersama (seperti `cn()` utility dan PocketBase client).
 - `/src/hooks`: Custom React hooks yang dapat digunakan kembali.
 - `/src/types`: Definisi tipe data dan antarmuka TypeScript.
 - `/public`: Aset statis (gambar, video, font, dan metadata SEO/favicon).
 - `/docs`: Dokumentasi proyek, catatan riset target, referensi desain, dan panduan inspeksi.
-- `/scripts`: Skrip otomatisasi (download aset, sinkronisasi aturan agen multi-platform).
+- `/scripts`: Skrip otomatisasi (setup database PocketBase, download aset, sinkronisasi aturan agen).

@@ -1,28 +1,13 @@
 "use client";
 
+import React, { Suspense } from 'react';
 import CursorAndBackgroundProvider from '@/components/provider/CustomCursorProvider';
 import ScrollSmoothProvider from '@/components/provider/ScrollSmoothProvider';
 import AnimationWrapper from '@/components/shared/Animation/AnimationWrapper';
 import ApplicationForm from '@/components/forms/ApplicationForm';
 import BackToTop from '@/components/shared/BackToTop/BackToTop';
-import StaggeredMenu from "@/components/shared/StaggeredMenu/StaggeredMenu";
 import CreativeAgencyFooter from '@/layouts/footers/CreativeAgencyFooter';
 import JobApplicationHero from '@/components/hero-banner/JobApplicationHero';
-
-const menuItems = [
-    { label: "Home", ariaLabel: "Go to home page", link: "/" },
-    { label: "About", ariaLabel: "About us", link: "/about-creative-light" },
-    { label: "Career", ariaLabel: "Join our team", link: "/career-light" },
-    { label: "Career Application", ariaLabel: "Job Application Form", link: "/job-application-form" },
-    { label: "Portofolio", ariaLabel: "View project portfolio", link: "/portfolio-showcase-light" },
-    { label: "Contact", ariaLabel: "Get in touch", link: "/contact-us-light" },
-];
-
-const socialItems = [
-    { label: "Instagram", link: "https://instagram.com" },
-    { label: "Behance", link: "https://behance.net" },
-    { label: "LinkedIn", link: "https://linkedin.com" },
-];
 
 const JobApplicationForm = () => {
     return (
@@ -31,7 +16,6 @@ const JobApplicationForm = () => {
                 <AnimationWrapper>
                     <div className="tp-vertical-lines-overlay" aria-hidden="true" />
                     <div className="tp-vertical-lines-content">
-
                         {/* Global Components */}
                         <BackToTop />
                         <div id="smooth-wrapper">
@@ -44,7 +28,9 @@ const JobApplicationForm = () => {
                                             <div className="row justify-content-center">
                                                 <div className="col-lg-12">
                                                     <div className="tp-contact-form-wrap tp-application-form-wrap">
-                                                        <ApplicationForm />
+                                                        <Suspense fallback={<div className="text-center py-5">Loading application form...</div>}>
+                                                            <ApplicationForm />
+                                                        </Suspense>
                                                     </div>
                                                 </div>
                                             </div>

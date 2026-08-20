@@ -139,7 +139,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                 </div>
 
                                 <div className="tp-career-details-sidebar-btn">
-                                    <Link href="/job-application">Apply for the Job</Link>
+                                    <Link href={`/job-application?jobId=${encodeURIComponent(data.title.toLowerCase().replace(/\s+/g, '-'))}`}>Apply for the Job</Link>
                                 </div>
                             </div>
                         </div>

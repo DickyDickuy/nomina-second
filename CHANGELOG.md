@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### [Added]
+- PocketBase integration for job applications:
+  - Created automated setup script `scripts/setup-pocketbase.mjs` to configure `job_applications` collection on PocketBase.
+  - Added Next.js Server Action `src/actions/submit-application.ts` for secure server-side form submission with CV file uploads.
+  - Implemented dynamic job categorization linking career openings (`/career-account-executive`, `/career-3d-designer`) to `/job-application?jobId=...`.
+  - Refactored `ApplicationForm.tsx` with position dropdown, client validation, file selection feedback, and loading/success states.
+  - Added PocketBase helper `src/lib/pocketbase.ts`.
 - Implemented `TeamMobileCoverflow` component featuring a Smooth 3D Coverflow carousel tailored for mobile viewports with touch swipe gestures, pagination indicators, and clear member name & role typography overlays.
 - Integrated responsive layout switcher in `TeamSection` maintaining the original 2-column grid and GSAP cursor hover preview on desktop while rendering the 3D Coverflow on mobile screens (< 769px).
 - Refined `TeamMobileCoverflow` card dimensions to 16:10 landscape aspect ratio (`280px` x `175px`) to preserve natural image proportions and prevent photo cropping on mobile devices.
