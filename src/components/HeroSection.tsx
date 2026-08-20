@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { NominaLogo } from "@/components/icons";
 import { WeatherWidget } from "@/components/WeatherWidget";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export function HeroSection() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -47,27 +46,19 @@ export function HeroSection() {
       {/* Subtle Scrim Gradient Overlays for Visual Balance & Readability */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/50 via-transparent to-black/60 pointer-events-none" />
 
-      {/* Top Header Bar: Logo + Weather + Language (Aligned vertically with StaggeredMenu at h-[58px]) */}
+      {/* Top Header Bar: Logo + Weather (Aligned vertically with StaggeredMenu at h-[58px]) */}
       <div className="absolute top-0 left-0 right-0 z-20 h-[58px] flex items-center justify-between px-6 md:px-12">
         {/* NOMINA Logo */}
         <NominaLogo className="text-nomina-red" />
 
-        {/* Right side: Weather + Language */}
+        {/* Right side: Weather */}
         <div className="flex items-center gap-4 md:gap-6">
           <WeatherWidget />
-          <div className="hidden md:block">
-            <LanguageSwitcher variant="light" />
-          </div>
         </div>
       </div>
 
-      {/* Bottom Hero Overlay Branding & Scroll Indicator for Mobile */}
-      <div className="absolute bottom-6 left-6 right-6 z-20 flex items-end justify-between pointer-events-none">
-        {/* Circular Nomina Badge */}
-        <div className="w-10 h-10 rounded-full bg-nomina-black/80 backdrop-blur-sm text-white flex items-center justify-center font-bold text-sm tracking-tighter border border-white/20 shadow-lg">
-          N
-        </div>
-
+      {/* Bottom Hero Overlay Tagline */}
+      <div className="absolute bottom-6 right-6 z-20 flex items-end justify-end pointer-events-none">
         {/* Hero Tagline */}
         <div className="text-right text-white">
           <p className="text-[10px] md:text-xs uppercase tracking-widest font-mono text-white/70">
@@ -81,3 +72,4 @@ export function HeroSection() {
     </section>
   );
 }
+

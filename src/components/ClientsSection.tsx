@@ -80,7 +80,7 @@ export function ClientsSection() {
 
         {/* CTA */}
         <div className="flex justify-center mt-10 pb-16">
-          <ArrowButton label="Discover all clients" href="#" />
+          <ArrowButton label="Discover all clients" href="/portfolio" />
         </div>
       </div>
     </section>

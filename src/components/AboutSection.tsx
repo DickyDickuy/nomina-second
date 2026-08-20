@@ -22,7 +22,7 @@ export function AboutSection() {
         </p>
 
         <div className="flex justify-center">
-          <ArrowButton label="Discover more" href="#" />
+          <ArrowButton label="Discover more" href="/about" />
         </div>
       </div>
     </section>

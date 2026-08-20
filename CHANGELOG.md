@@ -8,15 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### [Added]
+- Implemented `TeamMobileCoverflow` component featuring a Smooth 3D Coverflow carousel tailored for mobile viewports with touch swipe gestures, pagination indicators, and clear member name & role typography overlays.
+- Integrated responsive layout switcher in `TeamSection` maintaining the original 2-column grid and GSAP cursor hover preview on desktop while rendering the 3D Coverflow on mobile screens (< 769px).
+- Refined `TeamMobileCoverflow` card dimensions to 16:10 landscape aspect ratio (`280px` x `175px`) to preserve natural image proportions and prevent photo cropping on mobile devices.
+- Added top clearance padding (`paddingTop: 28px`, `height: cardHeight + 120`) and enhanced section spacing to prevent 3D perspective cards and badge corners from being clipped by container overflow.
 - Integrated AI Context System (`llms.txt`, `BRAIN.md`, `CHANGELOG.md`, `AGENTS.md`) for persistent cross-session memory and context synchronization.
 - Created `llms.txt` navigation map for LLMs and agent tooling.
 - Created `BRAIN.md` as dynamic persistent memory tracking current context, active brainstorming, and architectural decisions.
 
 ### [Fixed]
+- Updated CTA link in `AboutSection` ("NOMINA: More, than just") to point directly to `/about`.
+- Updated CTA link in `ClientsSection` ("We Have Collaborated With") to point directly to `/portfolio`.
 - Standardized uppercase naming convention for `BRAIN.md` and updated import pointers across `AGENTS.md` and agent rule files (`.clinerules`, `.continue/rules/project.md`, `.amazonq/rules/project.md`, `.github/copilot-instructions.md`).
 
-### [Security]
-- Ensured sensitive configuration paths and automated agent sync scripts prevent unintentional file leaks or rule collisions.
+### [Removed]
+- Removed `EN` / `ID` language switcher from `HeroSection`, `Navbar`, and `StaggeredMenu`.
+- Removed circular floating `N` badge widget from the bottom left corner of `HeroSection`.
 
 ## [0.3.1] - 2026-03-29
 

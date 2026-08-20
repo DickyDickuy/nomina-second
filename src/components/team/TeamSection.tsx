@@ -3,17 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { gsap } from "gsap";
-import Image from "next/image";
 import styles from "./TeamSection.module.scss";
+import TeamMobileCoverflow, { TeamMember } from "./TeamMobileCoverflow";
 
-/* ─── Team Data (from CreativeAgencyTeam source: teamData IDs 10–16) ─── */
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-}
-
+/* ─── Team Data ─── */
 const teamMembers: TeamMember[] = [
   {
     id: 1,
@@ -82,7 +75,6 @@ const TeamSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const floatingRef = useRef<HTMLDivElement>(null);
   const floatingImgRef = useRef<HTMLImageElement>(null);
-  const accordionRefs = useRef<Map<number, HTMLDivElement>>(new Map());
   const tweenRef = useRef<gsap.core.Tween | null>(null);
   const quickToX = useRef<gsap.QuickToFunc | null>(null);
   const quickToY = useRef<gsap.QuickToFunc | null>(null);
@@ -91,7 +83,6 @@ const TeamSection = () => {
   const leaveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   /* ─── State ─── */
-  const [activeAccordion, setActiveAccordion] = useState<number | null>(null);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const [portalReady, setPortalReady] = useState(false);
@@ -122,7 +113,7 @@ const TeamSection = () => {
     };
   }, []);
 
-  /* ─── Set up gsap.quickTo for smooth cursor-following ─── */
+  /* ─── Set up gsap.quickTo for smooth cursor-following (Desktop only) ─── */
   useEffect(() => {
     const floatingEl = floatingRef.current;
     if (!floatingEl) return;
@@ -138,7 +129,6 @@ const TeamSection = () => {
     });
 
     // Offset the image so it doesn't sit right under the cursor
-    const IMG_W = 400;
     const IMG_H = 250;
     const OFFSET_X = 20; // pixels to the right of cursor
     const OFFSET_Y = -IMG_H / 2; // vertically centered on cursor
@@ -155,15 +145,6 @@ const TeamSection = () => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [portalReady]);
-
-  /* ─── Store accordion element refs ─── */
-  const setAccordionRef = useCallback(
-    (id: number) => (el: HTMLDivElement | null) => {
-      if (el) accordionRefs.current.set(id, el);
-      else accordionRefs.current.delete(id);
-    },
-    [],
-  );
 
   /* ─────────────────────────────────────────────
      Desktop: Floating Image Hover
@@ -253,55 +234,6 @@ const TeamSection = () => {
     }, 50); // 50ms debounce to bridge cell gaps
   }, [prefersReducedMotion]);
 
-  /* ─────────────────────────────────────────────
-     Mobile/Tablet: Accordion Toggle
-     ───────────────────────────────────────────── */
-  const toggleAccordion = useCallback(
-    (id: number) => {
-      if (isDesktop) return;
-
-      const isSame = activeAccordion === id;
-      const nextId = isSame ? null : id;
-
-      // Close current
-      if (activeAccordion !== null) {
-        const currentEl = accordionRefs.current.get(activeAccordion);
-        if (currentEl) {
-          if (prefersReducedMotion) {
-            gsap.set(currentEl, { height: 0 });
-          } else {
-            gsap.to(currentEl, {
-              height: 0,
-              duration: 0.45,
-              ease: "power2.inOut",
-              overwrite: true,
-            });
-          }
-        }
-      }
-
-      // Open next (if not toggling the same one off)
-      if (nextId !== null) {
-        const nextEl = accordionRefs.current.get(nextId);
-        if (nextEl) {
-          if (prefersReducedMotion) {
-            gsap.set(nextEl, { height: "auto" });
-          } else {
-            gsap.to(nextEl, {
-              height: "auto",
-              duration: 0.5,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          }
-        }
-      }
-
-      setActiveAccordion(nextId);
-    },
-    [isDesktop, activeAccordion, prefersReducedMotion],
-  );
-
   /* ─── Cleanup GSAP on unmount ─── */
   useEffect(() => {
     return () => {
@@ -310,7 +242,7 @@ const TeamSection = () => {
   }, []);
 
   /* ─────────────────────────────────────────────
-     Render helpers
+     Render helpers (Desktop)
      ───────────────────────────────────────────── */
   const renderCell = (
     member: TeamMember,
@@ -321,61 +253,33 @@ const TeamSection = () => {
       className={`${styles.cell} ${isRight ? styles.cellRight : ""}`}
       onMouseEnter={(e) => showFloatingImage(member, e)}
       onMouseLeave={hideFloatingImage}
-      onClick={() => toggleAccordion(member.id)}
-      role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggleAccordion(member.id);
-        }
-      }}
     >
       <span className={styles.index}>{padIndex(globalIdx)}</span>
       <div className={styles.info}>
         <h3 className={styles.name}>{member.name}</h3>
         <span className={styles.role}>{member.role}</span>
-
-        {/* Accordion (mobile/tablet) */}
-        <div
-          className={styles.accordionWrap}
-          ref={setAccordionRef(member.id)}
-        >
-          <div className={styles.accordionInner}>
-            <div className={styles.accordionImgWrap}>
-              <Image
-                className={styles.accordionImg}
-                src={member.image}
-                alt={member.name}
-                width={400}
-                height={500}
-                sizes="(max-width: 768px) 80vw, 400px"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
 
-  /* ─── Floating image overlay — portaled to body so position:fixed
-         works outside ScrollSmoother's transform context ─── */
-  const floatingOverlay = portalReady
-    ? createPortal(
-      <div className={styles.floatingImage} ref={floatingRef}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          ref={floatingImgRef}
-          className={styles.floatingImg}
-          src={teamMembers[0].image}
-          alt=""
-          aria-hidden="true"
-        />
-      </div>,
-      document.body,
-    )
-    : null;
+  /* ─── Floating image overlay (Desktop only) ─── */
+  const floatingOverlay =
+    portalReady && isDesktop
+      ? createPortal(
+          <div className={styles.floatingImage} ref={floatingRef}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              ref={floatingImgRef}
+              className={styles.floatingImg}
+              src={teamMembers[0].image}
+              alt=""
+              aria-hidden="true"
+            />
+          </div>,
+          document.body,
+        )
+      : null;
 
   /* ─────────────────────────────────────────────
      Render
@@ -400,14 +304,21 @@ const TeamSection = () => {
           </h2>
         </div>
 
-        {/* Team Grid */}
-        <div className={styles.grid}>
-          {pairedMembers.map(([left, right], rowIdx) => (
-            <div className={styles.item} key={`row-${rowIdx}`}>
-              {renderCell(left, rowIdx * 2 + 1)}
-              {right && renderCell(right, rowIdx * 2 + 2, true)}
-            </div>
-          ))}
+        {/* Desktop View: Interactive Grid with Floating Hover Preview */}
+        <div className={styles.desktopOnly}>
+          <div className={styles.grid}>
+            {pairedMembers.map(([left, right], rowIdx) => (
+              <div className={styles.item} key={`row-${rowIdx}`}>
+                {renderCell(left, rowIdx * 2 + 1)}
+                {right && renderCell(right, rowIdx * 2 + 2, true)}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile View: Smooth 3D Coverflow Slideshow with Name & Role */}
+        <div className={styles.mobileOnly}>
+          <TeamMobileCoverflow members={teamMembers} />
         </div>
       </section>
 
@@ -418,3 +329,4 @@ const TeamSection = () => {
 };
 
 export default TeamSection;
+

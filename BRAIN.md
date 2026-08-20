@@ -5,9 +5,9 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 ---
 
 # Current Context & Focus
-- **Status Saat Ini:** Menyiapkan dan mengintegrasikan AI Context System (`llms.txt`, `BRAIN.md`, `CHANGELOG.md`, `AGENTS.md`).
-- **Fokus Utama:** Memastikan semua agent AI (Gemini/Antigravity, Claude Code, Cursor, Copilot, dll.) memiliki sinkronisasi konteks yang konsisten dan tidak kehilangan memori antar sesi.
-- **Next Steps:** Melakukan verifikasi sinkronisasi aturan agent (`scripts/sync-agent-rules.sh`) dan memastikan struktur proyek siap untuk tugas pengembangan berikutnya.
+- **Status Saat Ini:** Berhasil mengarahkan tombol CTA *Discover more* di `AboutSection` ("NOMINA: More, than just") ke rute `/about`, dan tombol CTA *Discover all clients* di `ClientsSection` ("We Have Collaborated With") ke rute `/portfolio`.
+- **Fokus Utama:** Memastikan kelancaran navigasi halaman dan konsistensi UX di seluruh rute website.
+- **Next Steps:** Menunggu arahan pengembangan atau penyesuaian halaman berikutnya dari user.
 
 ---
 

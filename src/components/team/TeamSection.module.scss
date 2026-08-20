@@ -173,85 +173,45 @@ $image-ratio: math.div(16, 10); // optimized horizontal ratio for team images
   display: block;
 }
 
-/* Hide floating image on tablet/mobile */
-@media (max-width: 768px) {
-  .floatingImage {
-    display: none !important;
-  }
-}
-
-/* ─── Accordion Image (Mobile/Tablet) ─── */
-.accordionWrap {
-  overflow: hidden;
-  height: 0;
-  will-change: height;
-}
-
-.accordionInner {
-  padding: 0 0 24px;
-}
-
-.accordionImgWrap {
-  width: 100%;
-  aspect-ratio: $image-ratio;
-  overflow: hidden;
-  border-radius: 6px;
-}
-
-.accordionImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
+/* ─── Visibility Breakpoints ─── */
+.desktopOnly {
   display: block;
 }
 
-/* Show accordion only on tablet/mobile */
-@media (min-width: 769px) {
-  .accordionWrap {
-    display: none !important;
-  }
+.mobileOnly {
+  display: none;
 }
 
 /* ─── Mobile/Tablet Layout ─── */
 @media (max-width: 768px) {
+  .desktopOnly {
+    display: none !important;
+  }
+
+  .mobileOnly {
+    display: block !important;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 8px;
+  }
+
   .section {
     padding: 80px 0 60px;
   }
 
   .header {
     padding: 0 24px;
-    margin-bottom: 48px;
-  }
-
-  .grid {
-    padding: 0 24px;
-  }
-
-  .item {
-    grid-template-columns: 1fr;
-  }
-
-  .cell {
-    padding: 28px 0;
-  }
-
-  .cellRight {
-    padding-left: 0;
-  }
-
-  .name {
-    font-size: clamp(20px, 5vw, 28px);
+    margin-bottom: 40px;
   }
 }
 
 /* ─── Reduced Motion ─── */
 @media (prefers-reduced-motion: reduce) {
   .floatingImage,
-  .accordionWrap,
   .name,
   .index,
   .item {
     transition: none !important;
   }
 }
+

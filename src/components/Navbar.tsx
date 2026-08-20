@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NominaLogo } from "@/components/icons";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { cn } from "@/lib/utils";
 import StaggeredMenu from "./shared/StaggeredMenu/StaggeredMenu";
 
@@ -107,11 +106,6 @@ export function Navbar() {
                 </a>
               );
             })}
-          </div>
-
-          {/* Desktop language switcher */}
-          <div className="hidden md:block shrink-0">
-            <LanguageSwitcher variant="light" />
           </div>
 
           {/* Mobile menu button */}

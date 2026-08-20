@@ -4,7 +4,6 @@ import Image from "next/image";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 import styles from "./StaggeredMenu.module.scss";
 
@@ -482,10 +481,6 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                             </ul>
                         </div>
                     )}
-
-                    <div className="mt-8 pt-8 border-t border-white/20">
-                        <LanguageSwitcher variant="light" />
-                    </div>
                 </div>
             </aside>
         </div>
