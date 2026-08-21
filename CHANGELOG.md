@@ -23,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created `BRAIN.md` as dynamic persistent memory tracking current context, active brainstorming, and architectural decisions.
 
 ### [Fixed]
+- Added defensive DOM existence checks for `.tp-gsap-bg`, `.tp-bounce`, and `.tp-brand-inner-item img` in `src/hooks/useGsapAnimation.ts` to eliminate browser console warnings (`GSAP target not found` / `Element not found`) on `/contact` and other routes.
+- Added responsive `sizes` prop (`(max-width: 768px) 250px, (max-width: 1366px) 305px, (max-width: 1440px) 324px, 432px`) to `<Image fill>` in `Skiper30.tsx` portfolio gallery to eliminate Next.js missing sizes warnings and prevent downloading oversized full-viewport images.
 - Updated CTA link in `AboutSection` ("NOMINA: More, than just") to point directly to `/about`.
 - Updated CTA link in `ClientsSection` ("We Have Collaborated With") to point directly to `/portfolio`.
 - Standardized uppercase naming convention for `BRAIN.md` and updated import pointers across `AGENTS.md` and agent rule files (`.clinerules`, `.continue/rules/project.md`, `.amazonq/rules/project.md`, `.github/copilot-instructions.md`).

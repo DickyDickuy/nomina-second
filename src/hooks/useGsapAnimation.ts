@@ -597,6 +597,7 @@ export function panelPinAnimation() {
 
 // gsap background for home-11
 export const gsapBackgroundAnim = () => {
+    if (!document.querySelector(".tp-gsap-bg")) return;
     gsap.set(".tp-gsap-bg", { scaleX: 1 });
     const mm = gsap.matchMedia();
     mm.add("(min-width:1400px)", () => {
@@ -1013,8 +1014,9 @@ export function careerAnimation() {
 
 // Button bounce animation
 export const buttonBounceAnimation = () => {
-    gsap.set(".tp-bounce", { y: -80, opacity: 0 });
     const mybtn = gsap.utils.toArray(".tp-bounce") as HTMLElement[];
+    if (!mybtn.length) return;
+    gsap.set(".tp-bounce", { y: -80, opacity: 0 });
 
     mybtn.forEach((btn) => {
         const tp_delay_value = btn.getAttribute("data-delay") || 1;
@@ -1108,6 +1110,7 @@ export const portfolioShowcaseAnimation = () => {
 
 //tp-gsap-bg animation
 export const contactBgAnimation = () => {
+    if (!document.querySelector(".tp-gsap-bg")) return;
     gsap.set(".tp-gsap-bg", { scaleX: 1 });
     const mm = gsap.matchMedia();
     mm.add("(min-width:1400px)", () => {
@@ -1319,6 +1322,7 @@ export const perspectiveAnim = () => {
 
 // brand img animation //
 export const brandImgAnim = () => {
+    if (!document.querySelector(".tp-brand-inner-item img")) return;
     gsap.set(".tp-brand-inner-item img", { scale: 1.3, opacity: 0 });
     gsap.to(".tp-brand-inner-item img", {
         scale: 1,

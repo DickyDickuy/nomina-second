@@ -183,6 +183,7 @@ const Column = ({ items, y }: ColumnProps) => {
             src={item.src}
             alt={item.name}
             fill
+            sizes="(max-width: 768px) 250px, (max-width: 1366px) 305px, (max-width: 1440px) 324px, 432px"
             className={styles.image}
           />
           <div className={styles.mobileLabel}>
