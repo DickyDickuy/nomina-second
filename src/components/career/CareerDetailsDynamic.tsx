@@ -29,7 +29,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                         <div className="tp-career-details-wrapper pb-40">
                             <div className="tp-career-details-top pb-80">
                                 <span className="tp-career-details-subtitle">{data.department}</span>
-                                <h4 className="tp-career-details-title">{data.title}</h4>
+                                <h1 className="tp-career-details-title">{data.title}</h1>
                                 <div className="tp-career-details-info d-flex align-items-center">
                                     <div className="tp-career-details-info-item">
                                         <span>Location:</span>

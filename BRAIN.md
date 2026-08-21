@@ -11,6 +11,8 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
      - Duplikasi meta description dan title tags dieliminasi.
      - **Issue crawlability (4XX & broken links)** diselesaikan dengan memodifikasi Next.js `<Link>` ke tag `<a>` pada link protokol (`mailto:`, `tel:`), serta memperbaiki rute `.light` yang usang.
      - **Thin internal linking** diatasi dengan mengintegrasikan "Open Roles" list ke dalam Footer.
+     - **Missing H1 & Duplicate Content** diatasi: H1 sr-only (`Nomina Creative Asia`) pada Homepage, perbaikan hirarki heading di About dan Career, serta penambahan teks deskriptif dinamis (`sr-only`) untuk `/job-application` variants.
+     - **Thin Content** warning diabaikan karena sesuai dengan desain minimalis estetis agensi kreatif (no filler text).
   2. Integrasi PocketBase untuk Form Job Application (`/job-application`) aktif dan stabil dengan Server Actions.
   3. Migrasi aset video HeroSection ke Cloudinary CDN serta optimasi sizes prop responsif pada portfolio gallery.
 - **Fokus Utama:** Kualitas SEO on-page, indexing mesin pencari / LLM, dan performa halaman.

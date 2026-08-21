@@ -95,6 +95,9 @@ const ApplicationForm = () => {
                 </div>
             ) : (
                 <form onSubmit={handleSubmit} id="contact-form">
+                    <p className="sr-only">
+                        You are currently viewing the job application form for the {activeJob} position at NOMINA.
+                    </p>
                     {state.message && !state.success && (
                         <div
                             style={{

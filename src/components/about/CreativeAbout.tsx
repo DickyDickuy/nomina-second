@@ -84,9 +84,9 @@ const CreativeAbout = () => {
                                 </div>
                                 <div className="tp-about-us-2-heading">
                                     <span className="tp-about-us-2-subtitle">ABOUT NOMINA</span>
-                                    <h3 className="tp-about-us-2-title tp-text-revel-anim">
+                                    <h1 className="tp-about-us-2-title tp-text-revel-anim">
                                         OUR <br />STUDIO
-                                    </h3>
+                                    </h1>
                                 </div>
                                 <div className="tp-about-us-2-right-shape">
                                     <Image

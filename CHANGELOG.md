@@ -42,6 +42,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Replaced Next.js `<Link>` with standard `<a>` tags for `mailto:` and `tel:` links in `CreativeAgencyFooter.tsx` to prevent Cloudflare email obfuscation 404s.
   - Fixed broken `contact-us-light` link in `CreativeAboutTwo.tsx` to point to `/contact`.
   - Added "Open Roles" section under Quick Links in `Footer.tsx` and `CreativeAgencyFooter.tsx` to improve internal linking for specific job details pages (`/career-3d-designer` and `/career-account-executive`).
+- Resolved SEO Content Warnings (Missing H1 & Duplicate Content):
+  - Added visually hidden H1 (`Nomina Creative Asia`) to Homepage (`HeroSection.tsx`).
+  - Converted existing visual headings from H3/H4 to H1 in `CreativeAbout.tsx` and `CareerDetailsDynamic.tsx` to establish proper semantic hierarchy without altering CSS rendering.
+  - Added a dynamic visually hidden paragraph in `ApplicationForm.tsx` to distinguish duplicate content across `/job-application` variants based on the `jobId` parameter.
 - Resolved ESLint `react-hooks/set-state-in-effect` warning in `TeamMobileCoverflow.tsx` by deriving the clamped active slide index directly during render.
 - Added defensive DOM existence checks for `.tp-gsap-bg`, `.tp-bounce`, and `.tp-brand-inner-item img` in `src/hooks/useGsapAnimation.ts` to eliminate browser console warnings (`GSAP target not found` / `Element not found`) on `/contact` and other routes.
 - Added responsive `sizes` prop (`(max-width: 768px) 250px, (max-width: 1366px) 305px, (max-width: 1440px) 324px, 432px`) to `<Image fill>` in `Skiper30.tsx` portfolio gallery to eliminate Next.js missing sizes warnings and prevent downloading oversized full-viewport images.

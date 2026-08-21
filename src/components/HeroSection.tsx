@@ -30,6 +30,7 @@ export function HeroSection() {
 
   return (
     <section className="relative h-[calc(100svh-58px)] min-h-[500px] w-full overflow-hidden bg-nomina-black">
+      <h1 className="sr-only">Nomina Creative Asia</h1>
       {/* Background Video with Mobile Performance & Fallback Optimizations */}
       {/* ponytail: Direct Cloudinary CDN stream for fast global delivery without Next.js server overhead */}
       <video
