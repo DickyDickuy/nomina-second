@@ -8,7 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### [Added]
-- PocketBase integration for job applications:
+- Next.js root metadata files:
+  - Created `src/app/robots.ts` to allow all crawlers and reference dynamic `sitemap.xml`.
+  - Created `src/app/sitemap.ts` to dynamically scan `src/app` route tree and generate valid `sitemap.xml` with live routes and modification dates.
+  - Created `public/llms.txt` following the llms.txt standard for AI crawlers and LLM indexing.
+- Unique SEO Titles & Meta Descriptions across all routes:
+  - Added unique title and meta description to `src/app/page.tsx` (`/`).
+  - Added unique metadata to `src/app/(agntix)/about/page.tsx` (`/about`).
+  - Added unique metadata to `src/app/(agntix)/career/page.tsx` (`/career`).
+  - Added unique metadata to `src/app/(agntix)/career-3d-designer/page.tsx` (`/career-3d-designer`).
+  - Added unique metadata to `src/app/(agntix)/career-account-executive/page.tsx` (`/career-account-executive`).
+  - Added unique metadata to `src/app/(agntix)/contact/page.tsx` (`/contact`).
+  - Added unique metadata to `src/app/(agntix)/portfolio/page.tsx` (`/portfolio`).
+  - Added dynamic `generateMetadata({ searchParams })` to `src/app/(agntix)/job-application/page.tsx` to generate distinct titles & descriptions for `/job-application`, `/job-application?jobId=3d-designer`, and `/job-application?jobId=account-executive`.
   - Created automated setup script `scripts/setup-pocketbase.mjs` to configure `job_applications` collection on PocketBase.
   - Added Next.js Server Action `src/actions/submit-application.ts` for secure server-side form submission with CV file uploads.
   - Implemented dynamic job categorization linking career openings (`/career-account-executive`, `/career-3d-designer`) to `/job-application?jobId=...`.

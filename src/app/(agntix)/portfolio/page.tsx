@@ -2,7 +2,9 @@ import PortfolioShowcaseMain from '@/pages/portfolios/portfolio-showcase/Portfol
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: "Nomina - Portfolio",
+    title: "Portfolio & Showcase — NOMINA Creative Projects",
+    description:
+        "Explore NOMINA's portfolio of curated creative projects, immersive brand experiences, corporate celebrations, and experiential event productions.",
 };
 
 const page = () => {

@@ -6,13 +6,15 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:** 
-  1. Migrasi video background `HeroSection` dari aset lokal 36MB (`/videos/special20-showreel-1080.mp4`) ke CDN Cloudinary (`https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4`) untuk pengiriman streaming cepat, hemat bandwidth, dan performa optimal.
-  2. Mengeliminasi browser console warning GSAP (`GSAP target .tp-gsap-bg not found`) pada rute `/contact` dengan menambahkan guard/null check pengecekan elemen DOM di `src/hooks/useGsapAnimation.ts`.
-  3. Optimasi Next.js `<Image fill>` pada grid gallery portfolio (`Skiper30.tsx`) dengan menambahkan `sizes` prop responsif untuk mengeliminasi browser warning dan mencegah download gambar berukuran penuh viewport.
-  4. Integrasi PocketBase untuk Form Job Application (`/job-application`) selesai, mendukung upload file CV, Server Actions yang aman, dan kategorisasi dinamis dari halaman karir.
-  5. Tombol CTA di `AboutSection` dan `ClientsSection` serta `TeamMobileCoverflow` 3D carousel mobile telah beroperasi stabil.
-- **Fokus Utama:** Optimalisasi performa aset media, responsivitas mobile, dan kestabilan integrasi frontend-backend.
-- **Next Steps:** Memonitor performa Core Web Vitals (LCP/CLS) pasca-migrasi video Cloudinary serta navigasi antar-halaman.
+  1. Audit SEO Semrush terselesaikan:
+     - `src/app/robots.ts`: dibuat untuk mengizinkan crawler dan referensi dynamic sitemap.
+     - `src/app/sitemap.ts`: dibuat untuk mendeteksi rute app router secara dinamis dengan tanggal modifikasi file.
+     - `public/llms.txt`: dibuat sesuai konvensi standar llms.txt untuk AI & LLM crawling.
+     - Eliminasi duplikasi meta description dan title tags di 10 rute dengan `generateMetadata` dinamis (mendukung parameter `jobId` di `/job-application`).
+  2. Integrasi PocketBase untuk Form Job Application (`/job-application`) aktif dan stabil dengan Server Actions.
+  3. Migrasi aset video HeroSection ke Cloudinary CDN serta optimasi sizes prop responsif pada portfolio gallery.
+- **Fokus Utama:** Kualitas SEO on-page, indexing mesin pencari / LLM, dan performa halaman.
+- **Next Steps:** Re-run Semrush Site Audit campaign untuk memvalidasi 0 error/warning pada sitemap, robots, llms.txt, dan duplikasi metadata.
 
 ---
 
