@@ -141,7 +141,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Center column — Quick Links */}
+        {/* Center column — Quick Links & Open Roles */}
         <div className="md:pl-[150px] md:pr-[50px] md:pb-10">
           <h3
             style={{
@@ -170,8 +170,70 @@ export function Footer() {
             />
             Quick links
           </h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 0, marginBottom: 40 }}>
             {QUICK_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = link.href;
+                }}
+                className="footer-quick-link"
+                style={{
+                  display: "inline-block",
+                  padding: "13px 20px",
+                  borderRadius: 20,
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  color: "#ffffff",
+                  fontSize: 14,
+                  fontWeight: 500,
+                  textDecoration: "none",
+                  letterSpacing: "-0.02em",
+                  lineHeight: 1,
+                  transition: "background-color 0.25s ease, color 0.25s ease",
+                  textTransform: "uppercase",
+                  marginBottom: 8,
+                  marginRight: 8,
+                }}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+
+          <h3
+            style={{
+              fontSize: 18,
+              fontWeight: 600,
+              color: "#ffffff",
+              marginBottom: 25,
+              marginTop: 0,
+              letterSpacing: "-0.02em",
+              lineHeight: 1,
+              display: "flex",
+              alignItems: "center",
+              gap: 9,
+            }}
+          >
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: "50%",
+                backgroundColor: "#FF3203",
+                display: "inline-block",
+                flexShrink: 0,
+                transform: "translateY(-1px)",
+              }}
+            />
+            Open Roles
+          </h3>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
+            {[
+              { label: "3D DESIGNER", href: "/career-3d-designer" },
+              { label: "ACCOUNT EXECUTIVE", href: "/career-account-executive" },
+            ].map((link) => (
               <a
                 key={link.label}
                 href={link.href}

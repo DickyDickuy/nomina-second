@@ -47,7 +47,7 @@ const CreativeAboutTwo = () => {
                                     make your creativity into reality.
                                 </p>
                                 <div className="tp_fade_anim" data-fade-from="top" data-delay=".7" data-ease="bounce">
-                                    <Link className="tp-btn-red-border about-us-2" href="/contact-us-light">Get in Touch</Link>
+                                    <Link className="tp-btn-red-border about-us-2" href="/contact">Get in Touch</Link>
                                 </div>
                             </div>
                         </div>

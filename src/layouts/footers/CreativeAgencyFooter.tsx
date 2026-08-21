@@ -39,19 +39,26 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                                         <li><Link href="/contact" onClick={(e) => { e.preventDefault(); window.location.href = '/contact'; }}>Contact Us</Link></li>
                                     </ul>
                                 </div>
+                                <h4 className="tp-footer-widget-title-sm pre mb-25 mt-30">Open Roles</h4>
+                                <div className="tp-footer-widget-menu">
+                                    <ul>
+                                        <li><Link href="/career-3d-designer" onClick={(e) => { e.preventDefault(); window.location.href = '/career-3d-designer'; }}>3D Designer</Link></li>{" "}
+                                        <li><Link href="/career-account-executive" onClick={(e) => { e.preventDefault(); window.location.href = '/career-account-executive'; }}>Account Executive</Link></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-4 col-md-6">
                             <div className="tp-footer-widget tp-footer-col-3 pb-40 mb-30">
                                 <h4 className="tp-footer-widget-title-sm pre mb-20">Contact</h4>
                                 <div className="tp-footer-widget-info">
-                                    <Link href="mailto:hello@nomina-creative.com">hello@nomina-creative.com</Link>
-                                    <Link href="tel:+6281912121777">+62 819-1212-1777</Link>
+                                    <a href="mailto:hello@nomina-creative.com">hello@nomina-creative.com</a>
+                                    <a href="tel:+6281912121777">+62 819-1212-1777</a>
                                 </div>
                                 <div className="tp-footer-widget-info">
-                                    <Link href="https://maps.google.com/?q=Jl.+Kemang+Utara+X+Jl.+Melati+No.2C,+RT.2/RW.1,+Duren+Tiga,+Kec.+Pancoran,+Kota+Jakarta+Selatan,+Daerah+Khusus+Ibukota+Jakarta+12760" target="_blank">
+                                    <a href="https://maps.google.com/?q=Jl.+Kemang+Utara+X+Jl.+Melati+No.2C,+RT.2/RW.1,+Duren+Tiga,+Kec.+Pancoran,+Kota+Jakarta+Selatan,+Daerah+Khusus+Ibukota+Jakarta+12760" target="_blank" rel="noopener noreferrer">
                                         Jl. Kemang Utara X Jl. Melati No.2C, RT.2/RW.1, Duren Tiga, Kec. Pancoran, Kota Jakarta Selatan, DKI Jakarta 12760
-                                    </Link>
+                                    </a>
                                 </div>
                             </div>
                         </div>
