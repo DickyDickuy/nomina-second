@@ -6,12 +6,13 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:** 
-  1. Mengeliminasi browser console warning GSAP (`GSAP target .tp-gsap-bg not found`) pada rute `/contact` dengan menambahkan guard/null check pengecekan elemen DOM di `src/hooks/useGsapAnimation.ts`.
-  2. Optimasi Next.js `<Image fill>` pada grid gallery portfolio (`Skiper30.tsx`) dengan menambahkan `sizes` prop responsif untuk mengeliminasi browser warning dan mencegah download gambar berukuran penuh viewport.
-  3. Integrasi PocketBase untuk Form Job Application (`/job-application`) selesai, mendukung upload file CV, Server Actions yang aman, dan kategorisasi dinamis dari halaman karir (`/career-account-executive`, `/career-3d-designer`).
-  4. Tombol CTA *Discover more* di `AboutSection` diarahkan ke `/about`, tombol CTA *Discover all clients* di `ClientsSection` diarahkan ke `/portfolio`, dan `TeamMobileCoverflow` 3D carousel mobile telah diterapkan.
-- **Fokus Utama:** Menjaga kebersihan console browser dari error/warning GSAP & Image, optimalisasi performa aset, dan kestabilan integrasi form.
-- **Next Steps:** Memonitor navigasi antar-halaman di browser dan menunggu keputusan terkait arsitektur hosting video (MinIO/CDN vs Embed).
+  1. Migrasi video background `HeroSection` dari aset lokal 36MB (`/videos/special20-showreel-1080.mp4`) ke CDN Cloudinary (`https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4`) untuk pengiriman streaming cepat, hemat bandwidth, dan performa optimal.
+  2. Mengeliminasi browser console warning GSAP (`GSAP target .tp-gsap-bg not found`) pada rute `/contact` dengan menambahkan guard/null check pengecekan elemen DOM di `src/hooks/useGsapAnimation.ts`.
+  3. Optimasi Next.js `<Image fill>` pada grid gallery portfolio (`Skiper30.tsx`) dengan menambahkan `sizes` prop responsif untuk mengeliminasi browser warning dan mencegah download gambar berukuran penuh viewport.
+  4. Integrasi PocketBase untuk Form Job Application (`/job-application`) selesai, mendukung upload file CV, Server Actions yang aman, dan kategorisasi dinamis dari halaman karir.
+  5. Tombol CTA di `AboutSection` dan `ClientsSection` serta `TeamMobileCoverflow` 3D carousel mobile telah beroperasi stabil.
+- **Fokus Utama:** Optimalisasi performa aset media, responsivitas mobile, dan kestabilan integrasi frontend-backend.
+- **Next Steps:** Memonitor performa Core Web Vitals (LCP/CLS) pasca-migrasi video Cloudinary serta navigasi antar-halaman.
 
 ---
 

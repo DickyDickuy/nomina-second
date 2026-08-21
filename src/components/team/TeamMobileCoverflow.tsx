@@ -52,10 +52,8 @@ export default function TeamMobileCoverflow({
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
 
-  // Keep active index in range if members list changes
-  useEffect(() => {
-    setActive((a) => Math.max(0, Math.min(n - 1, a)));
-  }, [n]);
+  // Derive clamped active index without setState in effect
+  const activeIndex = n > 0 ? Math.max(0, Math.min(n - 1, active)) : 0;
 
   const lock = useCallback(() => {
     lockRef.current = true;
@@ -172,7 +170,7 @@ export default function TeamMobileCoverflow({
         }}
       >
         {members.map((member, i) => {
-          let rel = i - active;
+          let rel = i - activeIndex;
           if (rel > n / 2) rel -= n;
           if (rel < -n / 2) rel += n;
 
@@ -389,11 +387,11 @@ export default function TeamMobileCoverflow({
               }}
               aria-label={`Go to slide ${i + 1}`}
               style={{
-                width: active === i ? "24px" : "6px",
+                width: activeIndex === i ? "24px" : "6px",
                 height: "6px",
                 borderRadius: "3px",
                 backgroundColor:
-                  active === i
+                  activeIndex === i
                     ? "var(--tp-common-red-3, #ff3203)"
                     : "rgba(17, 17, 17, 0.2)",
                 border: "none",

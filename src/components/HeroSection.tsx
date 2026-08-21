@@ -31,6 +31,7 @@ export function HeroSection() {
   return (
     <section className="relative h-[calc(100svh-58px)] min-h-[500px] w-full overflow-hidden bg-nomina-black">
       {/* Background Video with Mobile Performance & Fallback Optimizations */}
+      {/* ponytail: Direct Cloudinary CDN stream for fast global delivery without Next.js server overhead */}
       <video
         ref={videoRef}
         autoPlay
@@ -40,7 +41,10 @@ export function HeroSection() {
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0 opacity-90 transition-opacity duration-700"
       >
-        <source src="/videos/special20-showreel-1080.mp4" type="video/mp4" />
+        <source
+          src="https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4"
+          type="video/mp4"
+        />
       </video>
 
       {/* Subtle Scrim Gradient Overlays for Visual Balance & Readability */}

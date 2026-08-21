@@ -22,7 +22,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Created `llms.txt` navigation map for LLMs and agent tooling.
 - Created `BRAIN.md` as dynamic persistent memory tracking current context, active brainstorming, and architectural decisions.
 
+### [Changed]
+- Migrated Hero section background video from local 36MB static asset (`/videos/special20-showreel-1080.mp4`) to Cloudinary CDN URL (`https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4`) for fast edge streaming, lower bandwidth consumption, and enhanced initial load performance.
+
 ### [Fixed]
+- Resolved ESLint `react-hooks/set-state-in-effect` warning in `TeamMobileCoverflow.tsx` by deriving the clamped active slide index directly during render.
 - Added defensive DOM existence checks for `.tp-gsap-bg`, `.tp-bounce`, and `.tp-brand-inner-item img` in `src/hooks/useGsapAnimation.ts` to eliminate browser console warnings (`GSAP target not found` / `Element not found`) on `/contact` and other routes.
 - Added responsive `sizes` prop (`(max-width: 768px) 250px, (max-width: 1366px) 305px, (max-width: 1440px) 324px, 432px`) to `<Image fill>` in `Skiper30.tsx` portfolio gallery to eliminate Next.js missing sizes warnings and prevent downloading oversized full-viewport images.
 - Updated CTA link in `AboutSection` ("NOMINA: More, than just") to point directly to `/about`.
