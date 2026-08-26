@@ -13,13 +13,18 @@ export async function submitApplication(
   formData: FormData
 ): Promise<SubmitApplicationState> {
   try {
-    const name = formData.get('name')?.toString().trim();
-    const email = formData.get('email')?.toString().trim();
-    const jobId = formData.get('job_id')?.toString().trim() || 'general';
-    const whyApply = formData.get('why_apply')?.toString().trim();
-    const projectHighlight = formData.get('project_highlight')?.toString().trim();
-    const portfolio = formData.get('portfolio')?.toString().trim() || '';
-    const salary = formData.get('salary')?.toString().trim() || '';
+    const getString = (fd: FormData, key: string) => {
+      const val = fd.get(key);
+      return typeof val === 'string' ? val.trim() : '';
+    };
+
+    const name = getString(formData, 'name');
+    const email = getString(formData, 'email');
+    const jobId = getString(formData, 'job_id') || 'general';
+    const whyApply = getString(formData, 'why_apply');
+    const projectHighlight = getString(formData, 'project_highlight');
+    const portfolio = getString(formData, 'portfolio');
+    const salary = getString(formData, 'salary');
     const cv = formData.get('cv') as File | null;
 
     // Validation

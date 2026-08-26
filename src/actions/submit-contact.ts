@@ -13,10 +13,15 @@ export async function submitContact(
   formData: FormData
 ): Promise<SubmitContactState> {
   try {
-    const name = formData.get('name')?.toString().trim();
-    const email = formData.get('email')?.toString().trim();
-    const website = formData.get('website')?.toString().trim() || '';
-    const message = formData.get('message')?.toString().trim();
+    const getString = (fd: FormData, key: string) => {
+      const val = fd.get(key);
+      return typeof val === 'string' ? val.trim() : '';
+    };
+
+    const name = getString(formData, 'name');
+    const email = getString(formData, 'email');
+    const website = getString(formData, 'website');
+    const message = getString(formData, 'message');
 
     // Validation
     const errors: Record<string, string> = {};
