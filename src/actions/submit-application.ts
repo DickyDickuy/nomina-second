@@ -61,10 +61,10 @@ export async function submitApplication(
     };
   } catch (error: unknown) {
     console.error('Error submitting application to PocketBase:', error);
-    const errorMessage = error instanceof Error ? error.message : 'Failed to submit application. Please try again.';
+    // ponytail: Do not expose raw internal admin error messages to the client
     return {
       success: false,
-      message: errorMessage
+      message: 'Failed to submit application due to an internal server error. Please try again later.'
     };
   }
 }

@@ -6,17 +6,15 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:** 
-  1. Audit SEO Semrush terselesaikan:
-     - Root files (`robots.ts`, `sitemap.ts`, `llms.txt`) aktif.
-     - Duplikasi meta description dan title tags dieliminasi.
-     - **Issue crawlability (4XX & broken links)** diselesaikan dengan memodifikasi Next.js `<Link>` ke tag `<a>` pada link protokol (`mailto:`, `tel:`), serta memperbaiki rute `.light` yang usang.
-     - **Thin internal linking** diatasi dengan mengintegrasikan "Open Roles" list ke dalam Footer.
-     - **Missing H1 & Duplicate Content** diatasi: H1 sr-only (`Nomina Creative Asia`) pada Homepage, perbaikan hirarki heading di About dan Career, serta penambahan teks deskriptif dinamis (`sr-only`) untuk `/job-application` variants.
-     - **Thin Content** warning diabaikan karena sesuai dengan desain minimalis estetis agensi kreatif (no filler text).
-  2. Integrasi PocketBase untuk Form Job Application (`/job-application`) aktif dan stabil dengan Server Actions.
-  3. Migrasi aset video HeroSection ke Cloudinary CDN serta optimasi sizes prop responsif pada portfolio gallery.
-- **Fokus Utama:** Kualitas SEO on-page, indexing mesin pencari / LLM, dan performa halaman.
-- **Next Steps:** Re-run Semrush Site Audit campaign untuk memvalidasi 0 error/warning pada broken links, sitemap, dan metadata.
+  1. Remediasi Audit Ponytail Security & Minimalist Architect terselesaikan:
+     - Kredensial fallback hardcoded di `src/lib/pocketbase.ts` dan `scripts/setup-pocketbase.mjs` telah dihapus (fail-closed security).
+     - Error messages internal di server actions (`submit-application.ts`, `submit-contact.ts`) telah dimasking untuk mencegah kebocoran informasi backend (CWE-209).
+     - Formulir `ApplicationForm.tsx` dan `ContactUsForm.tsx` direfaktor ke React 19 `useActionState` native hook, menghilangkan state boilerplate yang redundan.
+     - Server action dan PocketBase schema untuk formulir kontak (`submit-contact.ts`, collection `contact_submissions`) aktif.
+     - Template konfigurasi `.env.example` telah dibuat.
+  2. Semua checks (ESLint, TypeScript `tsc --noEmit`, Next.js build) lulus 100% tanpa error.
+- **Fokus Utama:** Kualitas keamanan, kebersihan kode (YAGNI), integrasi PocketBase, dan kesiapan deploy ke Dokploy.
+- **Next Steps:** Pastikan environment variables (`POCKETBASE_URL`, `POCKETBASE_ADMIN_EMAIL`, `POCKETBASE_ADMIN_PASSWORD`) diset di Dokploy sebelum deployment produksi.
 
 ---
 

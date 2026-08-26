@@ -2,9 +2,13 @@ import PocketBase from 'pocketbase';
 
 // ponytail: minimal server-side PocketBase admin client helper
 export async function getPocketBaseAdmin() {
-  const pbUrl = process.env.POCKETBASE_URL || 'https://db.nominanetwork.tech';
-  const adminEmail = process.env.POCKETBASE_ADMIN_EMAIL || 'taylor19@gmail.com';
-  const adminPassword = process.env.POCKETBASE_ADMIN_PASSWORD || 'j1dwrm5bqd1ewcaw8pbl0sdqzg16kh3h';
+  const pbUrl = process.env.POCKETBASE_URL;
+  const adminEmail = process.env.POCKETBASE_ADMIN_EMAIL;
+  const adminPassword = process.env.POCKETBASE_ADMIN_PASSWORD;
+
+  if (!pbUrl || !adminEmail || !adminPassword) {
+    throw new Error('Missing PocketBase environment variables (POCKETBASE_URL, POCKETBASE_ADMIN_EMAIL, POCKETBASE_ADMIN_PASSWORD).');
+  }
 
   const pb = new PocketBase(pbUrl);
 

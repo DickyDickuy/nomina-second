@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useActionState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { ArrowFour, CheckIcon } from '@/svg';
-import { submitApplication, SubmitApplicationState } from '@/actions/submit-application';
+import { submitApplication } from '@/actions/submit-application';
 
 const OPEN_POSITIONS = [
     { id: 'account-executive', title: 'Account Executive' },
@@ -11,10 +11,9 @@ const OPEN_POSITIONS = [
     { id: 'general', title: 'General Application' },
 ];
 
-const ApplicationForm = () => {
+const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
     const searchParams = useSearchParams();
-    const [isPending, startTransition] = useTransition();
-    const [state, setState] = useState<SubmitApplicationState>({});
+    const [state, formAction, isPending] = useActionState(submitApplication, {});
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const queryJobId = searchParams?.get('jobId') || 'general';
     const matchedJob = OPEN_POSITIONS.find(
@@ -30,21 +29,6 @@ const ApplicationForm = () => {
         } else {
             setSelectedFile(null);
         }
-    };
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const formElement = e.currentTarget;
-        const formData = new FormData(formElement);
-
-        startTransition(async () => {
-            const result = await submitApplication(state, formData);
-            setState(result);
-            if (result.success) {
-                formElement.reset();
-                setSelectedFile(null);
-            }
-        });
     };
 
     return (
@@ -83,7 +67,7 @@ const ApplicationForm = () => {
                     </p>
                     <button
                         type="button"
-                        onClick={() => setState({})}
+                        onClick={onReset}
                         className="tp-btn-yellow-green green-solid btn-60"
                         style={{ padding: '0 30px', height: '50px', fontSize: '15px' }}
                     >
@@ -94,7 +78,7 @@ const ApplicationForm = () => {
                     </button>
                 </div>
             ) : (
-                <form onSubmit={handleSubmit} id="contact-form">
+                <form action={formAction} id="contact-form">
                     <p className="sr-only">
                         You are currently viewing the job application form for the {activeJob} position at NOMINA.
                     </p>
@@ -288,6 +272,11 @@ const ApplicationForm = () => {
             )}
         </div>
     );
+};
+
+const ApplicationForm = () => {
+    const [formKey, setFormKey] = useState(0);
+    return <ApplicationFormInner key={formKey} onReset={() => setFormKey((k) => k + 1)} />;
 };
 
 export default ApplicationForm;

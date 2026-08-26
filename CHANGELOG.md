@@ -8,6 +8,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### [Added]
+- Added Next.js Server Action `src/actions/submit-contact.ts` to process contact form submissions and persist to PocketBase `contact_submissions` collection.
+- Added `contact_submissions` collection definition to `scripts/setup-pocketbase.mjs`.
+- Created `.env.example` template containing required PocketBase configuration variables.
+
+### [Changed]
+- Refactored `ApplicationForm.tsx` and `ContactUsForm.tsx` to utilize React 19's native `useActionState` hook, removing boilerplate state handlers and manual `FormData` extraction.
+
+### [Fixed]
+- Eliminated hardcoded fallback credentials in `src/lib/pocketbase.ts` and `scripts/setup-pocketbase.mjs`, enforcing strict environment variable validation and fail-closed security (CWE-798).
+- Masked raw database/admin error messages in `src/actions/submit-application.ts` and `src/actions/submit-contact.ts` to prevent internal information disclosure (CWE-209).
 - Next.js root metadata files:
   - Created `src/app/robots.ts` to allow all crawlers and reference dynamic `sitemap.xml`.
   - Created `src/app/sitemap.ts` to dynamically scan `src/app` route tree and generate valid `sitemap.xml` with live routes and modification dates.
