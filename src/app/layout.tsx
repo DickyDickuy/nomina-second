@@ -19,9 +19,10 @@ const newsCycle = News_Cycle({
 export const metadata: Metadata = {
   title: "NOMINA Communication — We Design Communication Ecosystems",
   description:
-    "NOMINA is a full service creative agency based in Milan. Strategy, Branding, Content, Events, PR, Digital, Tech, AI — 20 years of people.",
+    "NOMINA is a full service creative agency based in Milan. Strategy, Branding, Content, Events, PR, Digital, Tech, AI — 10 years of people.",
   icons: {
-    icon: "/favicon.ico",
+    icon: "/nomina-logo.jpeg",
+    apple: "/nomina-logo.jpeg",
   },
 };
 

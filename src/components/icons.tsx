@@ -4,7 +4,7 @@ interface IconProps {
   className?: string;
 }
 
-/** NOMINA wordmark logo — "nomina." with "20 YEARS OF PEOPLE." tagline */
+/** NOMINA wordmark logo — "nomina." with "10 YEARS OF PEOPLE." tagline */
 export function NominaLogo({ className }: IconProps) {
   return (
     <div className={cn("flex flex-col items-start leading-none", className)}>
@@ -17,7 +17,7 @@ export function NominaLogo({ className }: IconProps) {
         </span>
       </div>
       <span className="text-[0.5rem] font-bold uppercase tracking-[0.15em] mt-0.5">
-        20 YEARS OF PEOPLE.
+        10 YEARS OF PEOPLE.
       </span>
     </div>
   );
@@ -36,7 +36,7 @@ export function NominaLogoDark({ className }: IconProps) {
         </span>
       </div>
       <span className="text-[0.5rem] font-bold uppercase tracking-[0.15em] mt-0.5">
-        20 YEARS OF PEOPLE.
+        10 YEARS OF PEOPLE.
       </span>
     </div>
   );

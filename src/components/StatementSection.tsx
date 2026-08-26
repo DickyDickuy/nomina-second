@@ -18,12 +18,12 @@ export function StatementSection() {
 
         {/* Subtitle */}
         <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.15em] text-nomina-black">
-          We Have Been Doing It For 20 Years
+          We Have Been Doing It For 10 Years
         </h3>
 
         {/* Description */}
         <p className="text-base md:text-lg leading-relaxed text-nomina-black/80 max-w-2xl">
-          For 20 years we have been connecting ideas, content, people and
+          For 10 years we have been connecting ideas, content, people and
           channels to create communication ecosystems. Strategy, creativity, PR
           and digital are all part of a single approach, designed to create
           authentic connections between people and brands.

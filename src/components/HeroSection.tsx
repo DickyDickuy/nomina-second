@@ -16,7 +16,7 @@ export function HeroSection() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          video.play().catch(() => {});
+          video.play().catch(() => { });
         } else {
           video.pause();
         }
@@ -70,7 +70,7 @@ export function HeroSection() {
             Special Edition
           </p>
           <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-white">
-            20 Years of People
+            10 Years of People
           </p>
         </div>
       </div>

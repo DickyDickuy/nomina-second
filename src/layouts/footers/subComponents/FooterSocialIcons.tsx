@@ -1,4 +1,4 @@
-import { FacebookSvg, InstagramSvg, LinkedinSvg, YouTubeSvg } from '@/svg';
+import { FacebookSvg, InstagramSvg, LinkedinSvg } from '@/svg';
 import Link from 'next/link';
 
 export const FooterSocialIcons = ({ className }: { className: string }) => {
@@ -10,10 +10,7 @@ export const FooterSocialIcons = ({ className }: { className: string }) => {
             <Link href="https://www.linkedin.com/company/nomina-indonesia/" target="_blank" aria-label="LinkedIn">
                 <span><LinkedinSvg width="18" height="18" /></span>
             </Link>{" "}
-            <Link href="#" aria-label="YouTube">
-                <span><YouTubeSvg /></span>
-            </Link>{" "}
-            <Link href="#" aria-label="Facebook">
+            <Link href="https://www.facebook.com/nominaindonesia?locale=id_ID" aria-label="Facebook">
                 <span><FacebookSvg /></span>
             </Link>
         </div>
@@ -27,9 +24,6 @@ export const FooterSocialIconsTwo = ({ className }: { className: string }) => {
             </Link>{" "}
             <Link href="https://www.linkedin.com/company/nomina-indonesia/" target="_blank" aria-label="LinkedIn">
                 <span><LinkedinSvg width="18" height="18" /></span>
-            </Link>{" "}
-            <Link href="#" aria-label="YouTube">
-                <span><YouTubeSvg /></span>
             </Link>{" "}
             <Link href="#" aria-label="Facebook">
                 <span><FacebookSvg /></span>
