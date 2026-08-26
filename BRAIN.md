@@ -10,6 +10,7 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
      - Kredensial fallback hardcoded di `src/lib/pocketbase.ts` dan `scripts/setup-pocketbase.mjs` telah dihapus (fail-closed security).
      - Error messages internal di server actions (`submit-application.ts`, `submit-contact.ts`) telah dimasking untuk mencegah kebocoran informasi backend (CWE-209).
      - Formulir `ApplicationForm.tsx` dan `ContactUsForm.tsx` direfaktor ke React 19 `useActionState` native hook, menghilangkan state boilerplate yang redundan.
+     - UI upload CV di `ApplicationForm.tsx` diperbarui dengan tombol kustom interaktif dan badge informasi file.
      - Server action dan PocketBase schema untuk formulir kontak (`submit-contact.ts`, collection `contact_submissions`) aktif.
      - Template konfigurasi `.env.example` telah dibuat.
   2. Semua checks (ESLint, TypeScript `tsc --noEmit`, Next.js build) lulus 100% tanpa error.

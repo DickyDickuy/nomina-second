@@ -15,7 +15,7 @@ export function AboutSection() {
         </h2>
 
         <p className="text-base md:text-lg leading-relaxed text-nomina-black/80 max-w-2xl mx-auto">
-          Since 2006 we have been working alongside brands to build solid,
+          Since 2016 we have been working alongside brands to build solid,
           recognisable communication projects that stand the test of time.
           Strategy, creativity, PR and digital are all part of a single approach,
           designed to create authentic connections between people and brands.

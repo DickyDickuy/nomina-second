@@ -12,8 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added `contact_submissions` collection definition to `scripts/setup-pocketbase.mjs`.
 - Created `.env.example` template containing required PocketBase configuration variables.
 
-### [Changed]
 - Refactored `ApplicationForm.tsx` and `ContactUsForm.tsx` to utilize React 19's native `useActionState` hook, removing boilerplate state handlers and manual `FormData` extraction.
+- Enhanced CV upload UI in `ApplicationForm.tsx` with a custom styled upload button, interactive hover animations, and a file preview badge displaying the filename and size.
 
 ### [Fixed]
 - Eliminated hardcoded fallback credentials in `src/lib/pocketbase.ts` and `scripts/setup-pocketbase.mjs`, enforcing strict environment variable validation and fail-closed security (CWE-798).

@@ -18,7 +18,7 @@ const CreativeAboutTwo = () => {
                                     our Studio
                                     <i><ArrowTwenty /></i>
                                 </span>
-                                <h3 className="tp-section-title-clash tp-text-revel-anim"><span className="clash-subtitle-space-1">{`We're`}</span><br /> a event & creative brand Organizer.</h3>
+                                <h3 className="tp-section-title-clash tp-text-revel-anim"><span className="clash-subtitle-space-1">{`We're`}</span><br /> an event & creative brand Organizer.</h3>
                             </div>
                         </div>
                         <div className="col-xl-2 d-none d-xl-block">

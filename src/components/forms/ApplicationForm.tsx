@@ -208,43 +208,106 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                             </div>
                         </div>
 
-                        {/* CV Upload and Submit */}
+                        {/* CV Upload */}
                         <div className="col-lg-12">
-                            <div className="tp-application-form-btn d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center gap-3 mt-10">
-                                <div className="tp-application-upload mb-15">
+                            <div className="tp-contact-form-input mb-30">
+                                <label style={{ display: 'block', marginBottom: '10px', fontWeight: 600 }}>
+                                    Upload your CV (PDF, DOC, DOCX)*
+                                </label>
+
+                                <input
+                                    id="cv-upload"
+                                    name="cv"
+                                    type="file"
+                                    accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                    onChange={handleFileChange}
+                                    required
+                                    style={{ display: 'none' }}
+                                />
+
+                                <div className="d-flex flex-wrap align-items-center gap-3">
                                     <label
                                         htmlFor="cv-upload"
                                         style={{
-                                            display: 'inline-block',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            gap: '10px',
+                                            padding: '12px 24px',
+                                            background: '#f8fafc',
+                                            border: '1.5px dashed #cbd5e1',
+                                            borderRadius: '12px',
                                             cursor: 'pointer',
                                             fontWeight: 600,
-                                            marginBottom: '6px',
+                                            fontSize: '14px',
+                                            color: '#1e293b',
+                                            transition: 'all 0.2s ease',
+                                            marginBottom: 0,
+                                        }}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget.style.borderColor = '#FF3203';
+                                            e.currentTarget.style.backgroundColor = '#fff7ed';
+                                            e.currentTarget.style.color = '#FF3203';
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget.style.borderColor = '#cbd5e1';
+                                            e.currentTarget.style.backgroundColor = '#f8fafc';
+                                            e.currentTarget.style.color = '#1e293b';
                                         }}
                                     >
-                                        Upload your CV (PDF, DOC, DOCX)*
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                            <polyline points="17 8 12 3 7 8" />
+                                            <line x1="12" y1="3" x2="12" y2="15" />
+                                        </svg>
+                                        <span>{selectedFile ? 'Change CV File' : 'Choose CV File'}</span>
                                     </label>
-                                    <input
-                                        id="cv-upload"
-                                        name="cv"
-                                        type="file"
-                                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                                        onChange={handleFileChange}
-                                        required
-                                        style={{ display: 'block', marginTop: '6px' }}
-                                    />
-                                    {selectedFile && (
-                                        <div style={{ fontSize: '13px', color: '#16a34a', marginTop: '4px' }}>
-                                            Selected: {selectedFile.name} ({(selectedFile.size / 1024 / 1024).toFixed(2)} MB)
+
+                                    {selectedFile ? (
+                                        <div
+                                            style={{
+                                                display: 'inline-flex',
+                                                alignItems: 'center',
+                                                gap: '8px',
+                                                padding: '10px 16px',
+                                                background: '#f0fdf4',
+                                                border: '1px solid #bbf7d0',
+                                                borderRadius: '10px',
+                                                fontSize: '13px',
+                                                color: '#15803d',
+                                                fontWeight: 500,
+                                            }}
+                                        >
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                                <polyline points="14 2 14 8 20 8" />
+                                            </svg>
+                                            <span style={{ maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 600 }}>
+                                                {selectedFile.name}
+                                            </span>
+                                            <span style={{ color: '#86efac', fontSize: '11px' }}>•</span>
+                                            <span style={{ fontSize: '12px', color: '#166534' }}>
+                                                {(selectedFile.size / 1024 / 1024).toFixed(2)} MB
+                                            </span>
                                         </div>
-                                    )}
-                                    {state.errors?.cv && (
-                                        <span style={{ color: '#dc2626', fontSize: '13px', marginTop: '4px', display: 'block' }}>
-                                            {state.errors.cv}
+                                    ) : (
+                                        <span style={{ fontSize: '13px', color: '#94a3b8' }}>
+                                            No file chosen (PDF, DOC, DOCX max 10MB)
                                         </span>
                                     )}
                                 </div>
 
-                                <div className="tp-application-btn mb-15 mt-10">
+                                {state.errors?.cv && (
+                                    <span style={{ color: '#dc2626', fontSize: '13px', marginTop: '6px', display: 'block' }}>
+                                        {state.errors.cv}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+                        {/* Submit Button */}
+                        <div className="col-lg-12">
+                            <div className="tp-application-form-btn d-flex justify-content-end mt-10">
+                                <div className="tp-application-btn mb-15">
                                     <button
                                         type="submit"
                                         disabled={isPending}
