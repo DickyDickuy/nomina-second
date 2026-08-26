@@ -21,8 +21,8 @@ export const metadata: Metadata = {
   description:
     "NOMINA is a full service creative agency based in Milan. Strategy, Branding, Content, Events, PR, Digital, Tech, AI — 10 years of people.",
   icons: {
-    icon: "/nomina-logo.jpeg",
-    apple: "/nomina-logo.jpeg",
+    icon: "/images/nomina-logo.jpeg",
+    apple: "/images/nomina-logo.jpeg",
   },
 };
 
