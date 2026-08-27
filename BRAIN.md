@@ -6,16 +6,17 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:** 
-  1. Remediasi Audit Ponytail Security & Minimalist Architect terselesaikan:
-     - Kredensial fallback hardcoded di `src/lib/pocketbase.ts` dan `scripts/setup-pocketbase.mjs` telah dihapus (fail-closed security).
-     - Error messages internal di server actions (`submit-application.ts`, `submit-contact.ts`) telah dimasking untuk mencegah kebocoran informasi backend (CWE-209).
-     - Formulir `ApplicationForm.tsx` dan `ContactUsForm.tsx` direfaktor ke React 19 `useActionState` native hook, menghilangkan state boilerplate yang redundan.
-     - UI upload CV di `ApplicationForm.tsx` diperbarui dengan tombol kustom interaktif dan badge informasi file.
-     - Server action dan PocketBase schema untuk formulir kontak (`submit-contact.ts`, collection `contact_submissions`) aktif.
-     - Template konfigurasi `.env.example` telah dibuat.
-  2. Semua checks (ESLint, TypeScript `tsc --noEmit`, Next.js build) lulus 100% tanpa error.
-- **Fokus Utama:** Kualitas keamanan, kebersihan kode (YAGNI), integrasi PocketBase, dan kesiapan deploy ke Dokploy.
-- **Next Steps:** Pastikan environment variables (`POCKETBASE_URL`, `POCKETBASE_ADMIN_EMAIL`, `POCKETBASE_ADMIN_PASSWORD`) diset di Dokploy sebelum deployment produksi.
+  1. **SEO Remediation Komprehensif selesai dikerjakan:**
+     - `src/app/layout.tsx`: Ditambahkan `metadataBase`, `title.template` (`%s | NOMINA Communication`), `keywords`, `authors`, `creator`, `publisher`, `robots` (termasuk directive `googleBot` eksplisit), `alternates.canonical`, `openGraph` (OG:title, description, url, siteName, locale, images), dan `twitter` card metadata.
+     - `src/app/page.tsx`: Ditambahkan `openGraph`, `twitter`, `alternates.canonical`, dan JSON-LD `Organization` structured data (`@type: Organization` dengan `name`, `alternateName`, `url`, `logo`, `foundingDate`, `address`, `contactPoint`).
+     - Semua 7 halaman inner (`/about`, `/career`, `/career-3d-designer`, `/career-account-executive`, `/contact`, `/portfolio`, `/job-application`) telah mendapatkan `openGraph`, `twitter`, dan `alternates.canonical` yang lengkap dan unik per halaman.
+     - `generateMetadata` di `/job-application/page.tsx` diperluas: semua 3 variant (default, 3d-designer, account-executive) kini memiliki OG, Twitter, dan canonical.
+  2. TypeScript typecheck lulus 100% tanpa error.
+- **Fokus Utama:** Deploy perubahan ke production (Dokploy), lalu submit ke Google Search Console untuk indexing.
+- **Next Steps:** 
+  1. Deploy build terbaru ke `landing.nominanetwork.tech`.
+  2. Login ke Google Search Console → tambahkan property → submit `sitemap.xml` → gunakan URL Inspection untuk request indexing homepage.
+  3. Verifikasi tag OG di [opengraph.xyz](https://www.opengraph.xyz) dan JSON-LD di [Google Rich Results Test](https://search.google.com/test/rich-results).
 
 ---
 

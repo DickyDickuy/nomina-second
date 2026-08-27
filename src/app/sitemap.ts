@@ -60,7 +60,7 @@ function getAppRoutes(dir: string, baseDir: string = dir): RouteItem[] {
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://landing.nominanetwork.tech";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://nomina-creative.com";
 
   const appDir = path.join(process.cwd(), "src", "app");
   const fallbackAppDir = path.join(process.cwd(), "app");

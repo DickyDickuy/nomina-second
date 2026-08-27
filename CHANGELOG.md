@@ -8,6 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### [Added]
+- **Comprehensive SEO Remediation** across all 9 route segments:
+  - `src/app/layout.tsx`: Added `metadataBase`, `title.template` (`%s | NOMINA Communication`), `keywords`, `authors`, `creator`, `publisher`, explicit `robots` + `googleBot` directives (index, follow, max-image-preview: large, max-snippet: -1, max-video-preview: -1), `alternates.canonical`, `openGraph` (type, locale, url, siteName, title, description, images), and `twitter` card metadata.
+  - `src/app/page.tsx`: Added `openGraph`, `twitter`, `alternates.canonical`, and JSON-LD `Organization` structured data schema (`@context: https://schema.org`, `@type: Organization`, name, alternateName, url, logo, foundingDate, address, contactPoint).
+  - All 7 inner pages (`/about`, `/career`, `/career-3d-designer`, `/career-account-executive`, `/contact`, `/portfolio`, `/job-application`) now have full `openGraph`, `twitter`, and `alternates.canonical` unique per route.
+  - `generateMetadata` in `/job-application/page.tsx` extended: all 3 variants (default, 3d-designer, account-executive) now include full OG, Twitter, and canonical metadata.
+
 - Added Next.js Server Action `src/actions/submit-contact.ts` to process contact form submissions and persist to PocketBase `contact_submissions` collection.
 - Added `contact_submissions` collection definition to `scripts/setup-pocketbase.mjs`.
 - Created `.env.example` template containing required PocketBase configuration variables.
