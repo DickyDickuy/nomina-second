@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const FooterSocialIcons = ({ className }: { className: string }) => {
     return (
         <div className={className}>
-            <Link href="https://www.instagram.com/nomina.creative/" target="_blank" aria-label="Instagram">
+            <Link href="https://www.instagram.com/nominacreative/" target="_blank" aria-label="Instagram">
                 <span><InstagramSvg /></span>
             </Link>{" "}
             <Link href="https://www.linkedin.com/company/nomina-indonesia/" target="_blank" aria-label="LinkedIn">
@@ -19,13 +19,13 @@ export const FooterSocialIcons = ({ className }: { className: string }) => {
 export const FooterSocialIconsTwo = ({ className }: { className: string }) => {
     return (
         <div className={className}>
-            <Link href="https://www.instagram.com/nomina.creative/" target="_blank" aria-label="Instagram">
+            <Link href="https://www.instagram.com/nominacreative/" target="_blank" aria-label="Instagram">
                 <span><InstagramSvg /></span>
             </Link>{" "}
             <Link href="https://www.linkedin.com/company/nomina-indonesia/" target="_blank" aria-label="LinkedIn">
                 <span><LinkedinSvg width="18" height="18" /></span>
             </Link>{" "}
-            <Link href="#" aria-label="Facebook">
+            <Link href="https://www.facebook.com/nominaindonesia?locale=id_ID" aria-label="Facebook">
                 <span><FacebookSvg /></span>
             </Link>
         </div>
