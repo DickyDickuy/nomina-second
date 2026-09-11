@@ -6,6 +6,7 @@
 - [AGENTS.md](/AGENTS.md): Aturan utama, konvensi kode, alur kerja multi-agent, dan prinsip desain.
 - [BRAIN.md](/BRAIN.md): Memori persisten dinamis (fokus saat ini, brainstorming aktif, keputusan arsitektur).
 - [CHANGELOG.md](/CHANGELOG.md): Riwayat perubahan berbasis AI, catatan pencegah regresi bug, dan rilis versi.
+- [docs/POCKETBASE_RECAP.md](/docs/POCKETBASE_RECAP.md): Rekapitulasi skema, konfigurasi, keamanan PocketBase, dan blueprint leads multi-website.
 
 ## Repository Map
 - `/src/app`: Rute halaman Next.js App Router, layout, dan route handlers.
