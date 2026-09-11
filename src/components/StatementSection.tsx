@@ -31,7 +31,7 @@ export function StatementSection() {
 
         {/* CTA */}
         <div>
-          <ArrowButton label="Special 20 Project Archive" href="#" />
+          <ArrowButton label="Get in touch with NOMINA" href="/contact" />
         </div>
       </div>
     </section>
