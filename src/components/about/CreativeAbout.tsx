@@ -40,7 +40,7 @@ const CreativeAbout = () => {
                         <div className="col-lg-4 col-md-4 col-6 text-end">
                             <div className="tp-about-us-2-text">
                                 <p style={{ margin: 0, fontWeight: 500, opacity: 0.8 }}>
-                                    JAKARTA & GARUT • EST. 2016
+                                    SOUTH JAKARTA • EST. 2016
                                 </p>
                             </div>
                         </div>
@@ -84,7 +84,7 @@ const CreativeAbout = () => {
                                 </div>
                                 <div className="tp-about-us-2-heading">
                                     <span className="tp-about-us-2-subtitle">ABOUT NOMINA</span>
-                                    <h1 className="tp-about-us-2-title tp-text-revel-anim">
+                                    <h1 className="tp-about-us-2-title tp-text-revel-anim" aria-label="Our Studio — NOMINA Creative Event & Brand Organizer South Jakarta">
                                         OUR <br />STUDIO
                                     </h1>
                                 </div>

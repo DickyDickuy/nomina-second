@@ -491,3 +491,8 @@
 }
 
 /* Trigger CSS recompile - Scarlet Red #FF3800 */
+/* ─── Global Skeleton Shimmer Keyframe (used by inline-style components) ─── */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position:  400px 0; }
+}

@@ -17,7 +17,7 @@ const CareerLightHero = () => {
                     scroll down to see
                 </span>
             </div>
-            <h1 className={styles.heroTitle}>career</h1>
+            <h1 className={styles.heroTitle} aria-label="Join NOMINA Creative — Open Career Opportunities in South Jakarta">career</h1>
         </div>
     );
 };

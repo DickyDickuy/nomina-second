@@ -51,6 +51,12 @@ export default function TeamMobileCoverflow({
   const lockRef = useRef(false);
   const touchStartX = useRef<number | null>(null);
   const touchEndX = useRef<number | null>(null);
+  // Track which member images have finished loading
+  const [loadedMap, setLoadedMap] = useState<Record<number, boolean>>({});
+
+  const handleImgLoad = useCallback((id: number) => {
+    setLoadedMap((prev) => ({ ...prev, [id]: true }));
+  }, []);
 
   // Derive clamped active index without setState in effect
   const activeIndex = n > 0 ? Math.max(0, Math.min(n - 1, active)) : 0;
@@ -227,6 +233,24 @@ export default function TeamMobileCoverflow({
                 }}
                 priority={i === 0 || i === 1}
                 draggable={false}
+                onLoad={() => handleImgLoad(member.id)}
+              />
+
+              {/* Skeleton shimmer — hidden once image loads */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  zIndex: 3,
+                  borderRadius: "inherit",
+                  background:
+                    "linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 75%)",
+                  backgroundSize: "800px 100%",
+                  animation: "skeleton-shimmer 1.4s infinite linear",
+                  pointerEvents: "none",
+                  opacity: loadedMap[member.id] ? 0 : 1,
+                  transition: "opacity 0.4s ease",
+                }}
               />
 
               {/* Gradient Scrim Overlay for maximum text legibility */}

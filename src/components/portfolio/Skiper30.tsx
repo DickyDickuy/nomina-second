@@ -131,7 +131,7 @@ const Skiper30 = () => {
             scroll down to see
           </span>
         </div>
-        <h1 className={styles.spacerTitle}>portOfolio</h1>
+        <h1 className={styles.spacerTitle} aria-label="Portfolio — NOMINA Creative Projects & Brand Experiences Jakarta">portOfolio</h1>
       </div>
 
       <div ref={gallery} className={styles.gallery}>

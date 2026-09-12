@@ -146,6 +146,33 @@ $image-ratio: math.div(16, 10); // optimized horizontal ratio for team images
   }
 }
 
+/* ─── Skeleton Shimmer ─── */
+@keyframes skeleton-shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(200, 200, 200, 0.15) 25%,
+    rgba(200, 200, 200, 0.3) 50%,
+    rgba(200, 200, 200, 0.15) 75%
+  );
+  background-size: 800px 100%;
+  animation: skeleton-shimmer 1.4s infinite linear;
+  border-radius: inherit;
+  z-index: 2;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.skeletonHidden {
+  opacity: 0;
+}
+
 /* ─── Floating Image (Desktop) — rendered via portal at body level ─── */
 .floatingImage {
   position: fixed;
@@ -158,6 +185,7 @@ $image-ratio: math.div(16, 10); // optimized horizontal ratio for team images
   opacity: 1;
   overflow: hidden;
   border-radius: 6px;
+  background-color: rgba(30, 30, 30, 0.9);
   box-shadow:
     0 25px 60px rgba(0, 0, 0, 0.18),
     0 8px 20px rgba(0, 0, 0, 0.08);
@@ -171,6 +199,8 @@ $image-ratio: math.div(16, 10); // optimized horizontal ratio for team images
   object-fit: cover;
   object-position: center 20%;
   display: block;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─── Visibility Breakpoints ─── */

@@ -15,16 +15,16 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'en_US',
         url: `${SITE_URL}/portfolio`,
-        siteName: 'NOMINA Communication',
+        siteName: 'NOMINA Creative',
         title: "Portfolio & Showcase — NOMINA Creative Projects",
         description:
-            "Explore NOMINA's portfolio of curated creative projects, immersive brand experiences, corporate celebrations, and experiential event productions.",
+            "Explore NOMINA Creative's portfolio of curated creative projects, immersive brand experiences, corporate celebrations, and experiential event productions in Jakarta.",
         images: [
             {
                 url: `${SITE_URL}/images/nomina-logo.jpeg`,
                 width: 1200,
                 height: 630,
-                alt: 'NOMINA Communication Portfolio',
+                alt: 'NOMINA Creative Portfolio — South Jakarta',
             },
         ],
     },

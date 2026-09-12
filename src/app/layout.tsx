@@ -23,24 +23,24 @@ const OG_IMAGE = `${SITE_URL}/images/nomina-logo.jpeg`;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "NOMINA Communication — We Design Communication Ecosystems",
-    template: "%s | NOMINA Communication",
+    default: "NOMINA Creative — Creative Agency South Jakarta | Event Organizer & Branding",
+    template: "%s | NOMINA Creative",
   },
   description:
-    "NOMINA is a full-service creative agency based in Milan. Strategy, Branding, Content, Events, PR, Digital, Tech, AI — 10 years of people.",
+    "NOMINA Creative is a full-service creative agency based in South Jakarta. Strategy, Branding, Content, Events, Digital, Tech — est. 2016.",
   keywords: [
     "NOMINA",
-    "NOMINA Communication",
-    "creative agency Milan",
-    "communication agency",
-    "branding agency",
-    "event agency Milan",
-    "digital agency",
-    "PR agency",
+    "NOMINA Creative",
+    "creative agency Jakarta",
+    "event organizer Jakarta",
+    "branding agency South Jakarta",
+    "communication agency Indonesia",
+    "digital agency Jakarta",
+    "brand experience Indonesia",
   ],
-  authors: [{ name: "NOMINA Communication", url: SITE_URL }],
-  creator: "NOMINA Communication",
-  publisher: "NOMINA Communication",
+  authors: [{ name: "NOMINA Creative", url: SITE_URL }],
+  creator: "NOMINA Creative",
+  publisher: "NOMINA Creative",
   robots: {
     index: true,
     follow: true,
@@ -61,24 +61,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: SITE_URL,
-    siteName: "NOMINA Communication",
-    title: "NOMINA Communication — We Design Communication Ecosystems",
+    siteName: "NOMINA Creative",
+    title: "NOMINA Creative — Creative Agency South Jakarta | Event Organizer & Branding",
     description:
-      "NOMINA is a full-service creative agency based in Milan. Strategy, Branding, Content, Events, PR, Digital, Tech, AI — 10 years of people.",
+      "NOMINA Creative is a full-service creative agency based in South Jakarta. Strategy, Branding, Content, Events, Digital, Tech — est. 2016.",
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "NOMINA Communication — Creative Agency Milan",
+        alt: "NOMINA Creative — Creative Agency South Jakarta",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NOMINA Communication — We Design Communication Ecosystems",
+    title: "NOMINA Creative — Creative Agency South Jakarta | Event Organizer & Branding",
     description:
-      "NOMINA is a full-service creative agency based in Milan. Strategy, Branding, Content, Events, PR, Digital, Tech, AI — 10 years of people.",
+      "NOMINA Creative is a full-service creative agency based in South Jakarta. Strategy, Branding, Content, Events, Digital, Tech — est. 2016.",
     images: [OG_IMAGE],
   },
   icons: {

@@ -5,9 +5,9 @@ const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://nomina-creative.com';
 
 export const metadata: Metadata = {
-    title: "Careers at NOMINA — Open Roles & Opportunities",
+    title: "Careers at NOMINA Creative — Open Roles in South Jakarta",
     description:
-        "Join the creative minds at NOMINA. Explore open full-time positions, studio culture, and career opportunities in 3D design, account management, and brand execution.",
+        "Join NOMINA Creative in South Jakarta. Explore open positions in 3D design, account management, and brand execution at Indonesia's creative event & branding agency.",
     alternates: {
         canonical: `${SITE_URL}/career`,
     },
@@ -15,24 +15,24 @@ export const metadata: Metadata = {
         type: 'website',
         locale: 'en_US',
         url: `${SITE_URL}/career`,
-        siteName: 'NOMINA Communication',
-        title: "Careers at NOMINA — Open Roles & Opportunities",
+        siteName: 'NOMINA Creative',
+        title: "Careers at NOMINA Creative — Open Roles in South Jakarta",
         description:
-            "Join the creative minds at NOMINA. Explore open full-time positions, studio culture, and career opportunities in 3D design, account management, and brand execution.",
+            "Join NOMINA Creative in South Jakarta. Explore open positions in 3D design, account management, and brand execution at Indonesia's creative event & branding agency.",
         images: [
             {
                 url: `${SITE_URL}/images/nomina-logo.jpeg`,
                 width: 1200,
                 height: 630,
-                alt: 'Careers at NOMINA Communication',
+                alt: 'Careers at NOMINA Creative — South Jakarta',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: "Careers at NOMINA — Open Roles & Opportunities",
+        title: "Careers at NOMINA Creative — Open Roles in South Jakarta",
         description:
-            "Join the creative minds at NOMINA. Explore open full-time positions, studio culture, and career opportunities in 3D design, account management, and brand execution.",
+            "Join NOMINA Creative in South Jakarta. Explore open positions in 3D design, account management, and brand execution at Indonesia's creative event & branding agency.",
         images: [`${SITE_URL}/images/nomina-logo.jpeg`],
     },
 };

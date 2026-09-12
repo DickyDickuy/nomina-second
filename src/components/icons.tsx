@@ -10,7 +10,7 @@ export function NominaLogo({ className }: IconProps) {
     <div className={cn("flex flex-col items-start leading-none", className)}>
       <div className="relative">
         <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-nomina-red opacity-40 absolute -top-1 -left-1">
-          20
+          10
         </span>
         <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight relative z-10">
           nomina.
@@ -29,7 +29,7 @@ export function NominaLogoDark({ className }: IconProps) {
     <div className={cn("flex flex-col items-start leading-none text-white", className)}>
       <div className="relative">
         <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-nomina-red opacity-40 absolute -top-1 -left-1">
-          20
+          10
         </span>
         <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight relative z-10">
           nomina.

@@ -86,6 +86,7 @@ const TeamSection = () => {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isDesktop, setIsDesktop] = useState(true);
   const [portalReady, setPortalReady] = useState(false);
+  const [floatingImgLoaded, setFloatingImgLoaded] = useState(false);
 
   /* ─── Detect reduced motion + breakpoint + portal mount ─── */
   useEffect(() => {
@@ -166,6 +167,7 @@ const TeamSection = () => {
       // Swap image source (always, even if already visible)
       imgEl.src = member.image;
       imgEl.alt = member.name;
+      setFloatingImgLoaded(false); // reset skeleton for new member image
 
       isHoveringRef.current = true;
 
@@ -268,6 +270,12 @@ const TeamSection = () => {
     portalReady && isDesktop
       ? createPortal(
           <div className={styles.floatingImage} ref={floatingRef}>
+            {/* Skeleton shimmer — fades out once image loads */}
+            <div
+              className={`${styles.skeleton} ${
+                floatingImgLoaded ? styles.skeletonHidden : ""
+              }`}
+            />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               ref={floatingImgRef}
@@ -275,6 +283,7 @@ const TeamSection = () => {
               src={teamMembers[0].image}
               alt=""
               aria-hidden="true"
+              onLoad={() => setFloatingImgLoaded(true)}
             />
           </div>,
           document.body,
