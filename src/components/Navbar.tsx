@@ -117,7 +117,7 @@ export function Navbar() {
               items={staggeredMenuItems}
               displaySocials={false}
               menuButtonColor="#111111"
-              openMenuButtonColor="#ffffff"
+              openMenuButtonColor="#111111"
               logoUrl="/assets/img/logo/logo-white.png"
             />
           </div>

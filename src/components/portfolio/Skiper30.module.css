@@ -82,9 +82,12 @@
   position: relative;
   box-sizing: border-box;
   display: flex;
-  height: 175vh;
+  height: 145vh;
   gap: 2vw;
-  overflow: hidden;
+  /* overflow:clip reliably clips transformed children (Framer Motion motion.div)
+     unlike overflow:hidden which can fail with CSS transforms */
+  overflow: clip;
+  clip-path: inset(0);
   background-color: #ffffff;
   padding: 2vw;
 }
@@ -92,27 +95,28 @@
 .column {
   position: relative;
   display: flex;
-  height: 100%;
+  /* 170% of gallery height so column always extends below gallery bottom
+     even after scrolling up — eliminates white space gap at bottom. */
+  height: 170%;
   width: 25%;
-  min-width: 250px;
   flex-direction: column;
   gap: 2vw;
 }
 
 .column:nth-child(1) {
-  top: -45%;
+  top: 0;
 }
 
 .column:nth-child(2) {
-  top: -95%;
+  top: 0;
 }
 
 .column:nth-child(3) {
-  top: -45%;
+  top: 0;
 }
 
 .column:nth-child(4) {
-  top: -75%;
+  top: 0;
 }
 
 .imageContainer {
@@ -181,6 +185,34 @@
 
   .imageContainer {
     cursor: default;
+  }
+
+  /* 2-column layout on mobile: show only col 1 and col 2 */
+  .gallery {
+    height: 200vh;
+    gap: 3vw;
+    padding: 3vw;
+  }
+
+  .column {
+    width: 50%;
+    gap: 3vw;
+    /* inherit height: 170% from base rule — no override needed */
+  }
+
+  /* Reset vertical offsets for mobile — simpler stagger */
+  .column:nth-child(1) {
+    top: -20%;
+  }
+
+  .column:nth-child(2) {
+    top: -40%;
+  }
+
+  /* Hide columns 3 and 4 on mobile */
+  .column:nth-child(3),
+  .column:nth-child(4) {
+    display: none;
   }
 
   .mobileLabel {

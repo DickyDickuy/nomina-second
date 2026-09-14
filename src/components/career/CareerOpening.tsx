@@ -60,7 +60,7 @@ const CareerOpening = () => {
         </div>
 
         {/* Table Headers */}
-        <div className="tp-career-opening-item">
+        <div className="tp-career-opening-item d-none d-lg-block">
           <div className="row">
             <div className="col-lg-4">
               <div className="tp-career-opening-heading">
@@ -84,18 +84,18 @@ const CareerOpening = () => {
         {jobOpenings.map((job, index) => (
           <div key={index} className="tp-career-opening-item ptb">
             <div className="row align-items-center">
-              <div className="col-lg-4">
+              <div className="col-12 col-lg-4 mb-3 mb-lg-0">
                 <div className="tp-career-opening-title">
                   <h4 className="tp-career-opening-title-name">{job.title}</h4>
                 </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-12 col-lg-4 mb-3 mb-lg-0">
                 <div className="tp-career-opening-role">
                   <span>{job.openRoles}</span>
                 </div>
               </div>
-              <div className="col-lg-4">
-                <div className="tp-career-opening-Type d-flex justify-content-between align-items-center">
+              <div className="col-12 col-lg-4">
+                <div className="tp-career-opening-Type d-flex flex-column flex-sm-row justify-content-sm-between align-items-start align-items-sm-center gap-3 gap-sm-0">
                   <span>{job.type}</span>
                   <div className="tp-career-opening-btn">
                     <ApplyButton filterId={job.filterId} link={job.link} />

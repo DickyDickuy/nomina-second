@@ -8,14 +8,14 @@ import Image from "next/image";
 import styles from "./Skiper30.module.css";
 
 const portfolio = [
-  { src: "/assets/img/portfolio/skiper/Flip Truk LebihDariItu.png", name: "Flip Truk #LebihDariItu" },
   { src: "/assets/img/portfolio/skiper/ASTRA International HUT 65.png", name: "ASTRA International HUT 65" },
+  { src: "/assets/img/portfolio/skiper/Flip Truk LebihDariItu.png", name: "Flip Truk #LebihDariItu" },
   { src: "/assets/img/portfolio/skiper/CommBank Smartwalth Hybrid Event.png", name: "CommBank Smartwalth Hybrid Event" },
   { src: "/assets/img/portfolio/skiper/Emerson MSOL at Nusa Dua Bali.png", name: "Emerson MSOL at Nusa Dua Bali" },
+  { src: "/assets/img/portfolio/skiper/PSI Chinese New Year Celebration at SunCity.png", name: "PSI Chinese New Year Celebration at SunCity" },
   { src: "/assets/img/portfolio/skiper/Grand Indonesia Summerglow 2022.png", name: "Grand Indonesia Summerglow 2022" },
   { src: "/assets/img/portfolio/skiper/ASTRA International Decoration 17 Agustus.png", name: "ASTRA International Decoration 17 Agustus" },
   { src: "/assets/img/portfolio/skiper/ESMOD Jakarta Creative Show.png", name: "ESMOD Jakarta Creative Show" },
-  { src: "/assets/img/portfolio/skiper/PSI Chinese New Year Celebration at SunCity.png", name: "PSI Chinese New Year Celebration at SunCity" },
   { src: "/assets/img/portfolio/skiper/AutoKultur Indonesia 2022.png", name: "AutoKultur Indonesia 2022" },
   { src: "/assets/img/portfolio/skiper/Manggungdi Edutown BSD.png", name: "Manggungdi Edutown BSD" },
   { src: "/assets/img/portfolio/skiper/OCBC Grand Opening Premium Guest House Bekasi.png", name: "OCBC Grand Opening Premium Guest House Bekasi" },
@@ -86,11 +86,18 @@ const Skiper30 = () => {
     offset: ["start end", "end start"],
   });
 
-  const { height } = dimension;
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * 2]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
+  // Columns scroll UP as user scrolls DOWN.
+  // Start: first image visible. End: last image comes into view.
+  // Negative y = moves column up.
+  // Multipliers kept moderate so columns never over-scroll past their content.
+  const { width, height } = dimension;
+  // On mobile (<768px), right column (y2) needs a smaller multiplier
+  // to avoid reaching the bottom edge and bleeding into the footer.
+  const isMobile = width > 0 && width < 768;
+  const y = useTransform(scrollYProgress, [0, 1], [0, -(height * 0.5)]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -(height * (isMobile ? 0.45 : 0.85))]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -(height * 0.35)]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, -(height * 0.7)]);
 
   useEffect(() => {
     const lenis = new Lenis();

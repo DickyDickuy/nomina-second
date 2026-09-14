@@ -34,10 +34,9 @@ export function ServicesSection() {
       {/* Service rows */}
       <div className="w-full">
         {SERVICES.map((service) => (
-          <a
+          <div
             key={service.title}
-            href={service.href}
-            className="service-row block w-full border-t border-nomina-black/10 last:border-b cursor-pointer"
+            className="service-row block w-full border-t border-nomina-black/10 last:border-b"
           >
             <div className="py-6 md:py-8 px-4 text-center">
               <span
@@ -47,7 +46,7 @@ export function ServicesSection() {
                 {service.title}
               </span>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>

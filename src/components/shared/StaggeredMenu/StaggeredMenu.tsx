@@ -56,6 +56,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     onMenuClose,
 }) => {
     const [open, setOpen] = useState(false);
+    const [menuLabel, setMenuLabel] = useState("Menu");
     const openRef = useRef(false);
     const panelRef = useRef<HTMLElement | null>(null);
     const preLayersRef = useRef<HTMLDivElement | null>(null);
@@ -65,7 +66,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     const iconRef = useRef<HTMLSpanElement | null>(null);
     const textInnerRef = useRef<HTMLSpanElement | null>(null);
     const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
-    const [textLines, setTextLines] = useState(["Menu", "Close"]);
+
 
     const openTlRef = useRef<gsap.core.Timeline | null>(null);
     const closeTweenRef = useRef<gsap.core.Tween | null>(null);
@@ -83,7 +84,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             const icon = iconRef.current;
             const textInner = textInnerRef.current;
 
-            if (!panel || !plusH || !plusV || !icon || !textInner) {
+            if (!panel || !plusH || !plusV || !icon) {
                 return;
             }
 
@@ -98,7 +99,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             gsap.set(plusH, { transformOrigin: "50% 50%", rotate: 0 });
             gsap.set(plusV, { transformOrigin: "50% 50%", rotate: 90 });
             gsap.set(icon, { rotate: 0, transformOrigin: "50% 50%" });
-            gsap.set(textInner, { yPercent: 0 });
+
 
             if (toggleBtnRef.current) {
                 gsap.set(toggleBtnRef.current, { color: menuButtonColor });
@@ -310,40 +311,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     );
 
     const animateText = useCallback((opening: boolean) => {
-        const inner = textInnerRef.current;
-
-        if (!inner) {
-            return;
-        }
-
-        textCycleAnimRef.current?.kill();
-
-        const currentLabel = opening ? "Menu" : "Close";
-        const targetLabel = opening ? "Close" : "Menu";
-        const cycles = 3;
-        const seq = [currentLabel];
-
-        let last = currentLabel;
-        for (let index = 0; index < cycles; index += 1) {
-            last = last === "Menu" ? "Close" : "Menu";
-            seq.push(last);
-        }
-
-        if (last !== targetLabel) {
-            seq.push(targetLabel);
-        }
-
-        seq.push(targetLabel);
-        setTextLines(seq);
-
-        gsap.set(inner, { yPercent: 0 });
-        const finalShift = ((seq.length - 1) / seq.length) * 100;
-
-        textCycleAnimRef.current = gsap.to(inner, {
-            yPercent: -finalShift,
-            duration: 0.5 + seq.length * 0.07,
-            ease: "power4.out",
-        });
+        setMenuLabel(opening ? "Close" : "Menu");
     }, []);
 
     const toggleMenu = useCallback(() => {
@@ -427,14 +395,8 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     onClick={toggleMenu}
                     type="button"
                 >
-                    <span className={styles.toggleTextWrap} aria-hidden="true">
-                        <span ref={textInnerRef} className={styles.toggleTextInner}>
-                            {textLines.map((line, index) => (
-                                <span className={styles.toggleLine} key={`toggle-line-${index}`}>
-                                    {line}
-                                </span>
-                            ))}
-                        </span>
+                    <span style={{ fontWeight: 700, fontSize: 'inherit', lineHeight: 1, whiteSpace: 'nowrap', minWidth: '4.75rem', display: 'inline-block', color: '#111111' }} aria-hidden="true">
+                        <span ref={textInnerRef}>{menuLabel}</span>
                     </span>
                     <span ref={iconRef} className={styles.icon} aria-hidden="true">
                         <span ref={plusHRef} className={styles.iconLine} />

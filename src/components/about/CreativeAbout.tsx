@@ -78,9 +78,7 @@ const CreativeAbout = () => {
                         </div>
                         <div className="col-lg-6">
                             <div className="tp-about-us-2-right p-relative ps-lg-4">
-                                <div className="tp-about-us-2-btn d-flex gap-3 pb-80">
-                                    <Link href="/#services" className="hover-underline">Event Organizer</Link>
-                                    <Link href="/about" className="hover-underline">Creative Agency</Link>
+                                <div className="tp-about-us-2-btn d-flex gap-3 pb-80">gw
                                 </div>
                                 <div className="tp-about-us-2-heading">
                                     <span className="tp-about-us-2-subtitle">ABOUT NOMINA</span>
