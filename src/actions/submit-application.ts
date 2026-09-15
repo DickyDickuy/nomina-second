@@ -1,6 +1,9 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { getPocketBaseAdmin } from '@/lib/pocketbase';
+import { rateLimit } from '@/lib/rate-limit';
+import { validateCvFile } from '@/lib/cv-validation';
 
 export type SubmitApplicationState = {
   success?: boolean;
@@ -13,6 +16,20 @@ export async function submitApplication(
   formData: FormData
 ): Promise<SubmitApplicationState> {
   try {
+    const headerList = await headers();
+    const forwardedFor = headerList.get('x-forwarded-for');
+    const realIp = headerList.get('x-real-ip');
+    const forwardedIp = forwardedFor ? forwardedFor.split(',')[0].trim() : '';
+    const ip = forwardedIp || (realIp ? realIp.trim() : '') || '127.0.0.1';
+
+    const { success: allowed } = rateLimit(`application:${ip}`);
+    if (!allowed) {
+      return {
+        success: false,
+        message: 'Too many requests. Please wait a few minutes before submitting again.',
+      };
+    }
+
     const getString = (fd: FormData, key: string) => {
       const val = fd.get(key);
       return typeof val === 'string' ? val.trim() : '';
@@ -29,18 +46,55 @@ export async function submitApplication(
 
     // Validation
     const errors: Record<string, string> = {};
-    if (!name) errors.name = 'Please enter your name.';
+    if (!name) {
+      errors.name = 'Please enter your name.';
+    } else if (name.length > 100) {
+      errors.name = 'Name must be 100 characters or fewer.';
+    }
+
     if (!email) {
       errors.email = 'Please enter your email address.';
+    } else if (email.length > 100) {
+      errors.email = 'Email must be 100 characters or fewer.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.email = 'Please enter a valid email address.';
     }
-    if (!whyApply) errors.why_apply = 'Please answer why you want to apply.';
-    if (!projectHighlight) errors.project_highlight = 'Please highlight a project.';
-    if (!cv || cv.size === 0) errors.cv = 'Please upload your CV (PDF or DOC/DOCX).';
+
+    if (jobId.length > 100) {
+      errors.job_id = 'Job identifier must be 100 characters or fewer.';
+    }
+
+    if (!whyApply) {
+      errors.why_apply = 'Please answer why you want to apply.';
+    } else if (whyApply.length > 3000) {
+      errors.why_apply = 'Response must be 3000 characters or fewer.';
+    }
+
+    if (!projectHighlight) {
+      errors.project_highlight = 'Please highlight a project.';
+    } else if (projectHighlight.length > 3000) {
+      errors.project_highlight = 'Response must be 3000 characters or fewer.';
+    }
+
+    if (portfolio && portfolio.length > 500) {
+      errors.portfolio = 'Portfolio link must be 500 characters or fewer.';
+    }
+
+    if (salary && salary.length > 100) {
+      errors.salary = 'Salary expectation must be 100 characters or fewer.';
+    }
+
+    const cvError = await validateCvFile(cv);
+    if (cvError) {
+      errors.cv = cvError;
+    }
 
     if (Object.keys(errors).length > 0) {
-      return { success: false, errors };
+      return {
+        success: false,
+        errors,
+        message: 'Please check the form for errors and try again.',
+      };
     }
 
     // ponytail: forward standard FormData directly to PocketBase SDK

@@ -116,6 +116,11 @@ const ContactUsFormInner = ({ onReset }: { onReset: () => void }) => {
                                                 <div className="tp-contact-form-input mb-20">
                                                     <label>Website Link</label>
                                                     <input name="website" type="url" placeholder="https://yourcompany.com" />
+                                                    {state.errors?.website && (
+                                                        <span style={{ color: '#dc2626', fontSize: '13px', marginTop: '4px', display: 'block' }}>
+                                                            {state.errors.website}
+                                                        </span>
+                                                    )}
                                                 </div>
                                             </div>
                                             <div className="col-lg-12">

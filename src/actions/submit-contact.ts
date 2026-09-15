@@ -1,6 +1,8 @@
 'use server';
 
+import { headers } from 'next/headers';
 import { getPocketBaseAdmin } from '@/lib/pocketbase';
+import { rateLimit } from '@/lib/rate-limit';
 
 export type SubmitContactState = {
   success?: boolean;
@@ -13,6 +15,20 @@ export async function submitContact(
   formData: FormData
 ): Promise<SubmitContactState> {
   try {
+    const headerList = await headers();
+    const forwardedFor = headerList.get('x-forwarded-for');
+    const realIp = headerList.get('x-real-ip');
+    const forwardedIp = forwardedFor ? forwardedFor.split(',')[0].trim() : '';
+    const ip = forwardedIp || (realIp ? realIp.trim() : '') || '127.0.0.1';
+
+    const { success: allowed } = rateLimit(`contact:${ip}`);
+    if (!allowed) {
+      return {
+        success: false,
+        message: 'Too many requests. Please wait a few minutes before submitting again.',
+      };
+    }
+
     const getString = (fd: FormData, key: string) => {
       const val = fd.get(key);
       return typeof val === 'string' ? val.trim() : '';
@@ -25,16 +41,36 @@ export async function submitContact(
 
     // Validation
     const errors: Record<string, string> = {};
-    if (!name) errors.name = 'Please enter your name.';
+    if (!name) {
+      errors.name = 'Please enter your name.';
+    } else if (name.length > 100) {
+      errors.name = 'Name must be 100 characters or fewer.';
+    }
+
     if (!email) {
       errors.email = 'Please enter your email address.';
+    } else if (email.length > 100) {
+      errors.email = 'Email must be 100 characters or fewer.';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       errors.email = 'Please enter a valid email address.';
     }
-    if (!message) errors.message = 'Please enter your message.';
+
+    if (website && website.length > 200) {
+      errors.website = 'Website must be 200 characters or fewer.';
+    }
+
+    if (!message) {
+      errors.message = 'Please enter your message.';
+    } else if (message.length > 3000) {
+      errors.message = 'Message must be 3000 characters or fewer.';
+    }
 
     if (Object.keys(errors).length > 0) {
-      return { success: false, errors };
+      return {
+        success: false,
+        errors,
+        message: 'Please check the form for errors and try again.',
+      };
     }
 
     // ponytail: forward standard FormData directly to PocketBase SDK

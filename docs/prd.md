@@ -1,8 +1,8 @@
 # Product Requirements Document (PRD)
 # NOMINA Creative — Company Website
 
-> **Domain:** `landing.nominanetwork.tech` (production) · `nomina-creative.com` (canonical)
-> **Last Updated:** 2026-09-14
+> **Domain:** `https://nomina-creative.com` (Production & Canonical)
+> **Dokploy Panel:** `https://dokploy.nominanetwork.tech/`
 
 ---
 
@@ -30,7 +30,7 @@ Website ini di-*reverse-engineer* dari desain original menggunakan **AI Website 
 | **Form Handling** | Next.js Server Actions + React 19 `useActionState` |
 | **Typography** | Google Fonts — Bebas Neue (heading), News Cycle (body) |
 | **Brand Color** | Scarlet Red `#FF3800` |
-| **Deployment** | Dokploy → Vercel-compatible Docker build |
+| **Deployment** | Dokploy (`https://dokploy.nominanetwork.tech`) → Docker standalone build |
 | **SEO** | Comprehensive metadata, JSON-LD Organization schema, `robots.ts`, `sitemap.ts` |
 
 ---
@@ -149,8 +149,8 @@ Semua halaman inner (selain homepage) dikelompokkan dalam route group `(agntix)`
 
 | Aspek | Detail |
 |-------|--------|
-| **Hosting** | Dokploy (Docker) |
-| **Domain produksi** | `landing.nominanetwork.tech` |
+| **Hosting** | Dokploy (`https://dokploy.nominanetwork.tech`) |
+| **Domain produksi** | `https://nomina-creative.com` |
 | **Database** | PocketBase di `db.nominanetwork.tech` |
 | **Video CDN** | Cloudinary |
 | **CI/CD** | GitHub Actions (lint + typecheck + build) |

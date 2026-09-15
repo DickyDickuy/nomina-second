@@ -8,6 +8,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### [Added]
+- **Production Readiness Blocker Remediation & Hardening (/boost)**:
+  - Fixed ESLint error (`react/no-unescaped-entities`) in `src/components/about/ContactUsAbout.tsx` using `&apos;`, restoring clean `npm run lint` execution with 0 errors.
+  - Configured comprehensive HTTP security headers and disabled `poweredByHeader` in `next.config.ts` (`Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, and non-breaking `Content-Security-Policy-Report-Only`).
+  - Created zero-dependency in-memory sliding window rate limiter in `src/lib/rate-limit.ts` (max 5 requests per IP per 10 minutes with throttled background pruning).
+  - Hardened CV upload in `src/lib/cv-validation.ts` and `src/actions/submit-application.ts`: strictly paired extension, MIME type, and magic bytes per format (`%PDF` for `.pdf`, `PK\x03\x04` for `.docx`, `\xD0\xCF\x11\xE0` for `.doc`), fixed dotless filename extension bypass, and enforced 5MB size limit.
+  - Hardened `src/actions/submit-contact.ts` and `src/actions/submit-application.ts` with IP rate limiting, input string length boundaries, safe client IP extraction fallbacks, and user-facing error messages.
+  - Resolved UI form validation blind spots in `ApplicationForm.tsx` and `ContactUsForm.tsx` (added error indicators for `portfolio`, `salary`, `website` and aligned CV size label to 5MB).
+  - Implemented PocketBase superuser auth token caching, single-flight auth promise deduplication, and 10s request timeouts in `src/lib/pocketbase.ts`.
+  - Created native `src/app/healthz/route.ts` route handler returning `{ status: 'ok', uptime, timestamp }` and updated `docker-compose.yml` healthcheck probes from `/` to `/healthz`.
+  - Upgraded verification test suite in `scripts/verify-boost.mjs` to execute real validation functions against active attack scenarios (ZIP masquerading, binary payloads, script injection, dotless filenames).
+- **Production Readiness Audit (Universal Baseline)**:
+  - Executed full 6-pillar production readiness audit covering Secrets/Env, Network/TLS/HTTP Headers, Input Security/Upload Handling, Database Resilience, Infrastructure/Rate Limiting/Observability, and Code Quality.
+  - Generated comprehensive audit report (`production_readiness_audit.md`) with 68/100 readiness score and identified 4 Critical Blockers:
+    1. Absence of HTTP Security Headers & enabled `poweredByHeader` in `next.config.ts`.
+    2. Lack of MIME type/extension/magic bytes validation & size boundary for CV file upload in `submit-application.ts`.
+    3. Missing Rate Limiting on public Server Actions (`submitApplication`, `submitContact`).
+    4. ESLint failure in `src/components/about/ContactUsAbout.tsx` due to unescaped entities breaking `npm run check`.
 - **Comprehensive SEO Remediation** across all 9 route segments:
   - `src/app/layout.tsx`: Added `metadataBase`, `title.template` (`%s | NOMINA Communication`), `keywords`, `authors`, `creator`, `publisher`, explicit `robots` + `googleBot` directives (index, follow, max-image-preview: large, max-snippet: -1, max-video-preview: -1), `alternates.canonical`, `openGraph` (type, locale, url, siteName, title, description, images), and `twitter` card metadata.
   - `src/app/page.tsx`: Added `openGraph`, `twitter`, `alternates.canonical`, and JSON-LD `Organization` structured data schema (`@context: https://schema.org`, `@type: Organization`, name, alternateName, url, logo, foundingDate, address, contactPoint).

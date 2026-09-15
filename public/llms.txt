@@ -4,15 +4,15 @@
 
 ## Key Pages
 
-- [Home](https://landing.nominanetwork.tech): Full overview of NOMINA Communication, featured creative showreel, ecosystem philosophy, client roster, and core services.
-- [About](https://landing.nominanetwork.tech/about): Agency background, 20-year creative legacy, team culture, leadership, and our multidisciplinary approach.
-- [Portfolio](https://landing.nominanetwork.tech/portfolio): Selected agency portfolio showcasing creative campaigns, branding, interactive digital projects, and 3D visual designs.
-- [Career](https://landing.nominanetwork.tech/career): Career opportunities, company culture, open roles, and talent network at NOMINA.
-- [3D Designer Role](https://landing.nominanetwork.tech/career-3d-designer): Role overview, responsibilities, requirements, and qualifications for 3D Designers.
-- [Account Executive Role](https://landing.nominanetwork.tech/career-account-executive): Role overview, responsibilities, requirements, and qualifications for Account Executives.
-- [Job Application](https://landing.nominanetwork.tech/job-application): Direct candidate application and CV submission portal with PocketBase backend integration.
-- [Contact](https://landing.nominanetwork.tech/contact): Contact details, studio address, inquiry forms, and collaboration requests.
+- [Home](https://nomina-creative.com): Full overview of NOMINA Creative, featured creative showreel, ecosystem philosophy, client roster, and core services.
+- [About](https://nomina-creative.com/about): Agency background, creative legacy, team culture, leadership, and our multidisciplinary approach.
+- [Portfolio](https://nomina-creative.com/portfolio): Selected agency portfolio showcasing creative campaigns, branding, interactive digital projects, and 3D visual designs.
+- [Career](https://nomina-creative.com/career): Career opportunities, company culture, open roles, and talent network at NOMINA.
+- [3D Designer Role](https://nomina-creative.com/career-3d-designer): Role overview, responsibilities, requirements, and qualifications for 3D Designers.
+- [Account Executive Role](https://nomina-creative.com/career-account-executive): Role overview, responsibilities, requirements, and qualifications for Account Executives.
+- [Job Application](https://nomina-creative.com/job-application): Direct candidate application and CV submission portal with PocketBase backend integration.
+- [Contact](https://nomina-creative.com/contact): Contact details, studio address, inquiry forms, and collaboration requests.
 
 ## Contact & Information
-- Website: https://landing.nominanetwork.tech
-- Headquarters: Milan, Italy
+- Website: https://nomina-creative.com
+- Headquarters: South Jakarta, Indonesia

@@ -9,10 +9,10 @@
 - [docs/POCKETBASE_RECAP.md](/docs/POCKETBASE_RECAP.md): Rekapitulasi skema, konfigurasi, keamanan PocketBase, dan blueprint leads multi-website.
 
 ## Repository Map
-- `/src/app`: Rute halaman Next.js App Router, layout, dan route handlers.
+- `/src/app`: Rute halaman Next.js App Router, layout, dan route handlers (termasuk `/healthz`).
 - `/src/actions`: Next.js Server Actions untuk operasi server-side yang aman (mis. PocketBase).
 - `/src/components`: Komponen UI (primitives `ui/` dari shadcn, ikon kustom `icons.tsx`, dan komponen modular).
-- `/src/lib`: Helper dan fungsi utilitas bersama (seperti `cn()` utility dan PocketBase client).
+- `/src/lib`: Helper dan utilitas (seperti `cn()`, PocketBase client dengan token caching/timeout, rate limiter, dan CV upload validator).
 - `/src/hooks`: Custom React hooks yang dapat digunakan kembali.
 - `/src/types`: Definisi tipe data dan antarmuka TypeScript.
 - `/public`: Aset statis (gambar, video, font, dan metadata SEO/favicon).

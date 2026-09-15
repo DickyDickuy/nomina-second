@@ -197,6 +197,11 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                             <div className="tp-contact-form-input mb-20">
                                 <label>Share your portfolio link (Behance, Dribbble, GitHub, etc.)</label>
                                 <input name="portfolio" type="text" placeholder="https://behance.net/yourprofile" />
+                                {state.errors?.portfolio && (
+                                    <span style={{ color: '#dc2626', fontSize: '13px', marginTop: '4px', display: 'block' }}>
+                                        {state.errors.portfolio}
+                                    </span>
+                                )}
                             </div>
                         </div>
 
@@ -205,6 +210,11 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                             <div className="tp-contact-form-input mb-20">
                                 <label>Your current salary & salary expectations</label>
                                 <input name="salary" type="text" placeholder="e.g. Current: $X,000 / Expected: $Y,000" />
+                                {state.errors?.salary && (
+                                    <span style={{ color: '#dc2626', fontSize: '13px', marginTop: '4px', display: 'block' }}>
+                                        {state.errors.salary}
+                                    </span>
+                                )}
                             </div>
                         </div>
 
@@ -291,7 +301,7 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                                         </div>
                                     ) : (
                                         <span style={{ fontSize: '13px', color: '#94a3b8' }}>
-                                            No file chosen (PDF, DOC, DOCX max 10MB)
+                                            No file chosen (PDF, DOC, DOCX max 5MB)
                                         </span>
                                     )}
                                 </div>
