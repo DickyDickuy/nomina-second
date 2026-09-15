@@ -25,8 +25,11 @@ export function ServicesSection() {
   return (
     <section id="services" className="bg-white">
       {/* Section title */}
-      <div className="text-center py-10 md:py-16">
-        <h2 className="text-sm md:text-base font-bold uppercase tracking-[0.2em] text-nomina-black">
+      <div className="text-center pt-16 pb-6 md:pt-24 md:pb-8">
+        <h2
+          className="font-heading font-bold text-nomina-black uppercase text-center leading-[0.95] tracking-tight"
+          style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+        >
           Services
         </h2>
       </div>
