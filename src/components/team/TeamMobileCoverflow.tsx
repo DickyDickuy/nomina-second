@@ -224,7 +224,7 @@ export default function TeamMobileCoverflow({
               {/* Member Photo */}
               <Image
                 src={member.image}
-                alt={member.name}
+                alt={`${member.name} — ${member.role} at NOMINA Creative`}
                 fill
                 sizes="(max-width: 768px) 280px, 320px"
                 style={{

@@ -23,20 +23,26 @@ const OG_IMAGE = `${SITE_URL}/images/nomina-logo.jpeg`;
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "NOMINA Creative — Creative Agency South Jakarta | Event Organizer & Branding",
+    default:
+      "NOMINA Creative — Event Organizer Jakarta (EO Jakarta) | Technical Custom Production & Rental Equipment",
     template: "%s | NOMINA Creative",
   },
   description:
-    "NOMINA Creative is a full-service creative agency based in South Jakarta. Strategy, Branding, Content, Events, Digital, Tech — est. 2016.",
+    "NOMINA Creative adalah jasa Event Organizer Jakarta (EO terdekat di Jakarta Selatan). Spesialis Event Organiser, Technical Custom Production, Rental Equipment, Web Development & SaaS Management sejak 2016.",
   keywords: [
     "NOMINA",
     "NOMINA Creative",
-    "creative agency Jakarta",
-    "event organizer Jakarta",
-    "branding agency South Jakarta",
-    "communication agency Indonesia",
-    "digital agency Jakarta",
-    "brand experience Indonesia",
+    "EO Jakarta",
+    "EO terdekat",
+    "jasa event organizer Jakarta",
+    "event organizer Jakarta Selatan",
+    "Event Organiser Jakarta",
+    "Technical Custom Production Jakarta",
+    "Rental Equipment event Jakarta",
+    "sewa alat event Jakarta",
+    "Web Development Jakarta",
+    "SaaS Management Jakarta",
+    "creative event agency Indonesia",
   ],
   authors: [{ name: "NOMINA Creative", url: SITE_URL }],
   creator: "NOMINA Creative",
@@ -62,23 +68,25 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "NOMINA Creative",
-    title: "NOMINA Creative — Creative Agency South Jakarta | Event Organizer & Branding",
+    title:
+      "NOMINA Creative — Event Organizer Jakarta (EO Jakarta) | Technical Custom Production & Rental Equipment",
     description:
-      "NOMINA Creative is a full-service creative agency based in South Jakarta. Strategy, Branding, Content, Events, Digital, Tech — est. 2016.",
+      "NOMINA Creative adalah jasa Event Organizer Jakarta (EO terdekat di Jakarta Selatan). Spesialis Event Organiser, Technical Custom Production, Rental Equipment, Web Development & SaaS Management sejak 2016.",
     images: [
       {
         url: OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "NOMINA Creative — Creative Agency South Jakarta",
+        alt: "NOMINA Creative — Jasa Event Organizer Jakarta Selatan & Technical Custom Production",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "NOMINA Creative — Creative Agency South Jakarta | Event Organizer & Branding",
+    title:
+      "NOMINA Creative — Event Organizer Jakarta (EO Jakarta) | Technical Custom Production & Rental Equipment",
     description:
-      "NOMINA Creative is a full-service creative agency based in South Jakarta. Strategy, Branding, Content, Events, Digital, Tech — est. 2016.",
+      "NOMINA Creative adalah jasa Event Organizer Jakarta (EO terdekat di Jakarta Selatan). Spesialis Event Organiser, Technical Custom Production, Rental Equipment, Web Development & SaaS Management sejak 2016.",
     images: [OG_IMAGE],
   },
   icons: {

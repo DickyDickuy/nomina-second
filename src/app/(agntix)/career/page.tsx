@@ -5,9 +5,9 @@ const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://nomina-creative.com';
 
 export const metadata: Metadata = {
-    title: "Careers at NOMINA Creative — Open Roles in South Jakarta",
+    title: "Careers at NOMINA Creative — Lowongan Event Organizer Jakarta Selatan",
     description:
-        "Join NOMINA Creative in South Jakarta. Explore open positions in 3D design, account management, and brand execution at Indonesia's creative event & branding agency.",
+        "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualisation di studio EO Jakarta & Custom Production.",
     alternates: {
         canonical: `${SITE_URL}/career`,
     },
@@ -16,23 +16,23 @@ export const metadata: Metadata = {
         locale: 'en_US',
         url: `${SITE_URL}/career`,
         siteName: 'NOMINA Creative',
-        title: "Careers at NOMINA Creative — Open Roles in South Jakarta",
+        title: "Careers at NOMINA Creative — Lowongan Event Organizer Jakarta Selatan",
         description:
-            "Join NOMINA Creative in South Jakarta. Explore open positions in 3D design, account management, and brand execution at Indonesia's creative event & branding agency.",
+            "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualisation di studio EO Jakarta & Custom Production.",
         images: [
             {
                 url: `${SITE_URL}/images/nomina-logo.jpeg`,
                 width: 1200,
                 height: 630,
-                alt: 'Careers at NOMINA Creative — South Jakarta',
+                alt: 'Careers at NOMINA Creative — Event Organizer Jakarta Selatan',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: "Careers at NOMINA Creative — Open Roles in South Jakarta",
+        title: "Careers at NOMINA Creative — Lowongan Event Organizer Jakarta Selatan",
         description:
-            "Join NOMINA Creative in South Jakarta. Explore open positions in 3D design, account management, and brand execution at Indonesia's creative event & branding agency.",
+            "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualisation di studio EO Jakarta & Custom Production.",
         images: [`${SITE_URL}/images/nomina-logo.jpeg`],
     },
 };

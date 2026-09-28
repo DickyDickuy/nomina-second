@@ -15,9 +15,9 @@ const CreativeAgencyCopyright: React.FC<FooterProps> = ({ bgColor = "#121315", Z
                 <div className="row gx-0">
                     <div className="col-xl-12">
                         <div className="tp-copyright-content d-flex justify-content-center w-100">
-                            <h2 className="tp-copyright-big-text mb-0 w-100 text-center">
+                            <div className="tp-copyright-big-text mb-0 w-100 text-center" aria-hidden="true">
                                 <span className="tp-footer-static-logo">NOMINA</span>
-                            </h2>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -47,6 +47,7 @@ export const fadeAnimation = () => {
                     : tp_fade_direction === "bottom"
                       ? tp_fade_offset
                       : 0,
+            clearProps: "transform,translate,rotate,scale",
         };
 
         if (tp_onscroll_value) {

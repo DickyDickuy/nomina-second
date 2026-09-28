@@ -440,19 +440,137 @@
     &-map{
         width: 100%;
         height: 100%;
+        min-height: 520px;
         border-radius: 8px;
+        overflow: hidden;
+        position: relative;
         @media #{$md} {
             height: 500px;
+            min-height: 500px;
             margin-bottom: 30px;
         }
         @media #{$xs} {
             height: 450px;
+            min-height: 450px;
             margin-bottom: 30px;
         }
-        & iframe{
+        & iframe,
+        & .nomina-leaflet-wrapper,
+        & .nomina-leaflet-map,
+        & .leaflet-container{
             width: 100%;
             height: 100%;
+            min-height: 520px;
             border-radius: 8px;
+            z-index: 1;
+            @media #{$md} {
+                min-height: 500px;
+            }
+            @media #{$xs} {
+                min-height: 450px;
+            }
+        }
+        & .nomina-leaflet-map .leaflet-tile-pane{
+            filter: grayscale(100%) contrast(1.05) brightness(1.03);
+        }
+        & .nomina-custom-marker{
+            background: transparent;
+            border: none;
+        }
+        & .nomina-pin-wrapper{
+            position: relative;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        & .nomina-pin-pulse{
+            position: absolute;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(255, 56, 0, 0.28);
+            border: 1.5px solid rgba(255, 56, 0, 0.65);
+            animation: nomina-pin-ripple 2.2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        }
+        @keyframes nomina-pin-ripple {
+            0% {
+                transform: scale(0.65);
+                opacity: 0.9;
+            }
+            100% {
+                transform: scale(1.65);
+                opacity: 0;
+            }
+        }
+        & .nomina-pin-core{
+            position: relative;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #FF3800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(255, 56, 0, 0.45);
+            border: 2px solid #ffffff;
+            transition: transform 0.25s ease;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        & .leaflet-popup-content-wrapper{
+            border-radius: 14px;
+            padding: 4px;
+            box-shadow: 0 16px 36px rgba(17, 16, 19, 0.18);
+        }
+        & .nomina-map-popup{
+            padding: 6px 4px;
+            font-family: var(--tp-ff-body, 'Inter', sans-serif);
+            &-badge{
+                display: inline-block;
+                font-size: 10px;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: #FF3800;
+                margin-bottom: 4px;
+            }
+            &-title{
+                display: block;
+                font-size: 16px;
+                font-weight: 700;
+                color: #111013;
+                margin-bottom: 6px;
+                line-height: 1.25;
+            }
+            &-address{
+                font-size: 12.5px;
+                line-height: 1.45;
+                color: #4B4C53;
+                margin: 0 0 12px 0;
+            }
+        }
+        & .leaflet-container a.nomina-directions-btn{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 9px 14px;
+            border-radius: 999px;
+            background: #FF3800;
+            color: #ffffff !important;
+            font-size: 12.5px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: -0.01em;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            &:hover{
+                background: #111013;
+                color: #ffffff !important;
+            }
         }
     }
     &-heading{

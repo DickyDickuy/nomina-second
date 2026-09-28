@@ -5,6 +5,16 @@ import Image from "next/image";
 import { ScrollVelocityContainer, ScrollVelocityRow } from "@/components/text-slider/ScrollVelocity";
 import styles from "./ScrollBasedVelocityImagesDemo.module.scss";
 
+function getBrandAlt(src: string): string {
+  const filename = src.split("/").pop() || "";
+  const rawName = filename.replace(/^client-/, "").replace(/\.[^.]+$/, "").replace(/-/g, " ");
+  const formatted = rawName
+    .split(" ")
+    .map((w) => (w.length <= 4 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)))
+    .join(" ");
+  return `${formatted || "Brand Partner"} — Event & Custom Production Client of NOMINA Jakarta`;
+}
+
 export function ScrollBasedVelocityImagesDemo() {
   const row1Images = [
     "/assets/img/about-us/about-us/brand/client-KTM.png",
@@ -38,7 +48,7 @@ export function ScrollBasedVelocityImagesDemo() {
           <div key={`row1-${index}`} className="des-brand-item-inner" style={{ margin: "0 10px" }}>
             <Image
               src={src}
-              alt={`Brand ${index + 1}`}
+              alt={getBrandAlt(src)}
               width={200}
               height={150}
               className={styles.brandImage}
@@ -54,7 +64,7 @@ export function ScrollBasedVelocityImagesDemo() {
           <div key={`row2-${index}`} className="des-brand-item-inner" style={{ margin: "0 10px" }}>
             <Image
               src={src}
-              alt={`Brand ${index + 13}`}
+              alt={getBrandAlt(src)}
               width={180}
               height={80}
               className={styles.brandImage}

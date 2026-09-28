@@ -10,46 +10,60 @@ export interface JobDetailsData {
     type: string;
     summary: string;
     salary: string;
+    salarySubtext?: string;
     experience: string;
     deadline: string;
     responsibilities: string[];
     qualifications: string[];
+    benefits?: string[];
 }
 
 interface CareerDetailsDynamicProps {
     data: JobDetailsData;
 }
 
+const DEFAULT_BENEFITS = [
+    'Full health insurance & outpatient benefits.',
+    'Flexible working environment and hybrid schedules.',
+    'Professional training and development budget.',
+    'Annual wellness stipends.',
+    'Performance bonus package.',
+];
+
 const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => {
+    const benefitsList = data.benefits && data.benefits.length > 0 ? data.benefits : DEFAULT_BENEFITS;
+
     return (
         <section className="tp-career-details-ptb pt-120 pb-100">
             <div className="container container-1230">
                 <div className="row">
                     <div className="col-lg-8">
                         <div className="tp-career-details-wrapper pb-40">
-                            <div className="tp-career-details-top pb-80">
+                            <div className="tp-career-details-top pb-40">
                                 <span className="tp-career-details-subtitle">{data.department}</span>
-                                <h1 className="tp-career-details-title">{data.title}</h1>
+                                <h1 className="tp-career-details-title tp_fade_anim">{data.title}</h1>
                                 <div className="tp-career-details-info d-flex align-items-center">
                                     <div className="tp-career-details-info-item">
                                         <span>Location:</span>
-                                        <h5>{data.location}</h5>
+                                        <p className="tp-career-details-info-val mb-0">{data.location}</p>
                                     </div>
                                     <div className="tp-career-details-info-item">
                                         <span>Date:</span>
-                                        <h5>{data.date}</h5>
+                                        <p className="tp-career-details-info-val mb-0">{data.date}</p>
                                     </div>
                                     <div className="tp-career-details-info-item">
                                         <span>Job Type</span>
-                                        <h5>{data.type}</h5>
+                                        <p className="tp-career-details-info-val mb-0">{data.type}</p>
                                     </div>
                                 </div>
                             </div>
                             <div className="tp-career-details-wrap">
-                                <h4 className="tp-career-details-title-2">Job Summary</h4>
-                                <p className="pb-50">{data.summary}</p>
+                                <div className="tp-career-details-summary-highlight mb-50 tp_fade_anim">
+                                    <h2 className="tp-career-details-title-2 tp-career-summary-label">Job Summary</h2>
+                                    <p className="tp-career-summary-text mb-0">{data.summary}</p>
+                                </div>
 
-                                <h4 className="tp-career-details-title-2">Key Responsibilities</h4>
+                                <h2 className="tp-career-details-title-2 tp_fade_anim">Key Responsibilities</h2>
                                 <div className="tp-career-details-list pb-50">
                                     <ul>
                                         {data.responsibilities.map((resp, i) => (
@@ -58,7 +72,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </ul>
                                 </div>
 
-                                <h4 className="tp-career-details-title-2">Qualifications</h4>
+                                <h2 className="tp-career-details-title-2 tp_fade_anim">Qualifications</h2>
                                 <div className="tp-career-details-list pb-50">
                                     <ul>
                                         {data.qualifications.map((qual, i) => (
@@ -67,14 +81,12 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </ul>
                                 </div>
 
-                                <h4 className="tp-career-details-title-2">Perks & Benefits</h4>
+                                <h2 className="tp-career-details-title-2 tp_fade_anim">Perks &amp; Benefits</h2>
                                 <div className="tp-career-details-list pb-20">
                                     <ul>
-                                        <li>Full health insurance & outpatient benefits.</li>
-                                        <li>Flexible working environment and hybrid schedules.</li>
-                                        <li>Professional training and development budget.</li>
-                                        <li>Annual wellness stipends.</li>
-                                        <li>Performance bonus package.</li>
+                                        {benefitsList.map((benefit, i) => (
+                                            <li key={i}>{benefit}</li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -84,8 +96,11 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                         <div className="tp-career-details-sidebar">
                             <div className="tp-career-details-sidebar-box">
                                 <div className="tp-career-details-sidebar-heading">
-                                    <span>Avg. Salary</span>
-                                    <h4 className="tp-career-details-sidebar-title">{data.salary}</h4>
+                                    <span>Salary</span>
+                                    <h2 className="tp-career-details-sidebar-title">{data.salary}</h2>
+                                    {data.salarySubtext && (
+                                        <p className="tp-career-details-sidebar-subtext mb-0">{data.salarySubtext}</p>
+                                    )}
                                 </div>
 
                                 <div className="tp-career-details-sidebar-item d-flex">
@@ -94,7 +109,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Experience</span>
-                                        <h5>{data.experience}</h5>
+                                        <p className="tp-career-details-sidebar-val mb-0">{data.experience}</p>
                                     </div>
                                 </div>
 
@@ -104,7 +119,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Working Hours</span>
-                                        <h5>09 AM to 06 PM</h5>
+                                        <p className="tp-career-details-sidebar-val mb-0">09 AM to 06 PM</p>
                                     </div>
                                 </div>
 
@@ -114,7 +129,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Job Category</span>
-                                        <h5>{data.department}</h5>
+                                        <p className="tp-career-details-sidebar-val mb-0">{data.department}</p>
                                     </div>
                                 </div>
 
@@ -124,7 +139,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Working Days</span>
-                                        <h5>Weekly 5 Days (Mon to Fri)</h5>
+                                        <p className="tp-career-details-sidebar-val mb-0">Weekly 5 Days (Mon to Fri)</p>
                                     </div>
                                 </div>
 
@@ -134,7 +149,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Deadline</span>
-                                        <h5>{data.deadline}</h5>
+                                        <p className="tp-career-details-sidebar-val mb-0">{data.deadline}</p>
                                     </div>
                                 </div>
 

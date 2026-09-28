@@ -57,7 +57,7 @@ const CreativeAbout = () => {
                                         style={{ width: "100%", height: "auto", objectFit: "cover", borderRadius: "16px" }}
                                         priority
                                         src={eventHeroImg}
-                                        alt="Nomina Creative Studio"
+                                        alt="NOMINA Creative Studio — Event Organizer & Technical Custom Production at Esmod Jakarta Creative Show"
                                     />
                                 </div>
                                 <div className="tp-about-us-2-thumb-shape">

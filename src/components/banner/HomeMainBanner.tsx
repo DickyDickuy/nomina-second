@@ -5,7 +5,7 @@ const HomeMainBanner = ({ ColorStyleCls }: { ColorStyleCls?: string }) => {
     return (
         <div className="tp-banner-area">
             <div className={`tp-banner-img ${ColorStyleCls}`} style={{ overflow: "hidden" }}>
-                <Image style={{ width: "100%", height: "auto", objectFit: "cover" }} className="w-100" data-speed=".7" src={bannerImg} alt="Nomina Event MotoGP Banner" />
+                <Image style={{ width: "100%", height: "auto", objectFit: "cover" }} className="w-100" data-speed=".7" src={bannerImg} alt="NOMINA Event Organiser, Technical Custom Production & Rental Equipment at MotoGP Mandalika" />
             </div>
         </div>
     );

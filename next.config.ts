@@ -58,6 +58,15 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: "/career-3d-designer",
+        destination: "/career-3d-visualisation",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

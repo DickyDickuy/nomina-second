@@ -19,7 +19,7 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                     <div className="row align-items-center">
                         <div className="col-xl-4 col-lg-4 col-md-12">
                             <div className="tp-footer-widget tp-footer-col-1 pb-40">
-                                <h4 className="tp-footer-widget-title">Making<br /> your imagination come true</h4>
+                                <h2 className="tp-footer-widget-title">Making<br /> your imagination come true</h2>
                                 <div className="tp-footer-widget-social">
                                     {/* footer social icons */}
                                     <FooterSocialIcons className="tp-footer-widget-social" />
@@ -28,7 +28,7 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                         </div>
                         <div className="col-xl-5 col-lg-4 col-md-6">
                             <div className="tp-footer-widget tp-footer-col-2 pb-40 footer-main">
-                                <h4 className="tp-footer-widget-title-sm pre mb-25">Quick links</h4>
+                                <h3 className="tp-footer-widget-title-sm pre mb-25">Quick links</h3>
                                 <div className="tp-footer-widget-menu">
                                     <ul>
                                         <li><Link href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>Home</Link></li>{" "}
@@ -39,24 +39,26 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                                         <li><Link href="/contact" onClick={(e) => { e.preventDefault(); window.location.href = '/contact'; }}>Contact Us</Link></li>
                                     </ul>
                                 </div>
-                                <h4 className="tp-footer-widget-title-sm pre mb-25 mt-30">Open Roles</h4>
+                                <h3 className="tp-footer-widget-title-sm pre mb-25 mt-30">Open Roles</h3>
                                 <div className="tp-footer-widget-menu">
                                     <ul>
-                                        <li><Link href="/career-3d-designer" onClick={(e) => { e.preventDefault(); window.location.href = '/career-3d-designer'; }}>3D Designer</Link></li>{" "}
-                                        <li><Link href="/career-account-executive" onClick={(e) => { e.preventDefault(); window.location.href = '/career-account-executive'; }}>Account Executive</Link></li>
+                                        <li><Link href="/job-application?jobId=project-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application?jobId=project-manager'; }}>Project Manager</Link></li>{" "}
+                                        <li><Link href="/job-application?jobId=production-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application?jobId=production-manager'; }}>Production Manager</Link></li>{" "}
+                                        <li><Link href="/job-application?jobId=sales-and-account-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application?jobId=sales-and-account-manager'; }}>Sales &amp; Account Manager</Link></li>{" "}
+                                        <li><Link href="/career-3d-visualisation" onClick={(e) => { e.preventDefault(); window.location.href = '/career-3d-visualisation'; }}>3D Visualisation</Link></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-4 col-md-6">
                             <div className="tp-footer-widget tp-footer-col-3 pb-40 mb-30">
-                                <h4 className="tp-footer-widget-title-sm pre mb-20">Contact</h4>
+                                <h3 className="tp-footer-widget-title-sm pre mb-20">Contact</h3>
                                 <div className="tp-footer-widget-info">
                                     <a href="mailto:hello@nomina-creative.com">hello@nomina-creative.com</a>
                                     <a href="tel:+6281912121777">+62 819-1212-1777</a>
                                 </div>
                                 <div className="tp-footer-widget-info">
-                                    <a href="https://maps.google.com/?q=Jl.+Kemang+Utara+X+Jl.+Melati+No.2C,+RT.2/RW.1,+Duren+Tiga,+Kec.+Pancoran,+Kota+Jakarta+Selatan,+Daerah+Khusus+Ibukota+Jakarta+12760" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.google.com/maps/dir/?api=1&destination=-6.2562171,106.8246734" target="_blank" rel="noopener noreferrer">
                                         Jl. Kemang Utara X Jl. Melati No.2C, RT.2/RW.1, Duren Tiga, Kec. Pancoran, Kota Jakarta Selatan, DKI Jakarta 12760
                                     </a>
                                 </div>

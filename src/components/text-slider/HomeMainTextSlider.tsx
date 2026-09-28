@@ -7,14 +7,14 @@ import { ScrollVelocityContainer, ScrollVelocityRow } from "@/components/text-sl
 const slideData = [
   "UI Design",
   "Design Agency",
-  "Strategy",
+  "Event Organiser",
   "Digital Solution",
   "Business Growth",
   "Development",
   "IT Company",
   "SEO Agency",
   "Consulting",
-  "Branding",
+  "Custom Production",
 ];
 
 interface HomeMainTextSliderProps {

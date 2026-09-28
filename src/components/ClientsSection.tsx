@@ -26,6 +26,16 @@ function getOffsetLogos(offset: number) {
   return [...CLIENT_LOGOS.slice(offset), ...CLIENT_LOGOS.slice(0, offset)];
 }
 
+function getClientAlt(src: string): string {
+  const filename = src.split("/").pop() || "";
+  const rawName = filename.replace(/^client-/, "").replace(/\.[^.]+$/, "").replace(/-/g, " ");
+  const formatted = rawName
+    .split(" ")
+    .map((w) => (w.length <= 4 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)))
+    .join(" ");
+  return `${formatted || "Client"} — Client of NOMINA Event Organizer Jakarta`;
+}
+
 const ROWS = [
   { id: 1, logos: getOffsetLogos(0), reverse: false },
   { id: 2, logos: getOffsetLogos(4), reverse: true },
@@ -68,7 +78,7 @@ export function ClientsSection() {
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={src}
-                      alt="Client Logo"
+                      alt={getClientAlt(src)}
                       className="h-10 md:h-12 lg:h-14 w-auto object-contain"
                     />
                   </div>

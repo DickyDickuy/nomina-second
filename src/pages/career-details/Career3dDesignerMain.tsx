@@ -10,13 +10,14 @@ import AboutUsBanner from '@/components/banner/AboutUsBanner';
 import CareerDetailsDynamic, { JobDetailsData } from "@/components/career/CareerDetailsDynamic";
 
 const jobData: JobDetailsData = {
-    title: '3D Designer',
+    title: '3D Visualisation',
     department: 'Design & Visuals',
     location: 'Jakarta (On-site)',
     date: '25 Jul 2026',
     type: 'Full time',
-    summary: 'We are seeking a 3D Designer to create immersive visual experiences, stage designs, and interactive event assets for Nomina’s creative projects and brand activations.',
-    salary: 'Rp 7.000.000 - Rp 11.000.000 (Monthly)',
+    summary: 'We are seeking a 3D Visualisation specialist to create immersive visual experiences, stage designs, and interactive event assets for Nomina’s creative projects and brand activations.',
+    salary: 'Competitive & Negotiable',
+    salarySubtext: 'Based on Experience & Portfolio',
     experience: '1+ Years Experience',
     deadline: '31 Aug 2026',
     responsibilities: [
@@ -31,7 +32,6 @@ const jobData: JobDetailsData = {
         'Experience with event stage design or architectural visualization is a plus.',
         'Creative flair and attention to detail.',
     ],
-    // @ts-expect-error bypass
     benefits: [
         'Creative and dynamic work environment.',
         'Health insurance and wellness programs.',

@@ -5,7 +5,7 @@ const CareerBanner = () => {
     return (
         <div className="ar-banner-area">
             <div className="ar-banner-wrap ar-about-us-4" style={{ overflow: "hidden" }}>
-                <Image style={{ width: "100%", height: "auto", objectFit: "cover" }} className="w-100" src={aboutThumb} alt="Nomina Career Gallery" data-speed=".8" />
+                <Image style={{ width: "100%", height: "auto", objectFit: "cover" }} className="w-100" src={aboutThumb} alt="NOMINA Creative Team & Event Organizer Production Crew in South Jakarta" data-speed=".8" />
             </div>
         </div>
     );

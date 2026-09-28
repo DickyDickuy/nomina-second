@@ -8,7 +8,9 @@ const ContactUsAbout = () => {
                     <div className="col-xl-10">
                         <div className="cn-contactform-support-bg d-flex align-items-center justify-content-center" style={{ backgroundImage: `url(${contactShape.src})` }}>
                             <div className="cn-contactform-support-text text-center">
-                                <span>Let&apos;s make something amazing together</span>
+                                <h2 className="mb-0 tp_fade_anim">
+                                    <span>Let&apos;s make something amazing together</span>
+                                </h2>
                             </div>
                         </div>
                     </div>

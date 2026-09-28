@@ -6,8 +6,10 @@ import { ArrowFour, CheckIcon } from '@/svg';
 import { submitApplication } from '@/actions/submit-application';
 
 const OPEN_POSITIONS = [
-    { id: 'account-executive', title: 'Account Executive' },
-    { id: '3d-designer', title: '3D Designer' },
+    { id: 'project-manager', title: 'Project Manager' },
+    { id: 'production-manager', title: 'Production Manager' },
+    { id: 'sales-and-account-manager', title: 'Sales and Account Manager' },
+    { id: '3d-visualisation', title: '3D Visualisation' },
     { id: 'general', title: 'General Application' },
 ];
 
@@ -15,11 +17,12 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
     const searchParams = useSearchParams();
     const [state, formAction, isPending] = useActionState(submitApplication, {});
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const queryJobId = searchParams?.get('jobId') || 'general';
+    const rawQueryJobId = searchParams?.get('jobId') || 'general';
+    const queryJobId = rawQueryJobId.toLowerCase() === '3d-designer' ? '3d-visualisation' : rawQueryJobId;
     const matchedJob = OPEN_POSITIONS.find(
         (p) => p.id.toLowerCase() === queryJobId.toLowerCase()
     );
-    const initialJob = matchedJob ? matchedJob.id : queryJobId;
+    const initialJob = matchedJob ? matchedJob.id : 'general';
     const [userSelectedJob, setUserSelectedJob] = useState<string | null>(null);
     const activeJob = userSelectedJob ?? initialJob;
 
@@ -59,9 +62,9 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                     >
                         <CheckIcon />
                     </div>
-                    <h3 style={{ color: '#15803d', fontSize: '24px', fontWeight: 700, marginBottom: '10px' }}>
+                    <h2 style={{ color: '#15803d', fontSize: '24px', fontWeight: 700, marginBottom: '10px' }}>
                         Application Submitted!
-                    </h3>
+                    </h2>
                     <p style={{ color: '#166534', fontSize: '16px', maxWidth: '500px', margin: '0 auto 25px' }}>
                         {state.message}
                     </p>
@@ -79,6 +82,7 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                 </div>
             ) : (
                 <form action={formAction} id="contact-form">
+                    <h2 className="sr-only">Submit Your Job Application</h2>
                     <p className="sr-only">
                         You are currently viewing the job application form for the {activeJob} position at NOMINA.
                     </p>
@@ -123,9 +127,6 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                                             {pos.title}
                                         </option>
                                     ))}
-                                    {!OPEN_POSITIONS.some((p) => p.id === activeJob) && (
-                                        <option value={activeJob}>{activeJob}</option>
-                                    )}
                                 </select>
                             </div>
                         </div>

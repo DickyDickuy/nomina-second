@@ -1,18 +1,19 @@
-# NOMINA Communication
+# NOMINA Creative
 
-> NOMINA is a full-service creative communication agency based in Milan, Italy. We design dynamic communication ecosystems across strategy, branding, digital experiences, content production, 3D design, PR, events, and AI integration.
+> NOMINA Creative adalah jasa Event Organizer Jakarta (EO terdekat di Jakarta Selatan) sejak 2016 yang melayani Event Organiser, Technical Custom Production, Rental Equipment, Web Development, dan SaaS Management.
 
 ## Key Pages
 
-- [Home](https://nomina-creative.com): Full overview of NOMINA Creative, featured creative showreel, ecosystem philosophy, client roster, and core services.
-- [About](https://nomina-creative.com/about): Agency background, creative legacy, team culture, leadership, and our multidisciplinary approach.
-- [Portfolio](https://nomina-creative.com/portfolio): Selected agency portfolio showcasing creative campaigns, branding, interactive digital projects, and 3D visual designs.
-- [Career](https://nomina-creative.com/career): Career opportunities, company culture, open roles, and talent network at NOMINA.
-- [3D Designer Role](https://nomina-creative.com/career-3d-designer): Role overview, responsibilities, requirements, and qualifications for 3D Designers.
-- [Account Executive Role](https://nomina-creative.com/career-account-executive): Role overview, responsibilities, requirements, and qualifications for Account Executives.
-- [Job Application](https://nomina-creative.com/job-application): Direct candidate application and CV submission portal with PocketBase backend integration.
-- [Contact](https://nomina-creative.com/contact): Contact details, studio address, inquiry forms, and collaboration requests.
+- [Home](https://nomina-creative.com): Full overview of NOMINA Creative, featured showreel, client roster, and core services (Event Organiser, Technical Custom Production, Rental Equipment, Web Development, SaaS Management).
+- [About](https://nomina-creative.com/about): Studio background, creative legacy since 2016, leadership team, and event & production capabilities in South Jakarta.
+- [Portfolio](https://nomina-creative.com/portfolio): Selected portfolio showcasing corporate celebrations, brand activations, custom stage production, and experiential events across Jakarta and Indonesia.
+- [Career](https://nomina-creative.com/career): Career opportunities and current open positions (Project Manager, Production Manager, Sales and Account Manager, 3D Visualisation).
+- [3D Visualisation Role](https://nomina-creative.com/career-3d-visualisation): Role overview, highlighted job summary, responsibilities, qualifications, and perks for 3D Visualisation specialists.
+- [Job Application](https://nomina-creative.com/job-application): Direct candidate application and CV submission portal for Project Manager, Production Manager, Sales and Account Manager, and 3D Visualisation roles.
+- [Contact](https://nomina-creative.com/contact): Interactive South Jakarta studio map, contact details, directions, and project inquiry form.
 
 ## Contact & Information
 - Website: https://nomina-creative.com
-- Headquarters: South Jakarta, Indonesia
+- Headquarters: Jl. Kemang Utara X Jl. Melati No.2C, RT.2/RW.1, Duren Tiga, Kec. Pancoran, Kota Jakarta Selatan, DKI Jakarta 12760, Indonesia
+- Phone: +62 819-1212-1777
+- Email: hello@nomina-creative.com

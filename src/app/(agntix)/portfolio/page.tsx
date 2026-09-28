@@ -5,9 +5,9 @@ const SITE_URL =
     process.env.NEXT_PUBLIC_SITE_URL || 'https://nomina-creative.com';
 
 export const metadata: Metadata = {
-    title: "Portfolio & Showcase — NOMINA Creative Projects",
+    title: "Portfolio Event Organizer Jakarta — NOMINA Creative & Custom Production",
     description:
-        "Explore NOMINA's portfolio of curated creative projects, immersive brand experiences, corporate celebrations, and experiential event productions.",
+        "Lihat portofolio proyek NOMINA Creative: jasa Event Organizer Jakarta (EO Jakarta), Technical Custom Production, Rental Equipment, corporate celebration, dan brand activation di Indonesia.",
     alternates: {
         canonical: `${SITE_URL}/portfolio`,
     },
@@ -16,23 +16,23 @@ export const metadata: Metadata = {
         locale: 'en_US',
         url: `${SITE_URL}/portfolio`,
         siteName: 'NOMINA Creative',
-        title: "Portfolio & Showcase — NOMINA Creative Projects",
+        title: "Portfolio Event Organizer Jakarta — NOMINA Creative & Custom Production",
         description:
-            "Explore NOMINA Creative's portfolio of curated creative projects, immersive brand experiences, corporate celebrations, and experiential event productions in Jakarta.",
+            "Lihat portofolio proyek NOMINA Creative: jasa Event Organizer Jakarta (EO Jakarta), Technical Custom Production, Rental Equipment, corporate celebration, dan brand activation di Indonesia.",
         images: [
             {
                 url: `${SITE_URL}/images/nomina-logo.jpeg`,
                 width: 1200,
                 height: 630,
-                alt: 'NOMINA Creative Portfolio — South Jakarta',
+                alt: 'NOMINA Creative Portfolio — Event Organizer Jakarta',
             },
         ],
     },
     twitter: {
         card: 'summary_large_image',
-        title: "Portfolio & Showcase — NOMINA Creative Projects",
+        title: "Portfolio Event Organizer Jakarta — NOMINA Creative & Custom Production",
         description:
-            "Explore NOMINA's portfolio of curated creative projects, immersive brand experiences, corporate celebrations, and experiential event productions.",
+            "Lihat portofolio proyek NOMINA Creative: jasa Event Organizer Jakarta (EO Jakarta), Technical Custom Production, Rental Equipment, corporate celebration, dan brand activation di Indonesia.",
         images: [`${SITE_URL}/images/nomina-logo.jpeg`],
     },
 };

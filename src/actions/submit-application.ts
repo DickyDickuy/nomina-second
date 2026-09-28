@@ -37,7 +37,16 @@ export async function submitApplication(
 
     const name = getString(formData, 'name');
     const email = getString(formData, 'email');
-    const jobId = getString(formData, 'job_id') || 'general';
+    const ALLOWED_JOB_IDS = new Set([
+      'project-manager',
+      'production-manager',
+      'sales-and-account-manager',
+      '3d-visualisation',
+      'general',
+    ]);
+    const rawJobId = (getString(formData, 'job_id') || 'general').toLowerCase();
+    const normalizedJobId = rawJobId === '3d-designer' ? '3d-visualisation' : rawJobId;
+    const jobId = ALLOWED_JOB_IDS.has(normalizedJobId) ? normalizedJobId : 'general';
     const whyApply = getString(formData, 'why_apply');
     const projectHighlight = getString(formData, 'project_highlight');
     const portfolio = getString(formData, 'portfolio');

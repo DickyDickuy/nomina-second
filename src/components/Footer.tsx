@@ -221,8 +221,10 @@ export function Footer() {
           </h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
             {[
-              { label: "3D DESIGNER", href: "/career-3d-designer" },
-              { label: "ACCOUNT EXECUTIVE", href: "/career-account-executive" },
+              { label: "PROJECT MANAGER", href: "/job-application?jobId=project-manager" },
+              { label: "PRODUCTION MANAGER", href: "/job-application?jobId=production-manager" },
+              { label: "SALES & ACCOUNT MANAGER", href: "/job-application?jobId=sales-and-account-manager" },
+              { label: "3D VISUALISATION", href: "/career-3d-visualisation" },
             ].map((link) => (
               <a
                 key={link.label}
@@ -315,21 +317,27 @@ export function Footer() {
             >
               +62 819-1212-1777
             </a>
-            <p
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=-6.2562171,106.8246734"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 color: "rgba(255, 255, 255, 0.85)",
+                textDecoration: "none",
                 fontSize: 16,
                 lineHeight: 1.5,
                 letterSpacing: "-0.02em",
                 margin: 0,
+                transition: "color 0.2s ease",
               }}
+              className="footer-contact-link"
             >
               Jl. Kemang Utara X Jl. Melati No.2C,
               <br />
               RT.2/RW.1, Duren Tiga, Kec. Pancoran,
               <br />
               Kota Jakarta Selatan, DKI Jakarta 12760
-            </p>
+            </a>
           </div>
         </div>
       </div>

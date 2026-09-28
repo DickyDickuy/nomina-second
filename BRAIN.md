@@ -6,22 +6,19 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:** 
-  1. **Remediasi 4 Blocker Kritis Production Readiness Selesai 100% (/boost):**
-     - ESLint error di `ContactUsAbout.tsx` diperbaiki (`&apos;`) — `npm run lint` lulus 100% dengan 0 error.
-     - HTTP Security Headers (`HSTS`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `Permissions-Policy`, `CSP-Report-Only`) dan `poweredByHeader: false` aktif di `next.config.ts`.
-     - Sliding window rate limiter in-memory zero-dependency di `src/lib/rate-limit.ts` terintegrasi pada Server Actions dengan background pruning throttling.
-     - Validasi ketat upload CV di `src/lib/cv-validation.ts` dan `submit-application.ts`: pasangan ketat ekstensi, MIME type, dan 4-byte magic signature (`%PDF`, `PK\x03\x04`, `\xD0\xCF\x11\xE0`), pencegahan bypass nama file tanpa dot, dan limit ukuran 5MB.
-     - Form feedback diperkuat di `ApplicationForm.tsx` dan `ContactUsForm.tsx` dengan pesan top-level dan error span untuk field `website`, `portfolio`, dan `salary`.
-     - PocketBase auth token caching, single-flight auth deduplication mutex, dan timeout 10s via `AbortSignal.timeout` di `src/lib/pocketbase.ts`.
-     - Health check route `/healthz` di `src/app/healthz/route.ts` dan probe update di `docker-compose.yml`.
-  2. TypeScript typecheck (`npm run typecheck`) dan ESLint (`npm run lint`) lulus 100% dengan 0 error.
-  3. Seluruh 7 rangkaian pengujian verifikasi mendalam di `scripts/verify-boost.mjs` (termasuk skenario serangan spoofing CV) lulus 100%.
-  4. Status kesiapan rilis produksi: **READY TO DEPLOY**.
-- **Fokus Utama:** Deploy build terbaru via Dokploy (`https://dokploy.nominanetwork.tech/`) dan verifikasi live service.
+  1. **Revisi Landing Page & Inner Pages Nomina (MoM 24 Sep 2026 — Misi 1, 2, 4, 5, 6, 7) Selesai 100%:**
+     - **Misi 1 (Services):** Item `"Strategy Branding"` dihapus sepenuhnya; urutan `SERVICES` di `ServicesSection.tsx` diperbarui menjadi: `Event Organiser`, `Technical Custom Production`, `Rental Equipment`, `Web Development`, `SaaS Management`.
+     - **Misi 2 (Careers):** Rute & komponen `Account Executive` dihapus; `3D Designer` diubah menjadi `3D Visualisation` (`/career-3d-visualisation` dengan redirect permanen dari `/career-3d-designer`); posisi `Project Manager`, `Production Manager`, `Sales and Account Manager`, dan `3D Visualisation` aktif di seluruh halaman karir, form aplikasi, dan footer; informasi `Salary` pada sidebar detail karir disesuaikan menjadi `Competitive & Negotiable (Based on Experience & Portfolio)`.
+     - **Misi 4 (Job Summary Highlight):** `Job Summary` di halaman detail karir (`CareerDetailsDynamic.tsx`) tampil menonjol sebagai callout utama dengan left-border `#FF3800` dan ukuran font setara heading (`clamp(22px, 2.4vw, 28px)`).
+     - **Misi 5 (Tipografi & Heading Semantik):** Seluruh halaman selain landing page (`/about`, `/portfolio`, `/career`, `/career-3d-visualisation`, `/job-application`, `/contact`) memiliki tepat 1 `<h1>` (`data-on-scroll="0"` untuk animasi masuk langsung saat page load) dan urutan `<h2> -> <h3>` tanpa lompatan level, dilengkapi animasi scroll GSAP (`animationConfig.ts`) dan hover micro-interaction.
+     - **Misi 6 (Local SEO Jakarta):** Metadata seluruh rute utama, H1 homepage, alt text gambar, serta structured data JSON-LD (`LocalBusiness`, `ProfessionalService`, `EventVenue`, `OfferCatalog`) telah dioptimasi untuk keyword lokal (`EO Jakarta`, `EO terdekat`, `jasa event organizer Jakarta`).
+     - **Misi 7 (Interactive Map):** Peta statis iframe di halaman Contact digantikan dengan peta interaktif `react-leaflet` (`NominaInteractiveMap.tsx` + `NominaMapInner.tsx`) berbasis tile OpenStreetMap tanpa watermark dengan filter monokrom pada `.leaflet-tile-pane`, custom pin `#FF3800`, popup alamat + tombol `"Get Directions"`, dan smooth `flyTo` saat masuk viewport.
+  2. Remediasi Production Readiness (/boost) tetap terjaga dan lulus `npm run check` (`lint`, `typecheck`, `build`).
+- **Fokus Utama:** Deploy build terbaru ke Dokploy (`https://dokploy.nominanetwork.tech/`) dan menyiapkan halaman detail karir khusus apabila deskripsi kualifikasi untuk `Project Manager`, `Production Manager`, dan `Sales and Account Manager` sudah difinalisasi tim HR.
 - **Next Steps:** 
   1. Deploy perubahan ke Dokploy (`https://dokploy.nominanetwork.tech/`).
-  2. Verifikasi live endpoint `/healthz` dan HTTP response headers.
-  3. Submit `sitemap.xml` ke Google Search Console dan request indexing homepage.
+  2. Verifikasi live sitemap (`/sitemap.xml`), redirect `/career-3d-designer` -> `/career-3d-visualisation`, dan tampilan peta interaktif di `/contact`.
+  3. Buat halaman detail karir terpisah untuk 3 posisi baru jika dokumen requirement HR sudah tersedia.
 
 ---
 

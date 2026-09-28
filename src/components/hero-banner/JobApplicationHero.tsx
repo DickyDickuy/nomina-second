@@ -17,7 +17,7 @@ const JobApplicationHero = () => {
                     scroll down to apply
                 </span>
             </div>
-            <h1 className={styles.heroTitle}>applicatiOn</h1>
+            <h1 className={`${styles.heroTitle} tp_fade_anim`} data-on-scroll="0" aria-label="Job Application — Join NOMINA Creative South Jakarta">applicatiOn</h1>
         </div>
     );
 };

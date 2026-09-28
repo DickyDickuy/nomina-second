@@ -138,9 +138,10 @@ const Skiper30 = () => {
             scroll down to see
           </span>
         </div>
-        <h1 className={styles.spacerTitle} aria-label="Portfolio — NOMINA Creative Projects & Brand Experiences Jakarta">portOfolio</h1>
+        <h1 className={`${styles.spacerTitle} tp_fade_anim`} data-on-scroll="0" aria-label="Portfolio — NOMINA Event Organizer & Custom Production Projects Jakarta">portOfolio</h1>
       </div>
 
+      <h2 className="sr-only">Featured Event Organizer &amp; Custom Production Projects in Jakarta</h2>
       <div ref={gallery} className={styles.gallery}>
         <Column items={[portfolio[0], portfolio[1], portfolio[2]]} y={y} />
         <Column items={[portfolio[3], portfolio[4], portfolio[5]]} y={y2} />
@@ -188,14 +189,14 @@ const Column = ({ items, y }: ColumnProps) => {
         >
           <Image
             src={item.src}
-            alt={item.name}
+            alt={`${item.name} — NOMINA Event Organizer & Technical Custom Production Jakarta`}
             fill
             sizes="(max-width: 768px) 250px, (max-width: 1366px) 305px, (max-width: 1440px) 324px, 432px"
             className={styles.image}
           />
-          <div className={styles.mobileLabel}>
+          <h3 className={styles.mobileLabel} style={{ margin: 0 }}>
             <span>{item.name}</span>
-          </div>
+          </h3>
         </div>
       ))}
     </motion.div>

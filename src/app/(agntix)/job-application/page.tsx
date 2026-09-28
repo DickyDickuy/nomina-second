@@ -8,85 +8,73 @@ type Props = {
     searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
+const JOB_META_MAP: Record<string, { title: string; description: string }> = {
+    '3d-visualisation': {
+        title: "Apply for 3D Visualisation — NOMINA Careers Jakarta",
+        description:
+            "Submit your application and portfolio for the 3D Visualisation role at NOMINA Creative (Event Organizer Jakarta). Create immersive stage environments, motion graphics, and spatial visuals.",
+    },
+    'project-manager': {
+        title: "Apply for Project Manager — NOMINA Careers Jakarta",
+        description:
+            "Submit your application for the Project Manager position at NOMINA Creative, South Jakarta's Event Organiser and Technical Custom Production studio.",
+    },
+    'production-manager': {
+        title: "Apply for Production Manager — NOMINA Careers Jakarta",
+        description:
+            "Submit your application for the Production Manager position at NOMINA Creative Jakarta. Lead technical custom production, stage builds, and rental equipment operations.",
+    },
+    'sales-and-account-manager': {
+        title: "Apply for Sales and Account Manager — NOMINA Careers Jakarta",
+        description:
+            "Submit your application for the Sales and Account Manager role at NOMINA Creative Jakarta. Drive client partnerships for corporate events, custom production, and digital platforms.",
+    },
+};
+
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
     const resolvedParams = await searchParams;
     const rawJobId = resolvedParams?.jobId;
-    const jobId = typeof rawJobId === 'string' ? rawJobId.toLowerCase() : Array.isArray(rawJobId) ? rawJobId[0]?.toLowerCase() : '';
+    const rawKey = typeof rawJobId === 'string' ? rawJobId.toLowerCase() : Array.isArray(rawJobId) ? rawJobId[0]?.toLowerCase() : '';
+    const jobId = rawKey === '3d-designer' ? '3d-visualisation' : (rawKey || '');
 
-    if (jobId === '3d-designer') {
+    const matched = JOB_META_MAP[jobId];
+    if (matched) {
+        const canonicalUrl = `${SITE_URL}/job-application?jobId=${jobId}`;
         return {
-            title: "Apply for 3D Designer — NOMINA Careers",
-            description:
-                "Submit your application and portfolio for the 3D Designer role at NOMINA. Create immersive stage environments, motion graphics, and spatial visuals.",
+            title: matched.title,
+            description: matched.description,
             alternates: {
-                canonical: `${SITE_URL}/job-application?jobId=3d-designer`,
+                canonical: canonicalUrl,
             },
             openGraph: {
                 type: 'website',
                 locale: 'en_US',
-                url: `${SITE_URL}/job-application?jobId=3d-designer`,
-                siteName: 'NOMINA Communication',
-                title: "Apply for 3D Designer — NOMINA Careers",
-                description:
-                    "Submit your application and portfolio for the 3D Designer role at NOMINA. Create immersive stage environments, motion graphics, and spatial visuals.",
+                url: canonicalUrl,
+                siteName: 'NOMINA Creative',
+                title: matched.title,
+                description: matched.description,
                 images: [
                     {
                         url: `${SITE_URL}/images/nomina-logo.jpeg`,
                         width: 1200,
                         height: 630,
-                        alt: 'Apply for 3D Designer at NOMINA',
+                        alt: matched.title,
                     },
                 ],
             },
             twitter: {
                 card: 'summary_large_image',
-                title: "Apply for 3D Designer — NOMINA Careers",
-                description:
-                    "Submit your application and portfolio for the 3D Designer role at NOMINA. Create immersive stage environments, motion graphics, and spatial visuals.",
-                images: [`${SITE_URL}/images/nomina-logo.jpeg`],
-            },
-        };
-    }
-
-    if (jobId === 'account-executive') {
-        return {
-            title: "Apply for Account Executive — NOMINA Careers",
-            description:
-                "Submit your application for the Account Executive position at NOMINA. Manage client relationships, corporate pitches, and creative event campaigns.",
-            alternates: {
-                canonical: `${SITE_URL}/job-application?jobId=account-executive`,
-            },
-            openGraph: {
-                type: 'website',
-                locale: 'en_US',
-                url: `${SITE_URL}/job-application?jobId=account-executive`,
-                siteName: 'NOMINA Communication',
-                title: "Apply for Account Executive — NOMINA Careers",
-                description:
-                    "Submit your application for the Account Executive position at NOMINA. Manage client relationships, corporate pitches, and creative event campaigns.",
-                images: [
-                    {
-                        url: `${SITE_URL}/images/nomina-logo.jpeg`,
-                        width: 1200,
-                        height: 630,
-                        alt: 'Apply for Account Executive at NOMINA',
-                    },
-                ],
-            },
-            twitter: {
-                card: 'summary_large_image',
-                title: "Apply for Account Executive — NOMINA Careers",
-                description:
-                    "Submit your application for the Account Executive position at NOMINA. Manage client relationships, corporate pitches, and creative event campaigns.",
+                title: matched.title,
+                description: matched.description,
                 images: [`${SITE_URL}/images/nomina-logo.jpeg`],
             },
         };
     }
 
     return {
-        title: "Job Application — Join the NOMINA Team",
+        title: "Job Application — Join NOMINA Event Organizer Jakarta",
         description:
-            "Submit your CV, portfolio, and application to join the NOMINA creative studio. Explore opportunities in design, event production, and account management.",
+            "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualisation.",
         alternates: {
             canonical: `${SITE_URL}/job-application`,
         },
@@ -94,24 +82,24 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
             type: 'website',
             locale: 'en_US',
             url: `${SITE_URL}/job-application`,
-            siteName: 'NOMINA Communication',
-            title: "Job Application — Join the NOMINA Team",
+            siteName: 'NOMINA Creative',
+            title: "Job Application — Join NOMINA Event Organizer Jakarta",
             description:
-                "Submit your CV, portfolio, and application to join the NOMINA creative studio. Explore opportunities in design, event production, and account management.",
+                "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualisation.",
             images: [
                 {
                     url: `${SITE_URL}/images/nomina-logo.jpeg`,
                     width: 1200,
                     height: 630,
-                    alt: 'Join the NOMINA Team',
+                    alt: 'Join the NOMINA Team in South Jakarta',
                 },
             ],
         },
         twitter: {
             card: 'summary_large_image',
-            title: "Job Application — Join the NOMINA Team",
+            title: "Job Application — Join NOMINA Event Organizer Jakarta",
             description:
-                "Submit your CV, portfolio, and application to join the NOMINA creative studio. Explore opportunities in design, event production, and account management.",
+                "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualisation.",
             images: [`${SITE_URL}/images/nomina-logo.jpeg`],
         },
     };

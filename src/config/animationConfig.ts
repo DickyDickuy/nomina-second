@@ -246,14 +246,31 @@ export const animationConfig: Record<string, (() => void)[]> = {
     "/shop-with-slider-light": [productBannerAnimation],
     //contact me page
     "/contact-me-light": [setupTextHoverEffect, animationParagraph],
-    //contact me page
-    "/contact": [contactBgAnimation],
+    //contact page
+    "/contact": [contactBgAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
+    //about page
+    "/about": [
+        textRevealAnimation,
+        revalEffectAnimation,
+        animationParagraph,
+        teamSectionAnimation,
+        footerVerticalStretchAnim,
+    ],
+    //portfolio page
+    "/portfolio": [
+        textRevealAnimation,
+        revalEffectAnimation,
+        animationParagraph,
+        footerVerticalStretchAnim,
+    ],
+    //career pages
+    "/career": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
+    "/career-3d-visualisation": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
+    "/job-application": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
     //registrasi page
     "/registrasi": [footerVerticalStretchAnim],
     // staggered menu additional pages
     "/career-light": [careerAnimation, footerVerticalStretchAnim],
     "/contact-us-light": [contactBgAnimation, footerVerticalStretchAnim],
-    "/career-account-executive": [careerAnimation, footerVerticalStretchAnim],
-    "/career-3d-designer": [careerAnimation, footerVerticalStretchAnim],
     "/job-application-form": [careerAnimation, footerVerticalStretchAnim],
 };

@@ -17,7 +17,7 @@ const ContactLightHero = () => {
                     scroll down to see
                 </span>
             </div>
-            <h1 className={styles.heroTitle} aria-label="Contact NOMINA Creative — Start a Project">cOntact</h1>
+            <h1 className={`${styles.heroTitle} tp_fade_anim`} data-on-scroll="0" aria-label="Contact NOMINA Creative — Start a Project in South Jakarta">cOntact</h1>
         </div>
     );
 };

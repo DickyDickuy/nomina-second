@@ -1,18 +1,18 @@
 const SERVICES = [
   {
-    title: "STRATEGY . BRANDING",
+    title: "Event Organiser",
     href: "#",
   },
   {
-    title: "CONTENT . EVENTS",
+    title: "Technical Custom Production",
     href: "#",
   },
   {
-    title: "Technical & Custom Production",
+    title: "Rental Equipment",
     href: "#",
   },
   {
-    title: "DIGITAL . TECH",
+    title: "Web Development",
     href: "#",
   },
   {

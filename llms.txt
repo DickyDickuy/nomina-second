@@ -9,12 +9,12 @@
 - [docs/POCKETBASE_RECAP.md](/docs/POCKETBASE_RECAP.md): Rekapitulasi skema, konfigurasi, keamanan PocketBase, dan blueprint leads multi-website.
 
 ## Repository Map
-- `/src/app`: Rute halaman Next.js App Router, layout, dan route handlers (termasuk `/healthz`).
+- `/src/app`: Rute halaman Next.js App Router (`/`, `/about`, `/portfolio`, `/career`, `/career-3d-visualisation`, `/job-application`, `/contact`), layout, dan route handlers (termasuk `/healthz` dan `sitemap.ts`).
 - `/src/actions`: Next.js Server Actions untuk operasi server-side yang aman (mis. PocketBase).
-- `/src/components`: Komponen UI (primitives `ui/` dari shadcn, ikon kustom `icons.tsx`, dan komponen modular).
+- `/src/components`: Komponen UI (primitives `ui/` dari shadcn, ikon kustom `icons.tsx`, komponen `contacts/NominaInteractiveMap.tsx` berbasis `react-leaflet`, dan komponen modular).
 - `/src/lib`: Helper dan utilitas (seperti `cn()`, PocketBase client dengan token caching/timeout, rate limiter, dan CV upload validator).
-- `/src/hooks`: Custom React hooks yang dapat digunakan kembali.
+- `/src/hooks`: Custom React hooks yang dapat digunakan kembali (termasuk animasi GSAP `useGsapAnimation.ts`).
 - `/src/types`: Definisi tipe data dan antarmuka TypeScript.
-- `/public`: Aset statis (gambar, video, font, dan metadata SEO/favicon).
+- `/public`: Aset statis (gambar, video, font, SCSS layout styles, dan metadata SEO/favicon/`llms.txt`).
 - `/docs`: Dokumentasi proyek, catatan riset target, referensi desain, dan panduan inspeksi.
 - `/scripts`: Skrip otomatisasi (setup database PocketBase, download aset, sinkronisasi aturan agen).

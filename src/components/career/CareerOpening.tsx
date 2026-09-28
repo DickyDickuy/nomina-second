@@ -13,18 +13,32 @@ interface JobOpening {
 const CareerOpening = () => {
   const jobOpenings: JobOpening[] = [
     {
-      title: 'Account Executive',
+      title: 'Project Manager',
       openRoles: '(01 Open Role)',
       type: 'Full-Time',
       filterId: 'buttonFilter1',
-      link: '/career-account-executive'
+      link: '/job-application?jobId=project-manager'
     },
     {
-      title: '3D Designer',
+      title: 'Production Manager',
       openRoles: '(01 Open Role)',
       type: 'Full-Time',
       filterId: 'buttonFilter2',
-      link: '/career-3d-designer'
+      link: '/job-application?jobId=production-manager'
+    },
+    {
+      title: 'Sales and Account Manager',
+      openRoles: '(01 Open Role)',
+      type: 'Full-Time',
+      filterId: 'buttonFilter3',
+      link: '/job-application?jobId=sales-and-account-manager'
+    },
+    {
+      title: '3D Visualisation',
+      openRoles: '(01 Open Role)',
+      type: 'Full-Time',
+      filterId: 'buttonFilter4',
+      link: '/career-3d-visualisation'
     }
   ];
 
@@ -54,7 +68,7 @@ const CareerOpening = () => {
                   <ArrowTwenty />
                 </div>
               </div>
-              <h3 className="tp-section-title lts tp_fade_anim">Current Openings</h3>
+              <h2 className="tp-section-title lts tp_fade_anim">Current Openings</h2>
             </div>
           </div>
         </div>
@@ -82,11 +96,13 @@ const CareerOpening = () => {
 
         {/* Job Listings */}
         {jobOpenings.map((job, index) => (
-          <div key={index} className="tp-career-opening-item ptb">
+          <div key={index} className="tp-career-opening-item ptb tp_fade_anim">
             <div className="row align-items-center">
               <div className="col-12 col-lg-4 mb-3 mb-lg-0">
                 <div className="tp-career-opening-title">
-                  <h4 className="tp-career-opening-title-name">{job.title}</h4>
+                  <h3 className="tp-career-opening-title-name">
+                    <Link href={job.link}>{job.title}</Link>
+                  </h3>
                 </div>
               </div>
               <div className="col-12 col-lg-4 mb-3 mb-lg-0">

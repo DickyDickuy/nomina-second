@@ -1404,11 +1404,21 @@
 	& .tp-career-details-title {
 		color: var(--tp-common-white);
 	}
-	& .tp-career-details-info-item h5 {
+	& .tp-career-details-info-item h5,
+	& .tp-career-details-info-item .tp-career-details-info-val {
 		color: var(--tp-common-white);
 	}
 	& .tp-career-details-title-2 {
 		color: var(--tp-common-white);
+	}
+	& .tp-career-details-summary-highlight {
+		background: linear-gradient(90deg, rgba(255, 56, 0, 0.12) 0%, rgba(27, 27, 29, 0.9) 100%);
+		& .tp-career-summary-label {
+			color: #FF3800;
+		}
+		& p.tp-career-summary-text {
+			color: var(--tp-common-white);
+		}
 	}
 	& .tp-career-details-wrap p {
 		color: rgba(255, 255, 255, 0.8);
@@ -1432,7 +1442,8 @@
 	& .tp-career-details-sidebar-title {
 		color: var(--tp-common-white);
 	}
-	& .tp-career-details-sidebar-item-content h5 {
+	& .tp-career-details-sidebar-item-content h5,
+	& .tp-career-details-sidebar-item-content .tp-career-details-sidebar-val {
 		color: var(--tp-common-white);
 	}
 	& .tp-faq-text p {
