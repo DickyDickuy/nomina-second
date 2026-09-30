@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Fixed]
+- **Statement Section Line-Height & Spacing Fix (`src/app/globals.css` & `src/components/StatementSection.tsx`):**
+  - **CSS Line-Height Override:** Menghapus aturan `line-height: inherit;` pada selector `#nomina-home h1..h6` di `globals.css` dan membungkusnya dengan `:where(#nomina-home)` untuk menetralkan spesifisitas CSS. Sebelumnya, `line-height: inherit;` dengan ID selector menimpa utility class Tailwind `leading-[0.92]`, sehingga `<h2>` mewarisi line-height `1.5` dari body. Pada font display besar Bebas Neue (`8rem` / 128px), hal ini menciptakan ruang kosong vertikal raksasa sebesar ~95px di antara baris `"WE DESIGN"`, `"COMMUNICATION"`, dan `"ECOSYSTEMS."`.
+  - **Inline Tight Line-Height & Proportional Margins:** Menambahkan `lineHeight: 0.88` secara eksplisit pada atribut `style` judul `<h2>` di [StatementSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/StatementSection.tsx) untuk memastikan kerapatan baris teks Bebas Neue yang solid dan konsisten, serta menyematkan margin proporsional (`mb-8 md:mb-10` pada `<h2>`, `mb-4` pada `<h3>`, dan `mb-8` pada `<p>`).
+- **About Section Paragraph Centering (`src/app/globals.css` & `src/components/AboutSection.tsx`):**
+  - **CSS Override Root Cause:** Menghapus aturan `margin: 0 !important;` pada selector `#nomina-home p` dan `#nomina-home h1..h6` di `globals.css` yang sebelumnya menimpa dan mematikan utility class Tailwind `mx-auto` (`margin-left: auto; margin-right: auto;`). Akibat aturan tersebut, elemen `<p max-w-2xl>` tertahan di sisi kiri (`margin-left: 0`) dari parent container `max-w-4xl` (~896px), sehingga teks bergeser ~100px ke kiri relatif terhadap judul dan tombol.
+  - **Flexbox Centering:** Menambahkan `flex flex-col items-center` pada container [AboutSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/AboutSection.tsx) serta spacing margin yang proporsional (`mb-6 md:mb-8` dan `mb-8`), menjamin paragraf dan elemen CTA selalu 100% presisi di tengah secara struktural maupun visual.
+- **Navbar Centering & Video Vignette Removal:**
+  - **Navbar Centering (`src/components/Navbar.tsx`):** Memperbaiki posisi menu navigasi desktop (`ABOUT`, `ARCHIVE`, `SERVICES`, `CLIENTS`, `CAREERS`, `CONTACT`, `PORTOFOLIO`) menjadi presisi di tengah layar secara horizontal menggunakan `absolute left-1/2 -translate-x-1/2 h-full z-10`, menghilangkan pergeseran asimetris ke kanan yang sebelumnya disebabkan oleh lebar elemen logo di sisi kiri tanpa elemen penyeimbang di sisi kanan.
+  - **Video Vignette Removal (`src/components/HeroSection.tsx`):** Menghapus layer overlay scrim gradient vignette (`bg-gradient-to-b from-black/50 via-transparent to-black/60`) dan mengembalikan `opacity` video hero menjadi 100% natural tanpa penggelapan.
+
 ### [Added]
 - **Revisi Landing Page & Inner Pages Nomina (MoM 24 Sep 2026 — Misi 1, 2, 4, 5, 6, 7)**:
   - **Misi 1 (Services):** Menghapus layanan `"STRATEGY . BRANDING"` di `src/components/ServicesSection.tsx` dan `src/components/text-slider/HomeMainTextSlider.tsx`, serta mengurutkan ulang layanan menjadi persis: `1. Event Organiser`, `2. Technical Custom Production`, `3. Rental Equipment`, `4. Web Development`, `5. SaaS Management`.

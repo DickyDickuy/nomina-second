@@ -72,7 +72,7 @@ export function Navbar() {
           {/* Logo — visible when scrolled */}
           <div
             className={cn(
-              "transition-opacity duration-300 shrink-0",
+              "transition-opacity duration-300 shrink-0 z-20",
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
@@ -81,8 +81,8 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-0 flex-1 justify-center h-full">
+          {/* Desktop links — centered perfectly in navbar */}
+          <div className="hidden md:flex items-center gap-0 absolute left-1/2 -translate-x-1/2 h-full z-10">
             {NAV_LINKS.map((link) => {
               const isHashLink = link.href.startsWith('#');
               const targetHref = isHashLink && !isLandingPage ? `/${link.href}` : link.href;
@@ -109,7 +109,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center h-full -mr-2">
+          <div className="md:hidden flex items-center h-full -mr-2 z-20">
             <StaggeredMenu
               isFixed={true}
               position="right"

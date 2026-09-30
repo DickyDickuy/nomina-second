@@ -42,16 +42,13 @@ export function HeroSection() {
         loop
         playsInline
         preload="auto"
-        className="absolute inset-0 w-full h-full object-cover z-0 opacity-90 transition-opacity duration-700"
+        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-700"
       >
         <source
           src="https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4"
           type="video/mp4"
         />
       </video>
-
-      {/* Subtle Scrim Gradient Overlays for Visual Balance & Readability */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/50 via-transparent to-black/60 pointer-events-none" />
 
       {/* Top Header Bar: Logo + Weather (Aligned vertically with StaggeredMenu at h-[58px]) */}
       <div className="absolute top-0 left-0 right-0 z-20 h-[58px] flex items-center justify-between px-6 md:px-12">
