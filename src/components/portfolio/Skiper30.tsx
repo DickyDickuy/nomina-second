@@ -1,136 +1,117 @@
 "use client";
 
-import { motion, MotionValue, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
-import Lenis from "lenis";
-import Image from "next/image";
+import { motion, AnimatePresence, useMotionValue, useSpring } from "framer-motion";
 import styles from "./Skiper30.module.css";
+import { Gallery, GalleryGrid, GalleryImage, useGallery } from "@/components/ui/shared-element-gallery";
 
-const portfolio = [
-  { src: "/assets/img/portfolio/skiper/ASTRA International HUT 65.png", name: "ASTRA International HUT 65" },
-  { src: "/assets/img/portfolio/skiper/Flip Truk LebihDariItu.png", name: "Flip Truk #LebihDariItu" },
-  { src: "/assets/img/portfolio/skiper/CommBank Smartwalth Hybrid Event.png", name: "CommBank Smartwalth Hybrid Event" },
-  { src: "/assets/img/portfolio/skiper/Emerson MSOL at Nusa Dua Bali.png", name: "Emerson MSOL at Nusa Dua Bali" },
-  { src: "/assets/img/portfolio/skiper/PSI Chinese New Year Celebration at SunCity.png", name: "PSI Chinese New Year Celebration at SunCity" },
-  { src: "/assets/img/portfolio/skiper/Grand Indonesia Summerglow 2022.png", name: "Grand Indonesia Summerglow 2022" },
-  { src: "/assets/img/portfolio/skiper/ASTRA International Decoration 17 Agustus.png", name: "ASTRA International Decoration 17 Agustus" },
-  { src: "/assets/img/portfolio/skiper/ESMOD Jakarta Creative Show.png", name: "ESMOD Jakarta Creative Show" },
-  { src: "/assets/img/portfolio/skiper/AutoKultur Indonesia 2022.png", name: "AutoKultur Indonesia 2022" },
-  { src: "/assets/img/portfolio/skiper/Manggungdi Edutown BSD.png", name: "Manggungdi Edutown BSD" },
-  { src: "/assets/img/portfolio/skiper/OCBC Grand Opening Premium Guest House Bekasi.png", name: "OCBC Grand Opening Premium Guest House Bekasi" },
-  { src: "/assets/img/portfolio/skiper/HSBC Diwali Festival of Lights.png", name: "HSBC Diwali Festival of Lights" },
+const NOMINA_PORTFOLIO = [
+  // Column 1 (5 items: Portrait -> Landscape -> Portrait -> Landscape -> Portrait)
+  { id: "1", src: "/assets/img/portfolio/skiper/GRAND OPENING OCBC PREMIUM GUEST HOUSE TOMANG.webp", alt: "GRAND OPENING OCBC PREMIUM GUEST HOUSE TOMANG" },
+  { id: "2", src: "/assets/img/portfolio/skiper/HSBC ASEAN BUSINESS LUNCHEON.webp", alt: "HSBC ASEAN Business Luncheon" },
+  { id: "3", src: "/assets/img/portfolio/skiper/ASTRA International HUT 65.webp", alt: "ASTRA International HUT 65" },
+  { id: "4", src: "/assets/img/portfolio/skiper/HSBC SIGNING CEREMONY 2025.webp", alt: "HSBC Signing Ceremony 2025" },
+  { id: "5", src: "/assets/img/portfolio/skiper/ESMOD Jakarta Creative Show.webp", alt: "ESMOD Jakarta Creative Show" },
+
+  // Column 2 (6 items: Landscape -> Portrait -> Landscape -> Portrait -> Landscape -> Portrait)
+  { id: "6", src: "/assets/img/portfolio/skiper/DANA CUP 2026.webp", alt: "DANA Cup 2026" },
+  { id: "7", src: "/assets/img/portfolio/skiper/CommBank Smartwalth Hybrid Event.webp", alt: "CommBank Smartwealth Hybrid Event" },
+  { id: "8", src: "/assets/img/portfolio/skiper/POKEMON PRESS CONFERENCE 2025.webp", alt: "POKEMON PRESS CONFERENCE 2025" },
+  { id: "9", src: "/assets/img/portfolio/skiper/Manggungdi Edutown BSD.webp", alt: "Manggungdi Edutown BSD" },
+  { id: "10", src: "/assets/img/portfolio/skiper/IGDX 2024.webp", alt: "IGDX 2024" },
+  { id: "11", src: "/assets/img/portfolio/skiper/Emerson MSOL at Nusa Dua Bali.webp", alt: "Emerson MSOL at Nusa Dua Bali" },
+
+  // Column 3 (6 items: Portrait -> Landscape -> Portrait -> Landscape -> Portrait -> Landscape)
+  { id: "12", src: "/assets/img/portfolio/skiper/ASTRA International Decoration 17 Agustus.webp", alt: "ASTRA International Decoration 17 Agustus" },
+  { id: "13", src: "/assets/img/portfolio/skiper/ECOSOLEX BRAND LAUNCH 2025.webp", alt: "ECOSOLEX Brand Launch 2025" },
+  { id: "14", src: "/assets/img/portfolio/skiper/AutoKultur Indonesia 2022.webp", alt: "AutoKultur Indonesia 2022" },
+  { id: "15", src: "/assets/img/portfolio/skiper/Super Music - Break Out Day 2024.webp", alt: "Super Music - Break Out Day 2024" },
+  { id: "16", src: "/assets/img/portfolio/skiper/OCBC Grand Opening Premium Guest House Bekasi.webp", alt: "OCBC Grand Opening Premium Guest House Bekasi" },
+  { id: "17", src: "/assets/img/portfolio/skiper/HSBC SUMMIT 2025.webp", alt: "HSBC SUMMIT 2025" },
+
+  // Column 4 (5 items: Portrait -> Landscape -> Portrait -> Square -> Portrait)
+  { id: "18", src: "/assets/img/portfolio/skiper/PSI Chinese New Year Celebration at SunCity.webp", alt: "PSI Chinese New Year Celebration at SunCity" },
+  { id: "19", src: "/assets/img/portfolio/skiper/OCBC Intimate Dinner 2024.webp", alt: "OCBC Intimate Dinner 2024" },
+  { id: "20", src: "/assets/img/portfolio/skiper/Flip Truk LebihDariItu.webp", alt: "Flip Truk #LebihDariItu" },
+  { id: "21", src: "/assets/img/portfolio/skiper/Grand Indonesia Summerglow 2022.webp", alt: "Grand Indonesia Summerglow 2022" },
+  { id: "22", src: "/assets/img/portfolio/skiper/HSBC Diwali Festival of Lights.webp", alt: "HSBC Diwali Festival of Lights" },
 ];
 
-const Skiper30 = () => {
-  const spacerRef = useRef<HTMLDivElement>(null);
-  const gallery = useRef<HTMLDivElement>(null);
-  const [dimension, setDimension] = useState({ width: 0, height: 0 });
-  const [hoveredName, setHoveredName] = useState<string | null>(null);
-  const [portalReady, setPortalReady] = useState(false);
+function GalleryCursorCircle({ hoveredName }: { hoveredName: string | null }) {
+  const gallery = useGallery();
+  const isClient = React.useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false
+  );
 
-  // Raw mouse position
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // Raw mouse coordinates
+  const mouseX = useMotionValue(-300);
+  const mouseY = useMotionValue(-300);
 
-  // Spring-smoothed position for the circle
-  const springConfig = { damping: 25, stiffness: 200, mass: 0.5 };
+  // Smooth spring physics for organic cursor following
+  const springConfig = { damping: 25, stiffness: 280, mass: 0.4 };
   const circleX = useSpring(mouseX, springConfig);
   const circleY = useSpring(mouseY, springConfig);
 
-  const checkHover = useCallback((x: number, y: number) => {
-    if (typeof document === "undefined") return;
-
-    // Get the SINGLE topmost element under the cursor (respecting z-index and overlays like menus)
-    const topElement = document.elementFromPoint(x, y);
-
-    if (!topElement) {
-      setHoveredName(null);
-      return;
-    }
-
-    // Check if the topmost element or any of its parents is a portfolio item
-    const portfolioEl = topElement.closest('[data-portfolio-name]') as HTMLElement | null;
-
-    if (portfolioEl && portfolioEl.dataset.portfolioName) {
-      setHoveredName(portfolioEl.dataset.portfolioName);
-    } else {
-      setHoveredName(null);
-    }
-  }, []);
-
-  const handleMouseMove = useCallback((e: MouseEvent) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-    checkHover(e.clientX, e.clientY);
-  }, [mouseX, mouseY, checkHover]);
-
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPortalReady(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
+    };
     window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
-    const handleScroll = () => {
-      checkHover(mouseX.get(), mouseY.get());
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
+  // If modal zoom is open, hide circle completely for pure fullscreen focus
+  const isModalOpen = Boolean(gallery?.selectedImage);
+  const isVisible = isClient && !isModalOpen && Boolean(hoveredName);
 
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [handleMouseMove, checkHover, mouseX, mouseY]);
+  // Adaptive typography based on event title length to ensure no mid-word wrapping or text spilling
+  const textLength = hoveredName ? hoveredName.length : 0;
+  const fontSize = textLength > 34 ? "0.56rem" : textLength > 20 ? "0.64rem" : "0.74rem";
+  const lineHeight = textLength > 34 ? "1.2" : "1.28";
 
-  const { scrollYProgress } = useScroll({
-    target: gallery,
-    offset: ["start end", "end start"],
-  });
+  if (!isClient || typeof document === "undefined") return null;
 
-  // Columns scroll UP as user scrolls DOWN.
-  // Start: first image visible. End: last image comes into view.
-  // Negative y = moves column up.
-  // Multipliers kept moderate so columns never over-scroll past their content.
-  const { width, height } = dimension;
-  // On mobile (<768px), right column (y2) needs a smaller multiplier
-  // to avoid reaching the bottom edge and bleeding into the footer.
-  const isMobile = width > 0 && width < 768;
-  const y = useTransform(scrollYProgress, [0, 1], [0, -(height * 0.5)]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -(height * (isMobile ? 0.45 : 0.85))]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -(height * 0.35)]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, -(height * 0.7)]);
+  return createPortal(
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          className={styles.cursorCircle}
+          style={{ x: circleX, y: circleY }}
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0, opacity: 0 }}
+          transition={{ type: "spring", damping: 24, stiffness: 320 }}
+        >
+          <span
+            className={styles.cursorCircleText}
+            style={{ fontSize, lineHeight }}
+          >
+            {hoveredName}
+          </span>
+        </motion.div>
+      )}
+    </AnimatePresence>,
+    document.body
+  );
+}
 
-  useEffect(() => {
-    const lenis = new Lenis();
-
-    const raf = (time: number) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-
-    const resize = () => {
-      setDimension({ width: window.innerWidth, height: window.innerHeight });
-    };
-
-    window.addEventListener("resize", resize);
-    requestAnimationFrame(raf);
-    resize();
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      lenis.destroy();
-    };
-  }, []);
+const Skiper30 = () => {
+  const [hoveredName, setHoveredName] = useState<string | null>(null);
 
   return (
     <div className={styles.main}>
+      {/* Hero spacer with semantic H1 for SEO */}
       <div
-        ref={spacerRef}
         className={styles.spacer}
         style={{
           backgroundImage: "url('/assets/img/about-us/about-us-4/about-us-4-bg.png')",
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundRepeat: "no-repeat"
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div className={styles.scrollTextContainer}>
@@ -138,68 +119,38 @@ const Skiper30 = () => {
             scroll down to see
           </span>
         </div>
-        <h1 className={`${styles.spacerTitle} tp_fade_anim`} data-on-scroll="0" aria-label="Portfolio — NOMINA Event Organizer & Custom Production Projects Jakarta">portOfolio</h1>
-      </div>
-
-      <h2 className="sr-only">Featured Event Organizer &amp; Custom Production Projects in Jakarta</h2>
-      <div ref={gallery} className={styles.gallery}>
-        <Column items={[portfolio[0], portfolio[1], portfolio[2]]} y={y} />
-        <Column items={[portfolio[3], portfolio[4], portfolio[5]]} y={y2} />
-        <Column items={[portfolio[6], portfolio[7], portfolio[8]]} y={y3} />
-        <Column items={[portfolio[9], portfolio[10], portfolio[11]]} y={y4} />
-      </div>
-
-      {/* Cursor-following tooltip circle — portaled to body to escape transform contexts */}
-      {portalReady && createPortal(
-        <AnimatePresence>
-          {hoveredName && (
-            <motion.div
-              className={styles.cursorCircle}
-              style={{ x: circleX, y: circleY }}
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0, opacity: 0 }}
-              transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            >
-              <span className={styles.cursorCircleText}>{hoveredName}</span>
-            </motion.div>
-          )}
-        </AnimatePresence>,
-        document.body
-      )}
-    </div>
-  );
-};
-
-type PortfolioItem = { src: string; name: string };
-
-type ColumnProps = {
-  items: PortfolioItem[];
-  y: MotionValue<number>;
-};
-
-const Column = ({ items, y }: ColumnProps) => {
-  return (
-    <motion.div className={styles.column} style={{ y }}>
-      {items.map((item, i) => (
-        <div
-          key={i}
-          className={styles.imageContainer}
-          data-portfolio-name={item.name}
+        <h1
+          className={`${styles.spacerTitle} tp_fade_anim`}
+          data-on-scroll="0"
+          aria-label="Portfolio — NOMINA Event Organizer & Custom Production Projects Jakarta"
         >
-          <Image
-            src={item.src}
-            alt={`${item.name} — NOMINA Event Organizer & Technical Custom Production Jakarta`}
-            fill
-            sizes="(max-width: 768px) 250px, (max-width: 1366px) 305px, (max-width: 1440px) 324px, 432px"
-            className={styles.image}
-          />
-          <h3 className={styles.mobileLabel} style={{ margin: 0 }}>
-            <span>{item.name}</span>
-          </h3>
+          portOfolio
+        </h1>
+      </div>
+
+      {/* Masonry Gallery with shared-element transition & interactive cursor circle */}
+      <div className="w-full bg-white px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 pt-6 md:pt-10 pb-4 md:pb-6">
+        <div className="w-full max-w-[2160px] mx-auto">
+          <Gallery>
+            <GalleryGrid className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-4 md:gap-6 xl:gap-8">
+              {NOMINA_PORTFOLIO.map((image) => (
+                <GalleryImage
+                  key={image.id}
+                  id={image.id}
+                  src={image.src}
+                  alt={image.alt}
+                  className="mb-4 md:mb-6 xl:mb-8"
+                  onMouseEnter={() => setHoveredName(image.alt)}
+                  onMouseLeave={() => setHoveredName(null)}
+                  onClick={() => setHoveredName(null)}
+                />
+              ))}
+            </GalleryGrid>
+            <GalleryCursorCircle hoveredName={hoveredName} />
+          </Gallery>
         </div>
-      ))}
-    </motion.div>
+      </div>
+    </div>
   );
 };
 

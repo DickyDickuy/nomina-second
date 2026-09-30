@@ -31,7 +31,7 @@ const PortfolioShowcaseMain = () => {
                             <main>
                                 <Skiper30 />
                             </main>
-                            <CreativeAgencyFooter />
+                            <CreativeAgencyFooter className="relative z-10 -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-20" />
                         </div>
                     </div>
                 </AnimationWrapper>
