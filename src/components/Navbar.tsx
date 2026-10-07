@@ -76,8 +76,8 @@ export function Navbar() {
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <Link href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }}>
-              <NominaLogo className="text-nomina-red scale-[0.55] origin-left hover:opacity-80 transition-opacity" />
+            <Link href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }} className="h-9 flex items-center">
+              <NominaLogo className="h-full w-auto hover:opacity-80 transition-opacity" />
             </Link>
           </div>
 

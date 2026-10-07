@@ -269,25 +269,24 @@ const TeamSection = () => {
   const floatingOverlay =
     portalReady && isDesktop
       ? createPortal(
-          <div className={styles.floatingImage} ref={floatingRef}>
-            {/* Skeleton shimmer — fades out once image loads */}
-            <div
-              className={`${styles.skeleton} ${
-                floatingImgLoaded ? styles.skeletonHidden : ""
+        <div className={styles.floatingImage} ref={floatingRef}>
+          {/* Skeleton shimmer — fades out once image loads */}
+          <div
+            className={`${styles.skeleton} ${floatingImgLoaded ? styles.skeletonHidden : ""
               }`}
-            />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              ref={floatingImgRef}
-              className={styles.floatingImg}
-              src={teamMembers[0].image}
-              alt=""
-              aria-hidden="true"
-              onLoad={() => setFloatingImgLoaded(true)}
-            />
-          </div>,
-          document.body,
-        )
+          />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            ref={floatingImgRef}
+            className={styles.floatingImg}
+            src={teamMembers[0].image}
+            alt=""
+            aria-hidden="true"
+            onLoad={() => setFloatingImgLoaded(true)}
+          />
+        </div>,
+        document.body,
+      )
       : null;
 
   /* ─────────────────────────────────────────────

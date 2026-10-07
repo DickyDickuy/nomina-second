@@ -6,7 +6,12 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:** 
-  1. **Integrasi Komponen Shared Element Gallery (`/portfolio` - Selesai):**
+  1. **Brand Identity & Favicon Suite Refresh (Selesai):**
+     - Mengganti representasi logo teks lama (`"nomina."` + `"10 YEARS OF PEOPLE."`) di [NominaLogo](file:///Users/dicky/Work/nomina-second/src/components/icons.tsx) dan `NominaLogoDark` dengan aset emblem 3D layered resmi [nomina_logo.png](file:///Users/dicky/Work/nomina-second/public/nomina_logo.png).
+     - Menyesuaikan proporsi logo di [HeroSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/HeroSection.tsx) (`h-10 md:h-11`) dan [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx) (`h-9`), serta menghapus legacy CSS scaling transform (`scale-[0.55]`).
+     - Men-generate suite favicon lengkap multi-ukuran (`favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, `apple-touch-icon.png`, `icon.png`, `apple-icon.png`) dan mengintegrasikannya ke metadata [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx).
+     - Memverifikasi build & health: `npm run check` (lint, typecheck, production build) sukses 100%.
+  2. **Integrasi Komponen Shared Element Gallery (`/portfolio` - Selesai):**
      - Mengimplementasikan komponen primitif [shared-element-gallery.tsx](file:///Users/dicky/Work/nomina-second/src/components/ui/shared-element-gallery.tsx) di folder `src/components/ui/` berbasis React 19, Framer Motion, dan Tailwind CSS dengan animasi spring physics dan shared-element morphing (`layoutId`), modal backdrop blur, dan drag-to-dismiss.
      - Merestorasi penuh Hero Spacer section bawaan halaman portofolio di [Skiper30.tsx](file:///Users/dicky/Work/nomina-second/src/components/portfolio/Skiper30.tsx) (`portOfolio` H1 + background + scroll down text indicator) dan mengintegrasikan masonry gallery shared-element di bawahnya tanpa label tambahan.
      - Mengubah kontainer galeri menjadi fluid full-bleed desktop (`max-w-[2160px]` dengan padding responsif `px-3 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16` dan gap dinamis `gap-4 md:gap-6 xl:gap-8`), menghilangkan ruang kosong di sisi kiri-kanan desktop dan membuat ukuran foto 40%-65% lebih besar memenuhi layar.

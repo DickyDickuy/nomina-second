@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import { NominaLogo } from "@/components/icons";
 import { WeatherWidget } from "@/components/WeatherWidget";
 
@@ -31,7 +32,7 @@ export function HeroSection() {
   return (
     <section className="relative h-[calc(100svh-58px)] min-h-[500px] w-full overflow-hidden bg-nomina-black">
       <h1 className="sr-only">
-        NOMINA Creative — Jasa Event Organizer Jakarta (EO Terdekat di Jakarta Selatan) | Event Organiser, Technical Custom Production &amp; Rental Equipment
+        NOMINA Creative — Event Organizer Jakarta Terdekat | Sewa Sound System, Sewa Kursi Event, LED Screen &amp; Technical Custom Production di Jakarta Selatan
       </h1>
       {/* Background Video with Mobile Performance & Fallback Optimizations */}
       {/* ponytail: Direct Cloudinary CDN stream for fast global delivery without Next.js server overhead */}
@@ -53,7 +54,9 @@ export function HeroSection() {
       {/* Top Header Bar: Logo + Weather (Aligned vertically with StaggeredMenu at h-[58px]) */}
       <div className="absolute top-0 left-0 right-0 z-20 h-[58px] flex items-center justify-between px-6 md:px-12">
         {/* NOMINA Logo */}
-        <NominaLogo className="text-nomina-red" />
+        <Link href="/" className="h-10 md:h-11 flex items-center hover:opacity-80 transition-opacity">
+          <NominaLogo className="h-full w-auto" />
+        </Link>
 
         {/* Right side: Weather */}
         <div className="flex items-center gap-4 md:gap-6">

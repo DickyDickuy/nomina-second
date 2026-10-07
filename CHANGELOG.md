@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Added]
+- **Brand Identity & Favicon Refresh (`public/nomina_logo.png`, `src/components/icons.tsx`, `src/app/layout.tsx`):**
+  - **3D Layered Logo Integration:** Mengganti fallback teks lama `"nomina."` + `"10 YEARS OF PEOPLE."` pada komponen [NominaLogo](file:///Users/dicky/Work/nomina-second/src/components/icons.tsx) dan `NominaLogoDark` dengan aset logo 3D layered resmi [nomina_logo.png](file:///Users/dicky/Work/nomina-second/public/nomina_logo.png) menggunakan Next.js `Image` berfitur `priority` dan `object-contain`.
+  - **Header & Navbar Proportions:** Memperbarui penataan logo di [HeroSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/HeroSection.tsx) (`h-10 md:h-11` di dalam container 58px) dan [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx) (`h-9`), mengeliminasi transformasi CSS `scale-[0.55]` lama sehingga tampilan logo tajam, presisi, dan proporsional.
+  - **Multi-Resolution Favicon Suite:** Men-generate rangkaian favicon lengkap dari `public/nomina_logo.png` dengan cropping dan padding proporsional: multi-size `public/favicon.ico` (16x16, 32x32, 48x48), `public/favicon-16x16.png`, `public/favicon-32x32.png`, `public/apple-touch-icon.png` (180x180), `src/app/icon.png` (512x512), dan `src/app/apple-icon.png`.
+  - **Metadata Icons Update:** Memperbarui konfigurasi `icons` di metadata [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx) mencakup `/favicon.ico`, `/nomina_logo.png`, dan `/apple-touch-icon.png`.
+
 ### [Fixed]
 - **Statement Section Line-Height & Spacing Fix (`src/app/globals.css` & `src/components/StatementSection.tsx`):**
   - **CSS Line-Height Override:** Menghapus aturan `line-height: inherit;` pada selector `#nomina-home h1..h6` di `globals.css` dan membungkusnya dengan `:where(#nomina-home)` untuk menetralkan spesifisitas CSS. Sebelumnya, `line-height: inherit;` dengan ID selector menimpa utility class Tailwind `leading-[0.92]`, sehingga `<h2>` mewarisi line-height `1.5` dari body. Pada font display besar Bebas Neue (`8rem` / 128px), hal ini menciptakan ruang kosong vertikal raksasa sebesar ~95px di antara baris `"WE DESIGN"`, `"COMMUNICATION"`, dan `"ECOSYSTEMS."`.

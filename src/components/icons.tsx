@@ -1,43 +1,40 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface IconProps {
   className?: string;
+  width?: number;
+  height?: number;
 }
 
-/** NOMINA wordmark logo — "nomina." with "10 YEARS OF PEOPLE." tagline */
-export function NominaLogo({ className }: IconProps) {
+/** NOMINA 3D layered logo */
+export function NominaLogo({ className, width = 160, height = 160 }: IconProps) {
   return (
-    <div className={cn("flex flex-col items-start leading-none", className)}>
-      <div className="relative">
-        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-nomina-red opacity-40 absolute -top-1 -left-1">
-          10
-        </span>
-        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight relative z-10">
-          nomina.
-        </span>
-      </div>
-      <span className="text-[0.5rem] font-bold uppercase tracking-[0.15em] mt-0.5">
-        10 YEARS OF PEOPLE.
-      </span>
+    <div className={cn("relative flex items-center shrink-0", className)}>
+      <Image
+        src="/nomina_logo.png"
+        alt="NOMINA"
+        width={width}
+        height={height}
+        priority
+        className="h-full w-auto object-contain"
+      />
     </div>
   );
 }
 
 /** NOMINA logo for dark backgrounds */
-export function NominaLogoDark({ className }: IconProps) {
+export function NominaLogoDark({ className, width = 160, height = 160 }: IconProps) {
   return (
-    <div className={cn("flex flex-col items-start leading-none text-white", className)}>
-      <div className="relative">
-        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight text-nomina-red opacity-40 absolute -top-1 -left-1">
-          10
-        </span>
-        <span className="font-heading text-[2.8rem] leading-[0.85] tracking-tight relative z-10">
-          nomina.
-        </span>
-      </div>
-      <span className="text-[0.5rem] font-bold uppercase tracking-[0.15em] mt-0.5">
-        10 YEARS OF PEOPLE.
-      </span>
+    <div className={cn("relative flex items-center shrink-0", className)}>
+      <Image
+        src="/nomina_logo.png"
+        alt="NOMINA"
+        width={width}
+        height={height}
+        priority
+        className="h-full w-auto object-contain"
+      />
     </div>
   );
 }
