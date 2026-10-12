@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Changed]
+- **Statement Section Copywriting Typography & English Transition (`src/components/StatementSection.tsx` & `src/app/globals.css`):**
+  - Converted the copywriting under `"WE DESIGN COMMUNICATION ECOSYSTEMS."` into fluent, native creative agency English (`"10 Years of Building Events and Brands in Jakarta"` and `"For 10 years, NOMINA Creative has been the event organizer of choice in Jakarta for hundreds of leading brands, from corporate events and brand activations to exhibitions and national-scale product launches. From sound system and event furniture rentals to technical custom production, we connect ideas, content, people, and technology to create memorable and impactful communication."`).
+  - Removed all em dashes (`—`) across both visible copy and accessible labels.
+  - Aligned typography to 100% match `AboutSection.tsx` (`var(--font-body)` News Cycle, `fontWeight: 700`, `fontSize: clamp(1rem, 2vw, 1.25rem)`, solid `#000000`, `leading-relaxed`).
+  - Protected subheaders with `#nomina-home h3:not(.font-body)` in [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css) to prevent uppercase Bebas Neue font overrides.
+- **LinkedIn Official URL Integration:** Mengganti tautan LinkedIn perusahaan yang sebelumnya 404 (`nomina-indonesia` dan tautan generik) menjadi URL profil LinkedIn resmi aktif: `https://www.linkedin.com/company/nominacreative/home/` di seluruh komponen Footer (`src/components/Footer.tsx`), `FooterSocialIcons.tsx`, structured data JSON-LD (`src/app/page.tsx`), dan menu navigasi sosial pada inner pages (`CareerMain.tsx`, `AboutCreativeMain.tsx`, `ContactUsMain.tsx`, `PortfolioShowcaseMain.tsx`).
+- **Career 3D Visualisation Dynamic Deadline (`src/pages/career-details/Career3dDesignerMain.tsx`):** Mengganti tanggal deadline karir 3D Visualisation yang sebelumnya tertulis `31 Aug 2026` menjadi tepat 2 minggu dari hari ini (`26 Oct 2026`) menggunakan `useMemo` dinamis (+14 hari dari waktu akses saat ini) serta memperbarui tanggal publikasi menjadi `12 Oct 2026`. Menambahkan `suppressHydrationWarning` pada [CareerDetailsDynamic.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerDetailsDynamic.tsx) untuk performa rendering yang mulus tanpa hydration mismatch.
+
+### [Removed]
+- **Tetris Decorative Strip (`src/components/Footer.tsx`):** Menghapus strip animasi self-playing Tetris putih 80px beserta import modul Tetris dari Footer utama, membuat tampilan footer lebih bersih, modern, dan selaras dengan estetika minimalis gelap NOMINA.
+
 ### [Added]
 - **Brand Identity & Favicon Refresh (`public/nomina_logo.png`, `src/components/icons.tsx`, `src/app/layout.tsx`):**
   - **3D Layered Logo Integration:** Mengganti fallback teks lama `"nomina."` + `"10 YEARS OF PEOPLE."` pada komponen [NominaLogo](file:///Users/dicky/Work/nomina-second/src/components/icons.tsx) dan `NominaLogoDark` dengan aset logo 3D layered resmi [nomina_logo.png](file:///Users/dicky/Work/nomina-second/public/nomina_logo.png) menggunakan Next.js `Image` berfitur `priority` dan `object-contain`.

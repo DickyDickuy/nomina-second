@@ -7,7 +7,7 @@ export const FooterSocialIcons = ({ className }: { className: string }) => {
             <Link href="https://www.instagram.com/nominacreative/" target="_blank" aria-label="Instagram">
                 <span><InstagramSvg /></span>
             </Link>{" "}
-            <Link href="https://www.linkedin.com/company/nomina-indonesia/" target="_blank" aria-label="LinkedIn">
+            <Link href="https://www.linkedin.com/company/nominacreative/home/" target="_blank" aria-label="LinkedIn">
                 <span><LinkedinSvg width="18" height="18" /></span>
             </Link>{" "}
             <Link href="https://www.facebook.com/nominaindonesia?locale=id_ID" aria-label="Facebook">
@@ -22,7 +22,7 @@ export const FooterSocialIconsTwo = ({ className }: { className: string }) => {
             <Link href="https://www.instagram.com/nominacreative/" target="_blank" aria-label="Instagram">
                 <span><InstagramSvg /></span>
             </Link>{" "}
-            <Link href="https://www.linkedin.com/company/nomina-indonesia/" target="_blank" aria-label="LinkedIn">
+            <Link href="https://www.linkedin.com/company/nominacreative/home/" target="_blank" aria-label="LinkedIn">
                 <span><LinkedinSvg width="18" height="18" /></span>
             </Link>{" "}
             <Link href="#" aria-label="Facebook">

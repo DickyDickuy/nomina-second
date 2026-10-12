@@ -180,7 +180,7 @@ export default function Home() {
     },
     sameAs: [
       "https://www.instagram.com/nominacreative/",
-      "https://www.linkedin.com/company/nomina-indonesia/",
+      "https://www.linkedin.com/company/nominacreative/home/",
       "https://www.facebook.com/nominaindonesia?locale=id_ID",
     ],
   };

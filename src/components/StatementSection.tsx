@@ -17,18 +17,38 @@ export function StatementSection() {
         </h2>
 
         {/* Subtitle */}
-        <h3 className="text-sm md:text-base font-bold uppercase tracking-[0.15em] text-nomina-black mb-4">
-          10 Tahun Membangun Event & Brand di Jakarta
+        <h3
+          className="font-body text-nomina-black max-w-2xl mb-3"
+          style={{
+            fontSize: "clamp(1rem, 2vw, 1.25rem)",
+            fontFamily: "var(--font-body)",
+            fontWeight: 700,
+            lineHeight: 1.4,
+          }}
+        >
+          10 Years of Building Events and Brands in Jakarta
         </h3>
 
         {/* Description */}
-        <p className="text-base md:text-lg leading-relaxed text-nomina-black/80 max-w-2xl mb-8">
-          Selama 10 tahun, NOMINA Creative telah menjadi <strong>event organizer Jakarta</strong> pilihan
-          ratusan brand ternama — dari <strong>corporate event</strong>, <strong>brand activation</strong>,
-          hingga <strong>exhibition</strong> dan product launch skala nasional.
+        <p
+          className="font-body leading-relaxed text-nomina-black max-w-2xl mb-8"
+          style={{
+            fontSize: "clamp(1rem, 2vw, 1.25rem)",
+            fontFamily: "var(--font-body)",
+            fontWeight: 700,
+          }}
+        >
+          For 10 years, NOMINA Creative has been the event organizer of choice in Jakarta for hundreds of leading brands, from corporate events and brand activations to exhibitions and national-scale product launches. From sound system and event furniture rentals to technical custom production, we connect ideas, content, people, and technology to create memorable and impactful communication.
+        </p>
+
+        {/* Indonesian SEO keywords - invisible visually, indexed by search engines */}
+        <span className="sr-only">
+          Selama 10 tahun, NOMINA Creative telah menjadi event organizer Jakarta pilihan
+          ratusan brand ternama untuk corporate event, brand activation,
+          hingga exhibition dan product launch skala nasional.
           Dari sewa sound system, sewa kursi event, hingga technical custom production,
           kami menghubungkan ide, konten, manusia, dan teknologi menjadi komunikasi yang berkesan dan berdampak.
-        </p>
+        </span>
 
         {/* CTA */}
         <div>

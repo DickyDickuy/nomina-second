@@ -149,7 +149,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Deadline</span>
-                                        <p className="tp-career-details-sidebar-val mb-0">{data.deadline}</p>
+                                        <p className="tp-career-details-sidebar-val mb-0" suppressHydrationWarning>{data.deadline}</p>
                                     </div>
                                 </div>
 

@@ -21,7 +21,7 @@ const menuItems = [
 const socialItems = [
     { label: "Instagram", link: "https://instagram.com" },
     { label: "Behance", link: "https://behance.net" },
-    { label: "LinkedIn", link: "https://linkedin.com" },
+    { label: "LinkedIn", link: "https://www.linkedin.com/company/nominacreative/home/" },
 ];
 
 const ContactUsMain = () => {

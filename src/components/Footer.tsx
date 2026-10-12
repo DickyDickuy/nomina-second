@@ -1,6 +1,5 @@
 "use client";
 
-import Tetris from "@/components/Tetris";
 
 const QUICK_LINKS = [
   { label: "HOME", href: "/" },
@@ -25,7 +24,7 @@ const SOCIAL_LINKS = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/company/nomina-indonesia/",
+    href: "https://www.linkedin.com/company/nominacreative/home/",
     icon: (
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.6667 5.33337C11.7276 5.33337 12.7449 5.75481 13.4951 6.50495C14.2452 7.2551 14.6667 8.27251 14.6667 9.33337V14H12V9.33337C12 8.97975 11.8595 8.64061 11.6095 8.39056C11.3594 8.14052 11.0203 8.00004 10.6667 8.00004C10.3131 8.00004 9.97391 8.14052 9.72386 8.39056C9.47381 8.64061 9.33333 8.97975 9.33333 9.33337V14H6.66667V9.33337C6.66667 8.27251 7.08809 7.2551 7.83824 6.50495C8.58838 5.75481 9.60581 5.33337 10.6667 5.33337Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -54,25 +53,6 @@ export function Footer() {
         fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
       }}
     >
-      {/* Decorative self-playing Tetris strip */}
-      <div
-        style={{
-          width: "100%",
-          height: "80px",
-          backgroundColor: "#ffffff",
-          overflow: "hidden",
-        }}
-      >
-        <Tetris
-          boardColor="transparent"
-          gridColor="transparent"
-          colors={["#FF3800"]}
-          cellSize={15}
-          gap={1}
-          dropSpeed={2.5}
-          movement={6}
-        />
-      </div>
       {/* Main footer content */}
       <div
         className="px-6 md:px-[60px] pt-20 md:pt-[160px] pb-10 md:pb-[35px] grid grid-cols-1 md:grid-cols-[4fr_5fr_3fr] gap-12 md:gap-0 items-start"

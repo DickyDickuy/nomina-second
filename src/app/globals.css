@@ -463,7 +463,7 @@
    ========================================================================== */
 #nomina-home h1,
 #nomina-home h2,
-#nomina-home h3,
+#nomina-home h3:not(.font-body),
 #nomina-home h4,
 #nomina-home h5,
 #nomina-home h6 {

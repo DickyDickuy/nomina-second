@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import thumbImg from "../../../public/assets/img/event/career_banner_real.jpg";
 import CursorAndBackgroundProvider from "@/components/provider/CustomCursorProvider";
 import ScrollSmoothProvider from "@/components/provider/ScrollSmoothProvider";
@@ -9,17 +10,27 @@ import CreativeAgencyFooter from '@/layouts/footers/CreativeAgencyFooter';
 import AboutUsBanner from '@/components/banner/AboutUsBanner';
 import CareerDetailsDynamic, { JobDetailsData } from "@/components/career/CareerDetailsDynamic";
 
+const getTwoWeeksDeadline = () => {
+    const d = new Date();
+    d.setDate(d.getDate() + 14);
+    return d.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+};
+
 const jobData: JobDetailsData = {
     title: '3D Visualisation',
     department: 'Design & Visuals',
     location: 'Jakarta (On-site)',
-    date: '25 Jul 2026',
+    date: '12 Oct 2026',
     type: 'Full time',
     summary: 'We are seeking a 3D Visualisation specialist to create immersive visual experiences, stage designs, and interactive event assets for Nomina’s creative projects and brand activations.',
     salary: 'Competitive & Negotiable',
     salarySubtext: 'Based on Experience & Portfolio',
     experience: '1+ Years Experience',
-    deadline: '31 Aug 2026',
+    deadline: '26 Oct 2026',
     responsibilities: [
         'Design 3D stages, booths, and spatial environments for events.',
         'Create 3D motion graphics and animations for digital displays.',
@@ -41,6 +52,11 @@ const jobData: JobDetailsData = {
 };
 
 const Career3dDesignerMain = () => {
+    const currentJobData = useMemo(() => ({
+        ...jobData,
+        deadline: getTwoWeeksDeadline()
+    }), []);
+
     return (
         <ScrollSmoothProvider>
             <CursorAndBackgroundProvider bgColor="#ffffff" customClass="">
@@ -52,7 +68,7 @@ const Career3dDesignerMain = () => {
                             <div id="smooth-content">
                                 <main>
                                     <AboutUsBanner image={thumbImg} />
-                                    <CareerDetailsDynamic data={jobData} />
+                                    <CareerDetailsDynamic data={currentJobData} />
                                 </main>
                                 <CreativeAgencyFooter />
                             </div>
@@ -65,3 +81,4 @@ const Career3dDesignerMain = () => {
 };
 
 export default Career3dDesignerMain;
+
