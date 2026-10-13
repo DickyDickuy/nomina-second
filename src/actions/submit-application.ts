@@ -86,7 +86,7 @@ export async function submitApplication(
     }
 
     if (portfolio && portfolio.length > 500) {
-      errors.portfolio = 'Portfolio link must be 500 characters or fewer.';
+      errors.portfolio = 'Profile or portfolio link must be 500 characters or fewer.';
     }
 
     if (salary && salary.length > 100) {

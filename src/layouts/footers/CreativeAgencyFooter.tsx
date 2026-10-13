@@ -42,9 +42,9 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                                 <h3 className="tp-footer-widget-title-sm pre mb-25 mt-30">Open Roles</h3>
                                 <div className="tp-footer-widget-menu">
                                     <ul>
-                                        <li><Link href="/job-application?jobId=project-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application?jobId=project-manager'; }}>Project Manager</Link></li>{" "}
-                                        <li><Link href="/job-application?jobId=production-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application?jobId=production-manager'; }}>Production Manager</Link></li>{" "}
-                                        <li><Link href="/job-application?jobId=sales-and-account-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/job-application?jobId=sales-and-account-manager'; }}>Sales &amp; Account Manager</Link></li>{" "}
+                                        <li><Link href="/career-project-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/career-project-manager'; }}>Project Manager</Link></li>{" "}
+                                        <li><Link href="/career-production-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/career-production-manager'; }}>Production Manager</Link></li>{" "}
+                                        <li><Link href="/career-sales-account-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/career-sales-account-manager'; }}>Sales &amp; Account Manager</Link></li>{" "}
                                         <li><Link href="/career-3d-visualisation" onClick={(e) => { e.preventDefault(); window.location.href = '/career-3d-visualisation'; }}>3D Visualisation</Link></li>
                                     </ul>
                                 </div>

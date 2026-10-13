@@ -196,8 +196,8 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
                         {/* Portfolio */}
                         <div className="col-lg-12">
                             <div className="tp-contact-form-input mb-20">
-                                <label>Share your portfolio link (Behance, Dribbble, GitHub, etc.)</label>
-                                <input name="portfolio" type="text" placeholder="https://behance.net/yourprofile" />
+                                <label>LinkedIn Profile or Portfolio Link (LinkedIn, Instagram, Drive, etc.)</label>
+                                <input name="portfolio" type="text" placeholder="https://linkedin.com/in/yourname or instagram.com/username" />
                                 {state.errors?.portfolio && (
                                     <span style={{ color: '#dc2626', fontSize: '13px', marginTop: '4px', display: 'block' }}>
                                         {state.errors.portfolio}

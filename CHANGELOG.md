@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Added]
+- **Career Detail Pages for Project Manager, Production Manager, Sales and Account Manager:**
+  - New components [CareerProjectManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerProjectManagerMain.tsx), [CareerProductionManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerProductionManagerMain.tsx), and [CareerSalesAccountManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerSalesAccountManagerMain.tsx), mirroring `Career3dDesignerMain.tsx` with real English job copy and the dynamic `getTwoWeeksDeadline()` (+14 days) logic.
+  - New routes `/career-project-manager`, `/career-production-manager`, `/career-sales-account-manager` with unique metadata (title, description, canonical, Open Graph, Twitter), auto-listed in the sitemap.
+  - Registered the routes in `animationConfig.ts`, pointed Open Roles cards ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)) and both footers to the new pages, and added entries to `public/llms.txt`.
+  - Application form and server action already accepted all three `job_id` values, so no change was needed there. The "Apply for the Job" button maps each title to the matching `jobId`.
+
 ### [Changed]
+- **Job Application Form Field Copywriting (`src/components/forms/ApplicationForm.tsx` & `src/actions/submit-application.ts`):**
+  - Updated the outdated and tech-specific portfolio input label `Share your portfolio link (Behance, Dribbble, GitHub, etc.)` to `LinkedIn Profile or Portfolio Link (LinkedIn, Instagram, Drive, etc.)`.
+  - Updated placeholder to `https://linkedin.com/in/yourname or instagram.com/username` to fit Indonesian event organizer and creative agency talent standards (Sales, PM, Production, and 3D Visualisation).
+- **Project Manager Page Metadata Title (`src/app/(agntix)/career-project-manager/page.tsx`):**
+  - Updated page title and social metadata title to `"Hiring: Project Manager (Jakarta) | NOMINA Creative"`.
 - **Statement Section Copywriting Typography & English Transition (`src/components/StatementSection.tsx` & `src/app/globals.css`):**
   - Converted the copywriting under `"WE DESIGN COMMUNICATION ECOSYSTEMS."` into fluent, native creative agency English (`"10 Years of Building Events and Brands in Jakarta"` and `"For 10 years, NOMINA Creative has been the event organizer of choice in Jakarta for hundreds of leading brands, from corporate events and brand activations to exhibitions and national-scale product launches. From sound system and event furniture rentals to technical custom production, we connect ideas, content, people, and technology to create memorable and impactful communication."`).
   - Removed all em dashes (`—`) across both visible copy and accessible labels.

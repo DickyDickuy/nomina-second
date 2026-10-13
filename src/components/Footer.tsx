@@ -201,9 +201,9 @@ export function Footer() {
           </h3>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
             {[
-              { label: "PROJECT MANAGER", href: "/job-application?jobId=project-manager" },
-              { label: "PRODUCTION MANAGER", href: "/job-application?jobId=production-manager" },
-              { label: "SALES & ACCOUNT MANAGER", href: "/job-application?jobId=sales-and-account-manager" },
+              { label: "PROJECT MANAGER", href: "/career-project-manager" },
+              { label: "PRODUCTION MANAGER", href: "/career-production-manager" },
+              { label: "SALES & ACCOUNT MANAGER", href: "/career-sales-account-manager" },
               { label: "3D VISUALISATION", href: "/career-3d-visualisation" },
             ].map((link) => (
               <a

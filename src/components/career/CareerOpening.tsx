@@ -17,21 +17,21 @@ const CareerOpening = () => {
       openRoles: '(01 Open Role)',
       type: 'Full-Time',
       filterId: 'buttonFilter1',
-      link: '/job-application?jobId=project-manager'
+      link: '/career-project-manager'
     },
     {
       title: 'Production Manager',
       openRoles: '(01 Open Role)',
       type: 'Full-Time',
       filterId: 'buttonFilter2',
-      link: '/job-application?jobId=production-manager'
+      link: '/career-production-manager'
     },
     {
       title: 'Sales and Account Manager',
       openRoles: '(01 Open Role)',
       type: 'Full-Time',
       filterId: 'buttonFilter3',
-      link: '/job-application?jobId=sales-and-account-manager'
+      link: '/career-sales-account-manager'
     },
     {
       title: '3D Visualisation',

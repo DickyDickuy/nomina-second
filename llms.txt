@@ -9,7 +9,7 @@
 - [docs/POCKETBASE_RECAP.md](/docs/POCKETBASE_RECAP.md): Rekapitulasi skema, konfigurasi, keamanan PocketBase, dan blueprint leads multi-website.
 
 ## Repository Map
-- `/src/app`: Rute halaman Next.js App Router (`/`, `/about`, `/portfolio`, `/career`, `/career-3d-visualisation`, `/job-application`, `/contact`), layout, dan route handlers (termasuk `/healthz` dan `sitemap.ts`).
+- `/src/app`: Rute halaman Next.js App Router (`/`, `/about`, `/portfolio`, `/career`, `/career-3d-visualisation`, `/career-project-manager`, `/career-production-manager`, `/career-sales-account-manager`, `/job-application`, `/contact`), layout, dan route handlers (termasuk `/healthz` dan `sitemap.ts`).
 - `/src/actions`: Next.js Server Actions untuk operasi server-side yang aman (mis. PocketBase).
 - `/src/components`: Komponen UI (primitives `ui/` dari shadcn, ikon kustom `icons.tsx`, komponen `contacts/NominaInteractiveMap.tsx` berbasis `react-leaflet`, dan komponen modular).
 - `/src/lib`: Helper dan utilitas (seperti `cn()`, PocketBase client dengan token caching/timeout, rate limiter, dan CV upload validator).
