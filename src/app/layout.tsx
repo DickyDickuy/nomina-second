@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, News_Cycle } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const bebasNeue = Bebas_Neue({
+const nasalization = localFont({
+  src: "../../public/fonts/Nasalization Rg.otf",
   weight: "400",
-  subsets: ["latin"],
+  style: "normal",
   display: "swap",
-  variable: "--font-heading",
+  variable: "--font-nasalization",
 });
 
-const newsCycle = News_Cycle({
-  weight: ["400", "700"],
-  subsets: ["latin"],
+const aspekta = localFont({
+  src: "../../public/fonts/variable/AspektaVF.woff2",
+  weight: "100 900",
+  style: "normal",
   display: "swap",
-  variable: "--font-body",
+  variable: "--font-aspekta",
 });
 
 const SITE_URL =
@@ -128,11 +130,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="id"
-      className={`${bebasNeue.variable} ${newsCycle.variable} antialiased scroll-smooth`}
-    >
-      <body className="min-h-full flex flex-col font-body">{children}</body>
-    </html>
+      <html
+        lang="id"
+        className={`${nasalization.variable} ${aspekta.variable} antialiased scroll-smooth`}
+      >
+        <body className="min-h-full flex flex-col font-body">{children}</body>
+      </html>
   );
 }

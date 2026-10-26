@@ -125,7 +125,7 @@ export function Navbar() {
             <StaggeredMenu
               isFixed={true}
               position="right"
-              colors={["#ff3800", "#ff9100ff", "#ffffff"]}
+              colors={["#e85002", "#fb5102", "#f9f9f9"]}
               items={staggeredMenuItems}
               displaySocials={false}
               menuButtonColor="#111111"

@@ -49,8 +49,8 @@ export function Footer() {
     <footer
       style={{
         backgroundColor: "#121315",
-        color: "#ffffff",
-        fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+        color: "#f9f9f9",
+        fontFamily: "var(--font-body), 'Aspekta', sans-serif",
       }}
     >
       {/* Main footer content */}
@@ -61,13 +61,13 @@ export function Footer() {
         <div className="flex flex-col justify-between md:pb-10">
           <h2
             style={{
-              fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
+              fontFamily: "var(--font-heading), 'Nasalization', sans-serif",
               fontStyle: "normal",
               fontWeight: 700,
               fontSize: "clamp(45px, 8vw, 80px)",
               lineHeight: 1,
               letterSpacing: "-0.06em",
-              color: "#ffffff",
+              color: "#f9f9f9",
               margin: 0,
               marginBottom: 30,
             }}
@@ -132,7 +132,7 @@ export function Footer() {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                backgroundColor: "#FF3203",
+                 backgroundColor: "#E85002",
                 display: "inline-block",
                 flexShrink: 0,
                 transform: "translateY(-1px)",
@@ -191,7 +191,7 @@ export function Footer() {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                backgroundColor: "#FF3203",
+                 backgroundColor: "#E85002",
                 display: "inline-block",
                 flexShrink: 0,
                 transform: "translateY(-1px)",
@@ -258,7 +258,7 @@ export function Footer() {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                backgroundColor: "#FF3203",
+                 backgroundColor: "#E85002",
                 display: "inline-block",
                 flexShrink: 0,
                 transform: "translateY(-1px)",
@@ -334,11 +334,11 @@ export function Footer() {
           style={{
             fontSize: "23vw",
             fontWeight: 900,
-            color: "#FF3203",
+            color: "#E85002",
             textAlign: "center",
             letterSpacing: "-0.03em",
             lineHeight: 0.8,
-            fontFamily: "var(--tp-ff-clash-semibold, 'Clash Display', sans-serif)",
+            fontFamily: "var(--font-heading), 'Nasalization', sans-serif",
             whiteSpace: "nowrap",
             width: "100%",
             display: "block",
@@ -352,14 +352,14 @@ export function Footer() {
       {/* Hover styles */}
       <style>{`
         .footer-social-icon:hover {
-          background-color: #FF3203 !important;
+          background-color: #E85002 !important;
         }
         .footer-quick-link:hover {
-          background-color: #FF3203 !important;
-          color: #ffffff !important;
+          background-color: #E85002 !important;
+          color: #f9f9f9 !important;
         }
         .footer-contact-link:hover {
-          color: #FF3203 !important;
+          color: #E85002 !important;
         }
       `}</style>
     </footer>

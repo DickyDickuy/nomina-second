@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Changed]
+- **Fase 1 Feedback Implementation — Brand Fonts (`Nasalization` & `Aspekta`) & Color Palette Tokens (Slide 1 & 2):**
+  - Integrated local brand fonts `Nasalization Rg.otf` (`--font-nasalization` / `--font-heading`) and variable `AspektaVF.woff2` (`--font-aspekta` / `--font-body`, weights `100 900`) in [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx), [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css), and [_typography.scss](file:///Users/dicky/Work/nomina-second/public/assets/scss/utils/_typography.scss).
+  - Updated brand color tokens and the 4-stop brand gradient (`linear-gradient(135deg, #000000 0%, #c10801 35%, #f16001 70%, #d9c3ab 100%)`) across [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css), [agntix-globals.scss](file:///Users/dicky/Work/nomina-second/src/app/(agntix)/agntix-globals.scss), [_colors.scss](file:///Users/dicky/Work/nomina-second/public/assets/scss/utils/_colors.scss), [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx), and [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx):
+    - `--color-nomina-orange`: `#e85002`, `--color-nomina-orange-bright`: `#fb5102`
+    - `--color-nomina-black`: `#000000`, `--color-nomina-white`: `#f9f9f9`
+    - `--color-nomina-gray`: `#646464`, `--color-nomina-light-gray`: `#a7a7a7`, `--color-nomina-dark-gray`: `#333333`
+    - `--color-nomina-surface`: `#cdcdcb`, `--color-nomina-navy`: `#1c1e2a`
+
 ### [Added]
 - **Career Detail Pages for Project Manager, Production Manager, Sales and Account Manager:**
   - New components [CareerProjectManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerProjectManagerMain.tsx), [CareerProductionManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerProductionManagerMain.tsx), and [CareerSalesAccountManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerSalesAccountManagerMain.tsx), mirroring `Career3dDesignerMain.tsx` with real English job copy and the dynamic `getTwoWeeksDeadline()` (+14 days) logic.

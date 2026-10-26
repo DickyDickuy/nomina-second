@@ -171,14 +171,33 @@ $font-url: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..
 
 
 
+// Nasalization & Aspekta (NOMINA Brand Fonts — Slide 2)
+@font-face {
+  font-family: 'Nasalization';
+  src: url('/fonts/Nasalization%20Rg.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Aspekta';
+  src: url('/fonts/variable/AspektaVF.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+
 // font family
 $font-family: (
   'ff': ('bbstrata': "'BBStrataProSEF-Bold', sans-serif",
     'teko': "'Teko', serif",
-    'body': "'Inter', sans-serif",
-    'heading': "'Inter', sans-serif",
-    'inter': "'Inter', sans-serif",
-    'p': "'Inter', sans-serif",
+    'body': "var(--font-body), 'Aspekta', sans-serif",
+    'heading': "var(--font-heading), 'Nasalization', sans-serif",
+    'inter': "var(--font-body), 'Aspekta', sans-serif",
+    'p': "var(--font-body), 'Aspekta', sans-serif",
+    'nasalization': "var(--font-heading), 'Nasalization', sans-serif",
+    'aspekta': "var(--font-body), 'Aspekta', sans-serif",
     'besley': "'Besley', serif",
     'mango-thin': "'MangoGrotesqueThin', serif",
     'mango-light': "'MangoGrotesqueLight', serif",
@@ -186,11 +205,11 @@ $font-family: (
     'mango-medium': "'MangoGrotesqueMed', serif",
     'mango-semibold': "'MangoGrotesqueSemBd', serif",
     'mango-bold': "'MangoGrotesque', serif",
-    'clash-light': "'ClashDisplay-Light', serif",
-    'clash-regular': "'ClashDisplay-Regular', serif",
-    'clash-medium': "'ClashDisplay-Medium', serif",
-    'clash-semibold': "'ClashDisplay-Semibold', serif",
-    'clash-bold': "'ClashDisplay-Bold', serif",
+    'clash-light': "var(--font-heading), 'Nasalization', sans-serif",
+    'clash-regular': "var(--font-heading), 'Nasalization', sans-serif",
+    'clash-medium': "var(--font-heading), 'Nasalization', sans-serif",
+    'clash-semibold': "var(--font-heading), 'Nasalization', sans-serif",
+    'clash-bold': "var(--font-heading), 'Nasalization', sans-serif",
     'grotesk': "'Space Grotesk', serif",
     'platform': "'Platform', serif",
     'playfair': "'Playfair Display', serif",
