@@ -30,7 +30,7 @@ export function HeroSection() {
   }, []);
 
   return (
-    <section className="relative h-[calc(100svh-58px)] min-h-[500px] w-full overflow-hidden bg-nomina-black">
+    <section className="relative w-full h-[calc(100svh-58px)] min-h-[420px] md:min-h-[500px] overflow-hidden bg-white md:bg-nomina-black">
       <h1 className="sr-only">
         NOMINA Creative — Event Organizer Jakarta Terdekat | Sewa Sound System, Sewa Kursi Event, LED Screen &amp; Technical Custom Production di Jakarta Selatan
       </h1>
@@ -43,7 +43,7 @@ export function HeroSection() {
         loop
         playsInline
         preload="auto"
-        className="absolute inset-0 w-full h-full object-cover z-0 transition-opacity duration-700"
+        className="absolute z-0 w-full left-0 top-1/2 -translate-y-1/2 aspect-video object-cover md:inset-0 md:top-0 md:translate-y-0 md:aspect-auto md:h-full transition-opacity duration-700"
       >
         <source
           src="https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4"
@@ -67,11 +67,11 @@ export function HeroSection() {
       {/* Bottom Hero Overlay Tagline */}
       <div className="absolute bottom-6 right-6 z-20 flex items-end justify-end pointer-events-none">
         {/* Hero Tagline */}
-        <div className="text-right text-white">
-          <p className="text-[10px] md:text-xs uppercase tracking-widest font-mono text-white/70">
+        <div className="text-right text-nomina-black md:text-white">
+          <p className="text-[10px] md:text-xs uppercase tracking-widest font-mono text-nomina-black/60 md:text-white/70">
             Special Edition
           </p>
-          <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-white">
+          <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-nomina-black md:text-white">
             10 Years of People
           </p>
         </div>

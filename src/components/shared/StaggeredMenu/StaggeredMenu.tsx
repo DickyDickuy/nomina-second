@@ -61,8 +61,9 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     const panelRef = useRef<HTMLElement | null>(null);
     const preLayersRef = useRef<HTMLDivElement | null>(null);
     const preLayerElsRef = useRef<HTMLDivElement[]>([]);
-    const plusHRef = useRef<HTMLSpanElement | null>(null);
-    const plusVRef = useRef<HTMLSpanElement | null>(null);
+    const barTopRef = useRef<HTMLSpanElement | null>(null);
+    const barMidRef = useRef<HTMLSpanElement | null>(null);
+    const barBotRef = useRef<HTMLSpanElement | null>(null);
     const iconRef = useRef<HTMLSpanElement | null>(null);
     const textInnerRef = useRef<HTMLSpanElement | null>(null);
     const toggleBtnRef = useRef<HTMLButtonElement | null>(null);
@@ -70,7 +71,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
     const openTlRef = useRef<gsap.core.Timeline | null>(null);
     const closeTweenRef = useRef<gsap.core.Tween | null>(null);
-    const spinTweenRef = useRef<gsap.core.Tween | null>(null);
+    const spinTweenRef = useRef<gsap.core.Timeline | null>(null);
     const textCycleAnimRef = useRef<gsap.core.Tween | null>(null);
     const colorTweenRef = useRef<gsap.core.Tween | null>(null);
     const busyRef = useRef(false);
@@ -79,12 +80,11 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         const ctx = gsap.context(() => {
             const panel = panelRef.current;
             const preContainer = preLayersRef.current;
-            const plusH = plusHRef.current;
-            const plusV = plusVRef.current;
-            const icon = iconRef.current;
-            const textInner = textInnerRef.current;
+            const barTop = barTopRef.current;
+            const barMid = barMidRef.current;
+            const barBot = barBotRef.current;
 
-            if (!panel || !plusH || !plusV || !icon) {
+            if (!panel || !barTop || !barMid || !barBot) {
                 return;
             }
 
@@ -96,18 +96,21 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             if (preContainer) {
                 gsap.set(preContainer, { xPercent: 0, opacity: 1 });
             }
-            gsap.set(plusH, { transformOrigin: "50% 50%", rotate: 0 });
-            gsap.set(plusV, { transformOrigin: "50% 50%", rotate: 90 });
-            gsap.set(icon, { rotate: 0, transformOrigin: "50% 50%" });
-
-
-            if (toggleBtnRef.current) {
-                gsap.set(toggleBtnRef.current, { color: menuButtonColor });
-            }
+            gsap.set([barTop, barMid, barBot], { transformOrigin: "50% 50%", y: 0, rotate: 0, scaleX: 1, opacity: 1 });
         });
 
         return () => ctx.revert();
-    }, [menuButtonColor, position]);
+    }, [position]);
+
+    // Keep the closed-state color in sync (e.g. white at top of page, black once scrolled)
+    // without re-running the layout effect, so an open panel is never reset.
+    React.useEffect(() => {
+        const btn = toggleBtnRef.current;
+        if (btn && !openRef.current) {
+            colorTweenRef.current?.kill();
+            gsap.to(btn, { color: menuButtonColor, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+        }
+    }, [menuButtonColor]);
 
     const buildOpenTimeline = useCallback(() => {
         const panel = panelRef.current;
@@ -268,20 +271,24 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     }, [position]);
 
     const animateIcon = useCallback((opening: boolean) => {
-        const icon = iconRef.current;
+        const barTop = barTopRef.current;
+        const barMid = barMidRef.current;
+        const barBot = barBotRef.current;
 
-        if (!icon) {
+        if (!barTop || !barMid || !barBot) {
             return;
         }
 
         spinTweenRef.current?.kill();
 
-        spinTweenRef.current = gsap.to(icon, {
-            rotate: opening ? 225 : 0,
-            duration: opening ? 0.8 : 0.35,
-            ease: opening ? "power4.out" : "power3.inOut",
-            overwrite: "auto",
+        // Simple burger -> X morph: outer bars slide to center and rotate, middle bar fades out.
+        const tl = gsap.timeline({
+            defaults: { duration: opening ? 0.45 : 0.35, ease: opening ? "power3.out" : "power3.inOut" },
         });
+        tl.to(barTop, { y: opening ? 6 : 0, rotate: opening ? 45 : 0 }, 0)
+            .to(barMid, { opacity: opening ? 0 : 1, scaleX: opening ? 0 : 1 }, 0)
+            .to(barBot, { y: opening ? -6 : 0, rotate: opening ? -45 : 0 }, 0);
+        spinTweenRef.current = tl;
     }, []);
 
     const animateColor = useCallback(
@@ -395,12 +402,13 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                     onClick={toggleMenu}
                     type="button"
                 >
-                    <span style={{ fontWeight: 700, fontSize: 'inherit', lineHeight: 1, whiteSpace: 'nowrap', minWidth: '4.75rem', display: 'inline-block', color: '#111111' }} aria-hidden="true">
+                    <span style={{ fontWeight: 700, fontSize: 'inherit', lineHeight: 1, whiteSpace: 'nowrap', minWidth: '4.75rem', display: 'inline-block', color: 'inherit' }} aria-hidden="true">
                         <span ref={textInnerRef}>{menuLabel}</span>
                     </span>
                     <span ref={iconRef} className={styles.icon} aria-hidden="true">
-                        <span ref={plusHRef} className={styles.iconLine} />
-                        <span ref={plusVRef} className={`${styles.iconLine} ${styles.iconLineV}`} />
+                        <span ref={barTopRef} className={`${styles.iconLine} ${styles.iconLineTop}`} />
+                        <span ref={barMidRef} className={`${styles.iconLine} ${styles.iconLineMid}`} />
+                        <span ref={barBotRef} className={`${styles.iconLine} ${styles.iconLineBot}`} />
                     </span>
                 </button>
             </header>

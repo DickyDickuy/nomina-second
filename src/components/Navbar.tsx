@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NominaLogo } from "@/components/icons";
@@ -23,6 +23,7 @@ export function Navbar() {
 
   const [scrolled, setScrolled] = useState(!isLandingPage);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const navRef = useRef<HTMLElement | null>(null);
 
   const staggeredMenuItems = NAV_LINKS.map(link => {
     const isHashLink = link.href.startsWith('#');
@@ -37,8 +38,14 @@ export function Navbar() {
   useEffect(() => {
     function handleScroll() {
       if (isLandingPage) {
-        // Transition when scrolled past the hero section (viewport height minus navbar height)
-        setScrolled(window.scrollY >= window.innerHeight - 58);
+        // Hero sits right above the navbar and its height adapts to the video on mobile,
+        // so switch once the hero has (almost) scrolled out of view.
+        const hero = navRef.current?.previousElementSibling as HTMLElement | null;
+        if (hero) {
+          setScrolled(hero.getBoundingClientRect().bottom <= 29);
+        } else {
+          setScrolled(window.scrollY >= window.innerHeight - 58);
+        }
       }
 
       // Calculate scroll progress
@@ -49,12 +56,17 @@ export function Navbar() {
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
   }, [isLandingPage]);
 
   return (
     <>
       <nav
+        ref={navRef}
         style={{ zIndex: 999999 }}
         className={cn(
           "nav-bar w-full h-[58px] flex items-center bg-white",

@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Application form and server action already accepted all three `job_id` values, so no change was needed there. The "Apply for the Job" button maps each title to the matching `jobId`.
 
 ### [Changed]
+- **Mobile Hero (pilcommunication.com style), Burger Animation (`Navbar.tsx`, `HeroSection.tsx`, `StaggeredMenu.tsx`, `StaggeredMenu.module.scss`):**
+  - On mobile the hero is a full-height white screen with the showreel as a 16:9 band centered vertically; logo and Menu sit on the white background in dark color, tagline is dark. Desktop keeps the full-screen video hero with white text.
+  - Scroll threshold in the navbar is based on the real hero height, with a resize listener.
+  - Replaced the plus icon with a 3-bar burger that morphs into an X (GSAP) when the menu opens.
+  - Color sync moved to its own effect so scrolling while the menu is open no longer resets the panel animation state.
 - **Job Application Form Field Copywriting (`src/components/forms/ApplicationForm.tsx` & `src/actions/submit-application.ts`):**
   - Updated the outdated and tech-specific portfolio input label `Share your portfolio link (Behance, Dribbble, GitHub, etc.)` to `LinkedIn Profile or Portfolio Link (LinkedIn, Instagram, Drive, etc.)`.
   - Updated placeholder to `https://linkedin.com/in/yourname or instagram.com/username` to fit Indonesian event organizer and creative agency talent standards (Sales, PM, Production, and 3D Visualisation).
