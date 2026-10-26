@@ -62,7 +62,12 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/career-3d-designer",
-        destination: "/career-3d-visualisation",
+        destination: "/career-3d-visualizer",
+        permanent: true,
+      },
+      {
+        source: "/career-3d-visualisation",
+        destination: "/career-3d-visualizer",
         permanent: true,
       },
     ];

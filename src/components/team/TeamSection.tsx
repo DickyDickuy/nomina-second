@@ -306,9 +306,7 @@ const TeamSection = () => {
             className={`${styles.heading} tp_reveal_anim`}
             data-delay=".3"
           >
-            People behind
-            <br />
-            every project
+            The Visionaries
           </h2>
         </div>
 

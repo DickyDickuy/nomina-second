@@ -9,10 +9,10 @@ type Props = {
 };
 
 const JOB_META_MAP: Record<string, { title: string; description: string }> = {
-    '3d-visualisation': {
-        title: "Apply for 3D Visualisation — NOMINA Careers Jakarta",
+    '3d-visualizer': {
+        title: "Apply for 3D Visualizer — NOMINA Careers Jakarta",
         description:
-            "Submit your application and portfolio for the 3D Visualisation role at NOMINA Creative (Event Organizer Jakarta). Create immersive stage environments, motion graphics, and spatial visuals.",
+            "Submit your application and portfolio for the 3D Visualizer role at NOMINA Creative (Event Organizer Jakarta). Create immersive stage environments, motion graphics, and spatial visuals.",
     },
     'project-manager': {
         title: "Apply for Project Manager — NOMINA Careers Jakarta",
@@ -35,7 +35,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     const resolvedParams = await searchParams;
     const rawJobId = resolvedParams?.jobId;
     const rawKey = typeof rawJobId === 'string' ? rawJobId.toLowerCase() : Array.isArray(rawJobId) ? rawJobId[0]?.toLowerCase() : '';
-    const jobId = rawKey === '3d-designer' ? '3d-visualisation' : (rawKey || '');
+    const jobId = rawKey === '3d-designer' || rawKey === '3d-visualisation' ? '3d-visualizer' : (rawKey || '');
 
     const matched = JOB_META_MAP[jobId];
     if (matched) {
@@ -74,7 +74,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     return {
         title: "Job Application — Join NOMINA Event Organizer Jakarta",
         description:
-            "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualisation.",
+            "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualizer.",
         alternates: {
             canonical: `${SITE_URL}/job-application`,
         },
@@ -85,7 +85,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
             siteName: 'NOMINA Creative',
             title: "Job Application — Join NOMINA Event Organizer Jakarta",
             description:
-                "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualisation.",
+                "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualizer.",
             images: [
                 {
                     url: `${SITE_URL}/images/nomina-logo.jpeg`,
@@ -99,7 +99,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
             card: 'summary_large_image',
             title: "Job Application — Join NOMINA Event Organizer Jakarta",
             description:
-                "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualisation.",
+                "Submit your CV, portfolio, and application to join NOMINA Creative in South Jakarta. Open roles in Project Management, Production Management, Sales & Account Management, and 3D Visualizer.",
             images: [`${SITE_URL}/images/nomina-logo.jpeg`],
         },
     };

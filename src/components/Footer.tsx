@@ -204,7 +204,7 @@ export function Footer() {
               { label: "PROJECT MANAGER", href: "/career-project-manager" },
               { label: "PRODUCTION MANAGER", href: "/career-production-manager" },
               { label: "SALES & ACCOUNT MANAGER", href: "/career-sales-account-manager" },
-              { label: "3D VISUALISATION", href: "/career-3d-visualisation" },
+              { label: "3D VISUALIZER", href: "/career-3d-visualizer" },
             ].map((link) => (
               <a
                 key={link.label}

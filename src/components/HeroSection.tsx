@@ -63,19 +63,6 @@ export function HeroSection() {
           <WeatherWidget />
         </div>
       </div>
-
-      {/* Bottom Hero Overlay Tagline */}
-      <div className="absolute bottom-6 right-6 z-20 flex items-end justify-end pointer-events-none">
-        {/* Hero Tagline */}
-        <div className="text-right text-nomina-black md:text-white">
-          <p className="text-[10px] md:text-xs uppercase tracking-widest font-mono text-nomina-black/60 md:text-white/70">
-            Special Edition
-          </p>
-          <p className="text-xs md:text-sm font-bold uppercase tracking-wider text-nomina-black md:text-white">
-            10 Years of People
-          </p>
-        </div>
-      </div>
     </section>
   );
 }

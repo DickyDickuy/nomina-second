@@ -26,28 +26,28 @@ const jobData: JobDetailsData = {
     location: 'Jakarta (On-site)',
     date: '13 Oct 2026',
     type: 'Full time',
-    summary: 'We are seeking a detail-oriented Production Manager to oversee the technical and structural execution of events, managing vendors, stage builds, audio-visual setups, and on-site logistics.',
+    summary: 'Oversee technical and structural event execution, managing stage builds, AV installations, vendor logistics, and on-site production.',
     salary: 'Competitive & Negotiable',
     salarySubtext: 'Based on Experience & Expertise',
     experience: '4+ Years Experience',
     deadline: '', // Overridden by getTwoWeeksDeadline()
     responsibilities: [
-        'Oversee all technical and physical production aspects of events, including staging, lighting, audio, and visual installations.',
-        'Source, negotiate with, and manage third-party vendors and suppliers.',
-        'Ensure all structures and technical setups comply with safety regulations and quality standards.',
-        'Supervise the load-in, build-up, show run, and dismantling phases on-site.',
+        'Technical Production: Oversee all staging, lighting, audio, and visual installations for physical event setups.',
+        'Vendor Management: Source, negotiate with, and direct third-party vendors and equipment suppliers.',
+        'Quality & Safety: Ensure technical setups comply with safety standards and design specifications.',
+        'On-Site Supervision: Direct the full load-in, build-up, show-run, and dismantling operations on-site.',
     ],
     qualifications: [
-        'Extensive background in event production, technical direction, or stage management.',
-        'Deep understanding of technical equipment (sound, lighting, LED screens) and custom booth/stage fabrication.',
-        'Ability to read technical drawings and 3D renders to translate them into reality.',
-        'Strong crisis management skills and physical stamina for demanding on-site schedules.',
+        'Proven track record in event production, technical direction, or stage management.',
+        'Deep expertise in AV equipment (sound, lighting, LED screens) and custom stage/booth fabrication.',
+        'Ability to interpret technical drawings and 3D renders into physical builds.',
+        'Strong crisis management skills and physical stamina for demanding on-site operations.',
     ],
     benefits: [
-        'Hands-on role with direct impact on spectacular event executions.',
-        'Health insurance and wellness coverage.',
-        'Collaborative environment with top-tier creative and technical teams.',
-        'Opportunities to work with the latest event technologies.',
+        'Hands-on leadership role with direct impact on high-profile live events.',
+        'Comprehensive health and wellness coverage.',
+        'Collaborative culture working alongside top-tier creative and technical teams.',
+        'Direct access to cutting-edge event technologies and production tools.',
     ]
 };
 

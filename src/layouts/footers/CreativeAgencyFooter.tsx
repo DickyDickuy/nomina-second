@@ -45,7 +45,7 @@ const CreativeAgencyFooter: React.FC<FooterProps> = ({ bgColor = "#121315", clas
                                         <li><Link href="/career-project-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/career-project-manager'; }}>Project Manager</Link></li>{" "}
                                         <li><Link href="/career-production-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/career-production-manager'; }}>Production Manager</Link></li>{" "}
                                         <li><Link href="/career-sales-account-manager" onClick={(e) => { e.preventDefault(); window.location.href = '/career-sales-account-manager'; }}>Sales &amp; Account Manager</Link></li>{" "}
-                                        <li><Link href="/career-3d-visualisation" onClick={(e) => { e.preventDefault(); window.location.href = '/career-3d-visualisation'; }}>3D Visualisation</Link></li>
+                                        <li><Link href="/career-3d-visualizer" onClick={(e) => { e.preventDefault(); window.location.href = '/career-3d-visualizer'; }}>3D Visualizer</Link></li>
                                     </ul>
                                 </div>
                             </div>

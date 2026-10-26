@@ -265,7 +265,7 @@ export const animationConfig: Record<string, (() => void)[]> = {
     ],
     //career pages
     "/career": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
-    "/career-3d-visualisation": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
+    "/career-3d-visualizer": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
     "/career-project-manager": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
     "/career-production-manager": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],
     "/career-sales-account-manager": [careerAnimation, textRevealAnimation, animationParagraph, footerVerticalStretchAnim],

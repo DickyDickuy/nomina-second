@@ -171,22 +171,7 @@ $font-url: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..
 
 
 
-// Nasalization & Aspekta (NOMINA Brand Fonts — Slide 2)
-@font-face {
-  font-family: 'Nasalization';
-  src: url('/fonts/Nasalization%20Rg.otf') format('opentype');
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Aspekta';
-  src: url('/fonts/variable/AspektaVF.woff2') format('woff2');
-  font-weight: 100 900;
-  font-display: swap;
-  font-style: normal;
-}
+// Nasalization & Aspekta are loaded via next/font/local in src/app/layout.tsx (src/fonts/)
 
 // font family
 $font-family: (

@@ -1,42 +1,65 @@
-const SERVICES = [
+"use client";
+
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
+interface ServiceItem {
+  title: string;
+  subtitle: string;
+  description: string;
+  href: string;
+}
+
+const SERVICES: ServiceItem[] = [
   {
     title: "Event Organizer",
     subtitle: "Corporate Event, Brand Activation, Exhibition & Roadshow Jakarta",
     description:
-      "Jasa event organizer Jakarta terdekat untuk corporate event, brand activation, exhibition, product launch, roadshow, dan hybrid event di Jakarta Selatan & seluruh Indonesia.",
+      "Bringing events of all scales to life—from corporate conferences to creative brand activations—through meticulous management and flawless execution.",
     href: "#",
   },
   {
     title: "Technical Custom Production",
     subtitle: "Custom Stage, Booth Pameran & Instalasi Kreatif",
     description:
-      "Produksi panggung kustom, booth pameran, backdrop, instalasi kreatif, lighting system, dan konstruksi teknis event profesional di Jakarta.",
+      "Providing bespoke production solutions for stages, creative installations, and specialized technical structures tailored to your unique event concepts.",
     href: "#",
   },
   {
     title: "Rental Equipment",
     subtitle: "Sewa Sound System, Kursi Event, LED Screen & Staging Jakarta",
     description:
-      "Sewa sound system Jakarta, sewa kursi event, sewa LED screen, sewa staging, sewa lighting rig — rental alat event profesional lengkap di Jakarta Selatan.",
+      "Supplying high-quality technical equipment rentals for event and production needs, including professional sound systems, lighting, multimedia, and LED screens.",
     href: "#",
   },
   {
     title: "Web Development",
     subtitle: "Website, Microsite & Platform Digital Brand",
     description:
-      "Pembuatan website interaktif, microsite kampanye event, sistem registrasi online, dan platform digital brand untuk perusahaan Indonesia.",
+      "Building responsive, high-performance, and dynamic websites designed to strengthen your digital presence and optimize the overall user experience.",
     href: "#",
   },
   {
     title: "SaaS Management",
     subtitle: "Solusi Cloud & Digitalisasi Operasional Event",
     description:
-      "Pengelolaan solusi berbasis cloud dan produk SaaS untuk operasional event maupun transformasi digital perusahaan.",
+      "Managing, integrating, and optimizing Software as a Service (SaaS) systems to streamline operational efficiency and scale your digital workflows.",
     href: "#",
   },
 ];
 
+const EXPAND_TRANSITION = {
+  type: "spring" as const,
+  stiffness: 260,
+  damping: 28,
+  mass: 0.9,
+};
+
 export function ServicesSection() {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const hasActive = activeIndex !== null;
+
   return (
     <section
       id="services"
@@ -44,10 +67,10 @@ export function ServicesSection() {
       aria-label="Layanan NOMINA Creative — Event Organizer, Rental Equipment & Technical Production Jakarta"
     >
       {/* Section title */}
-      <div className="text-center pt-16 pb-6 md:pt-24 md:pb-8">
+      <div className="text-center pt-16 pb-6 md:pt-24 md:pb-10">
         <h2
-          className="font-heading font-bold text-nomina-black uppercase text-center leading-[0.95] tracking-tight"
-          style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+          className="font-heading font-normal text-nomina-black uppercase text-center leading-[1.05] tracking-tight"
+          style={{ fontSize: "clamp(1.75rem, 4.2vw, 3.5rem)" }}
         >
           Services
         </h2>
@@ -57,25 +80,100 @@ export function ServicesSection() {
         </p>
       </div>
 
-      {/* Service rows */}
-      <div className="w-full">
-        {SERVICES.map((service) => (
-          <div
-            key={service.title}
-            className="service-row block w-full border-t border-nomina-black/10 last:border-b"
-          >
-            <div className="py-6 md:py-8 px-4 text-center">
-              <span
-                className="font-heading font-bold uppercase leading-[0.85] tracking-tight block"
-                style={{ fontSize: "clamp(3rem, 8vw, 7rem)" }}
+      {/* Interactive Expanding Service Rows */}
+      <div
+        className="w-full"
+        onMouseLeave={() => setActiveIndex(null)}
+      >
+        {SERVICES.map((service, index) => {
+          const isActive = activeIndex === index;
+
+          return (
+            <motion.div
+              key={service.title}
+              layout
+              transition={EXPAND_TRANSITION}
+              onMouseEnter={() => setActiveIndex(index)}
+              onFocus={() => setActiveIndex(index)}
+              onClick={() =>
+                setActiveIndex((prev) => (prev === index ? null : index))
+              }
+              tabIndex={0}
+              role="button"
+              aria-expanded={isActive}
+              className={cn(
+                "group relative w-full border-t border-nomina-black/15 last:border-b cursor-pointer overflow-hidden select-none outline-none transition-colors duration-300",
+                isActive
+                  ? "bg-nomina-orange text-nomina-white"
+                  : "bg-white text-nomina-black hover:bg-nomina-orange hover:text-nomina-white"
+              )}
+            >
+              <motion.div
+                layout="position"
+                transition={EXPAND_TRANSITION}
+                className={cn(
+                  "w-full max-w-5xl mx-auto px-6 md:px-12 flex flex-col items-center justify-center text-center transition-[padding] duration-300 ease-out",
+                  isActive
+                    ? "py-10 md:py-14"
+                    : hasActive
+                      ? "py-4 md:py-5"
+                      : "py-6 md:py-8"
+                )}
               >
-                {service.title}
-              </span>
-              {/* Hidden SEO-rich description for crawlers — invisible to users */}
-              <span className="sr-only">{service.subtitle}. {service.description}</span>
-            </div>
-          </div>
-        ))}
+                <motion.span
+                  layout="position"
+                  transition={EXPAND_TRANSITION}
+                  className={cn(
+                    "font-heading font-normal uppercase leading-[1.05] tracking-tight block text-center transition-[opacity,transform] duration-300",
+                    isActive
+                      ? "opacity-100 scale-[1.03]"
+                      : hasActive
+                        ? "opacity-45 scale-[0.96]"
+                        : "opacity-100 scale-100"
+                  )}
+                  style={{ fontSize: "clamp(1.5rem, 4.2vw, 3.75rem)" }}
+                >
+                  {service.title}
+                </motion.span>
+
+                {/* Expanding Description Container */}
+                <motion.div
+                  initial={false}
+                  animate={{
+                    height: isActive ? "auto" : 0,
+                    opacity: isActive ? 1 : 0,
+                    marginTop: isActive ? 16 : 0,
+                  }}
+                  transition={{
+                    height: EXPAND_TRANSITION,
+                    opacity: { duration: 0.25, delay: isActive ? 0.06 : 0 },
+                    marginTop: EXPAND_TRANSITION,
+                  }}
+                  className="w-full overflow-hidden flex justify-center"
+                >
+                  <p
+                    className={cn(
+                      "font-body max-w-2xl text-center transition-colors duration-300",
+                      isActive ? "text-nomina-white/95" : "text-nomina-gray"
+                    )}
+                    style={{
+                      fontSize: "clamp(0.95rem, 1.35vw, 1.125rem)",
+                      fontWeight: 500,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    {service.description}
+                  </p>
+                </motion.div>
+
+                {/* Hidden SEO-rich subtitle & description for crawlers */}
+                <span className="sr-only">
+                  {service.subtitle}. {service.description}
+                </span>
+              </motion.div>
+            </motion.div>
+          );
+        })}
       </div>
     </section>
   );

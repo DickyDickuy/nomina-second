@@ -9,7 +9,7 @@ const OPEN_POSITIONS = [
     { id: 'project-manager', title: 'Project Manager' },
     { id: 'production-manager', title: 'Production Manager' },
     { id: 'sales-and-account-manager', title: 'Sales and Account Manager' },
-    { id: '3d-visualisation', title: '3D Visualisation' },
+    { id: '3d-visualizer', title: '3D Visualizer' },
     { id: 'general', title: 'General Application' },
 ];
 
@@ -18,7 +18,7 @@ const ApplicationFormInner = ({ onReset }: { onReset: () => void }) => {
     const [state, formAction, isPending] = useActionState(submitApplication, {});
     const [selectedFile, setSelectedFile] = useState<File | null>(null);
     const rawQueryJobId = searchParams?.get('jobId') || 'general';
-    const queryJobId = rawQueryJobId.toLowerCase() === '3d-designer' ? '3d-visualisation' : rawQueryJobId;
+    const queryJobId = ['3d-designer', '3d-visualisation'].includes(rawQueryJobId.toLowerCase()) ? '3d-visualizer' : rawQueryJobId;
     const matchedJob = OPEN_POSITIONS.find(
         (p) => p.id.toLowerCase() === queryJobId.toLowerCase()
     );

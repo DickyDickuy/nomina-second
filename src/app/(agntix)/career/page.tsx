@@ -7,7 +7,7 @@ const SITE_URL =
 export const metadata: Metadata = {
     title: "Careers at NOMINA Creative — Lowongan Event Organizer Jakarta Selatan",
     description:
-        "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualisation di studio EO Jakarta & Custom Production.",
+        "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualizer di studio EO Jakarta & Custom Production.",
     alternates: {
         canonical: `${SITE_URL}/career`,
     },
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
         siteName: 'NOMINA Creative',
         title: "Careers at NOMINA Creative — Lowongan Event Organizer Jakarta Selatan",
         description:
-            "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualisation di studio EO Jakarta & Custom Production.",
+            "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualizer di studio EO Jakarta & Custom Production.",
         images: [
             {
                 url: `${SITE_URL}/images/nomina-logo.jpeg`,
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: "Careers at NOMINA Creative — Lowongan Event Organizer Jakarta Selatan",
         description:
-            "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualisation di studio EO Jakarta & Custom Production.",
+            "Bergabung dengan NOMINA Creative di Jakarta Selatan. Posisi terbuka: Project Manager, Production Manager, Sales and Account Manager, dan 3D Visualizer di studio EO Jakarta & Custom Production.",
         images: [`${SITE_URL}/images/nomina-logo.jpeg`],
     },
 };

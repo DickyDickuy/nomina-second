@@ -34,11 +34,11 @@ const CareerOpening = () => {
       link: '/career-sales-account-manager'
     },
     {
-      title: '3D Visualisation',
+      title: '3D Visualizer',
       openRoles: '(01 Open Role)',
       type: 'Full-Time',
       filterId: 'buttonFilter4',
-      link: '/career-3d-visualisation'
+      link: '/career-3d-visualizer'
     }
   ];
 

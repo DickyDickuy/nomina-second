@@ -5,17 +5,15 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 ---
 
 # Current Context & Focus
-- **Status Saat Ini:** 
-  0. **Feedback Deck Audit & Fase 1 Foundation (Selesai):**
-     - Mengaudit seluruh 19 slide di `feedback_screenshot/` (`0.jpg`–`18.jpg`) dan memetakannya ke dalam rencana berurutan di `IMPLEMENTATION_PLAN.md`.
-     - **Fase 1 Selesai:** Mengintegrasikan font lokal `Nasalization Rg.otf` (`--font-heading`) dan `AspektaVF.woff2` (`--font-body`) di [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx), [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css), dan [_typography.scss](file:///Users/dicky/Work/nomina-second/public/assets/scss/utils/_typography.scss), serta memperbarui palet warna brand (`#E85002`, `#FB5102`, `#000000`, `#F9F9F9`, `#646464`, `#A7A7A7`, `#333333`, `#CDCDCB`, `#1C1E2A`) dan 4-stop brand gradient di [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css), [agntix-globals.scss](file:///Users/dicky/Work/nomina-second/src/app/(agntix)/agntix-globals.scss), [_colors.scss](file:///Users/dicky/Work/nomina-second/public/assets/scss/utils/_colors.scss), [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx), dan [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx). `npm run check` lulus 100%.
-  1. **Career Detail Pages & Metadata Update (Selesai):**
-     - Dibuat [CareerProjectManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerProjectManagerMain.tsx), [CareerProductionManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerProductionManagerMain.tsx), dan [CareerSalesAccountManagerMain.tsx](file:///Users/dicky/Work/nomina-second/src/pages/career-details/CareerSalesAccountManagerMain.tsx) dengan copy Inggris, deadline dinamis +14 hari, route `/career-project-manager`, `/career-production-manager`, `/career-sales-account-manager`.
-- **Fokus Utama:** Melanjutkan ke **Fase 2** (Copywriting, Struktur Data, Komponen Spesifik & Migrasi Rute `/career-3d-visualizer` sesuai Slide 4, 5, 7, 9, 11, 12, 14–18), dilanjutkan ke **Fase 3** (Interactive Motion Components) dan **Fase 4** (Seamless Section Transitions).
-- **Next Steps:** 
-  1. **Fase 2:** Eksekusi revisi `WeatherWidget.tsx` & `HeroSection.tsx` (Slide 4), copywriting `AboutSection.tsx` (Slide 5), `ServicesSection.tsx` (Slide 7), `ClientsSection.tsx` (Slide 9), `TeamSection.tsx` (Slide 11), serta migrasi penuh `/career-3d-visualizer` + update copy & jam kerja di seluruh halaman detail karir (Slide 12, 14–18).
-  2. **Fase 3:** Implementasi komponen interaktif & motion sesuai referensi di Slide 6, 8, 9, 10, 11, 13.
-  3. **Fase 4:** Orkestrasi transisi antar-seksi (scroll + timer) sesuai Slide 3 dan verifikasi build.
+- **Status Saat Ini:**
+  0. **Feedback Audit & Fase 1 + Fase 2 + Services Motion (Selesai):**
+     - **12 Slide 100% COMPLETE:** Slide 0, 1, 2, 4, 5, 7, 12, 14, 15, 16, 17, 18.
+     - **Slide dengan Progress Aktif:** Slide 8 (85% — interactive spring hover accordion selesai), Slide 9 (70% — judul & struktur data URL selesai), Slide 11 (50% — judul The Visionaries selesai), Slide 3 (30% — pondasi motion aktif).
+     - **Slide Sisa untuk Fase 3 & 4 (Motion):** Slide 6 (About Card/Logo Reveal), Slide 9 (Clients Radial Wheel), Slide 10 (Portfolio 3D Carousel), Slide 11 (Team Pixel Grid), Slide 13 (Careers Horizontal Accordion), Slide 3 (Seamless Scroll/Timer Transitions).
+     - Dokumen perencanaan dan progress tracking diperbarui di artifact `IMPLEMENTATION_PLAN.md`.
+     - `npm run check` lulus 100% tanpa error.
+- **Fokus Utama:** **Fase 3** (Lanjut ke komponen motion berikutnya: Slide 6, 9, 10, 11, atau 13).
+- **Menunggu dari user:** Daftar URL resmi 17 klien untuk melengkapi `CLIENT_HREFS` di `ClientsSection.tsx`.
 
 ---
 

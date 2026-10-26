@@ -4,22 +4,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-  font-family: "Nasalization";
-  src: url("/fonts/Nasalization%20Rg.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Aspekta";
-  src: url("/fonts/variable/AspektaVF.woff2") format("woff2");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -494,23 +478,20 @@
    (Prevents styles from `agntix-globals.scss` overriding Tailwind utility classes 
    when soft-navigating from an inner page via Next.js router)
    ========================================================================== */
-#nomina-home h1,
-#nomina-home h2,
-#nomina-home h3:not(.font-body),
-#nomina-home h4,
-#nomina-home h5,
-#nomina-home h6 {
+:where(#nomina-home) h1,
+:where(#nomina-home) h2,
+:where(#nomina-home) h3:not(.font-body),
+:where(#nomina-home) h4,
+:where(#nomina-home) h5,
+:where(#nomina-home) h6 {
   font-family: var(--font-heading) !important;
-  margin: 0 !important;
-  line-height: inherit;
 }
 
-#nomina-home p {
+:where(#nomina-home) p {
   font-family: var(--font-body) !important;
-  margin: 0 !important;
 }
 
-#nomina-home a {
+:where(#nomina-home) a {
   text-decoration: none !important;
   color: inherit;
 }

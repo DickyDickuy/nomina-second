@@ -21,33 +21,33 @@ const getTwoWeeksDeadline = () => {
 };
 
 const jobData: JobDetailsData = {
-    title: '3D Visualisation',
+    title: '3D Visualizer',
     department: 'Design & Visuals',
     location: 'Jakarta (On-site)',
     date: '12 Oct 2026',
     type: 'Full time',
-    summary: 'We are seeking a 3D Visualisation specialist to create immersive visual experiences, stage designs, and interactive event assets for Nomina’s creative projects and brand activations.',
+    summary: 'Create immersive visual experiences, spatial stage designs, and interactive digital assets for NOMINA’s creative projects and brand activations.',
     salary: 'Competitive & Negotiable',
     salarySubtext: 'Based on Experience & Portfolio',
     experience: '1+ Years Experience',
     deadline: '26 Oct 2026',
     responsibilities: [
-        'Design 3D stages, booths, and spatial environments for events.',
-        'Create 3D motion graphics and animations for digital displays.',
-        'Collaborate with the creative director to visualize brand concepts.',
-        'Prepare 3D assets for production and technical rendering.',
+        'Spatial & Stage Design: Craft 3D stages, custom booths, and immersive spatial environments for live events.',
+        'Motion Graphics: Create 3D motion graphics and dynamic animations for digital displays and screen setups.',
+        'Concept Visualization: Collaborate alongside Creative Directors to translate high-level brand concepts into realistic renders.',
+        'Asset Production: Prepare technical 3D assets and high-resolution renders for production and construction teams.',
     ],
     qualifications: [
-        'Proficiency in 3D software (Blender, Cinema 4D, Maya, or similar).',
-        'Strong understanding of lighting, texturing, and rendering.',
-        'Experience with event stage design or architectural visualization is a plus.',
-        'Creative flair and attention to detail.',
+        'Proficiency in industry-standard 3D software (Blender, Cinema 4D, Maya, or equivalent).',
+        'Strong mastery of lighting, texturing, spatial composition, and rendering.',
+        'Experience in event stage design, spatial branding, or architectural visualization is preferred.',
+        'Strong artistic sensibility with a keen eye for technical detail.',
     ],
     benefits: [
-        'Creative and dynamic work environment.',
-        'Health insurance and wellness programs.',
-        'Opportunities for professional growth and training.',
-        'Access to cutting-edge design tools and hardware.',
+        'Creative, dynamic, and collaborative agency environment.',
+        'Comprehensive health insurance and wellness coverage.',
+        'Ongoing opportunities for professional growth and training.',
+        'Direct access to high-performance hardware and cutting-edge design software.',
     ]
 };
 

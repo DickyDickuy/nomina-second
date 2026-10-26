@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const nasalization = localFont({
-  src: "../../public/fonts/Nasalization Rg.otf",
+  src: "../fonts/Nasalization-Regular.otf",
   weight: "400",
   style: "normal",
   display: "swap",
@@ -11,7 +11,7 @@ const nasalization = localFont({
 });
 
 const aspekta = localFont({
-  src: "../../public/fonts/variable/AspektaVF.woff2",
+  src: "../fonts/AspektaVF.woff2",
   weight: "100 900",
   style: "normal",
   display: "swap",

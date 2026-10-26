@@ -26,28 +26,27 @@ const jobData: JobDetailsData = {
     location: 'Jakarta (On-site)',
     date: '13 Oct 2026',
     type: 'Full time',
-    summary: 'We are looking for an experienced Project Manager to lead and orchestrate end-to-end event execution, ensuring creative visions are delivered on time, within budget, and beyond client expectations.',
+    summary: 'Lead end-to-end event execution, turning creative visions into high-impact experiences delivered on time, within budget, and beyond client expectations.',
     salary: 'Competitive & Negotiable',
     salarySubtext: 'Based on Experience & Track Record',
     experience: '3+ Years Experience',
     deadline: '', // Overridden by getTwoWeeksDeadline()
     responsibilities: [
-        'Lead end-to-end project lifecycle from initial briefing and concept development to final event execution and post-event reporting.',
-        'Develop and manage comprehensive project plans, timelines, and budgets.',
-        'Coordinate cross-functional teams including creative, production, and external vendors to ensure seamless delivery.',
-        'Act as the primary point of contact for clients, managing expectations and fostering strong relationships.',
+        'Project Leadership: Drive the full project lifecycle from briefing and concept development to execution and post-event reporting.',
+        'Planning & Budgeting: Manage project roadmaps, timelines, and financial allocations.',
+        'Team Coordination: Orchestrate internal creative, production, and third-party vendor teams for seamless execution.',
+        'Client Management: Serve as the primary point of contact, building long-term partnerships and managing expectations.',
     ],
     qualifications: [
-        'Proven experience as a Project Manager in an event organizer, creative agency, or similar industry.',
-        'Exceptional organizational, time-management, and multitasking skills.',
-        'Strong leadership capabilities and problem-solving mindset under high-pressure situations.',
-        'Excellent communication and negotiation skills in both Indonesian and English.',
+        'Proven project management track record in an event agency, creative firm, or live production environment.',
+        'Strong leadership, organizational skills, and decisive problem-solving under pressure.',
+        'Professional fluency in English and Indonesian (written and spoken).',
     ],
     benefits: [
-        'Dynamic and fast-paced creative work environment.',
-        'Health insurance and comprehensive wellness programs.',
-        'Career advancement opportunities in a growing agency.',
-        'Exposure to high-profile brands and national-scale events.',
+        'Dynamic, fast-paced agency culture.',
+        'Comprehensive health and wellness coverage.',
+        'Clear opportunities for career advancement.',
+        'Direct exposure to high-profile brands and national-scale events.',
     ]
 };
 

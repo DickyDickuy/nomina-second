@@ -2,6 +2,17 @@ import React from 'react';
 import { CalenderIcon, CategoryIcon, ExperienceIcon, TimingIcon } from '@/svg/CareerIcons';
 import Link from 'next/link';
 
+/** Renders "Label: description" items with a bold label prefix. */
+const renderResponsibility = (text: string): React.ReactNode => {
+    const match = text.match(/^([^:]{2,40}):\s+(.+)$/);
+    if (!match) return text;
+    return (
+        <>
+            <strong>{match[1]}:</strong> {match[2]}
+        </>
+    );
+};
+
 export interface JobDetailsData {
     title: string;
     department: string;
@@ -59,7 +70,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                             </div>
                             <div className="tp-career-details-wrap">
                                 <div className="tp-career-details-summary-highlight mb-50 tp_fade_anim">
-                                    <h2 className="tp-career-details-title-2 tp-career-summary-label">Job Summary</h2>
+                                    <h2 className="tp-career-details-title-2 tp-career-summary-label">About the Role</h2>
                                     <p className="tp-career-summary-text mb-0">{data.summary}</p>
                                 </div>
 
@@ -67,7 +78,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                 <div className="tp-career-details-list pb-50">
                                     <ul>
                                         {data.responsibilities.map((resp, i) => (
-                                            <li key={i}>{resp}</li>
+                                            <li key={i}>{renderResponsibility(resp)}</li>
                                         ))}
                                     </ul>
                                 </div>
@@ -119,7 +130,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Working Hours</span>
-                                        <p className="tp-career-details-sidebar-val mb-0">09 AM to 06 PM</p>
+                                        <p className="tp-career-details-sidebar-val mb-0">10 AM to 7 PM</p>
                                     </div>
                                 </div>
 
@@ -139,7 +150,7 @@ const CareerDetailsDynamic: React.FC<CareerDetailsDynamicProps> = ({ data }) => 
                                     </div>
                                     <div className="tp-career-details-sidebar-item-content">
                                         <span>Working Days</span>
-                                        <p className="tp-career-details-sidebar-val mb-0">Weekly 5 Days (Mon to Fri)</p>
+                                        <p className="tp-career-details-sidebar-val mb-0">5 Working Days per Week (Mon to Fri)</p>
                                     </div>
                                 </div>
 

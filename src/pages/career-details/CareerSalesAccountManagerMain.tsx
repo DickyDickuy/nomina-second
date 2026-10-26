@@ -26,28 +26,26 @@ const jobData: JobDetailsData = {
     location: 'Jakarta (On-site)',
     date: '13 Oct 2026',
     type: 'Full time',
-    summary: 'We are looking for a proactive Sales and Account Manager to drive business growth, acquire new corporate clients, and nurture long-term partnerships for Nomina’s event and brand activation services.',
+    summary: 'Drive business growth, acquire new corporate clients, and nurture long-term partnerships for NOMINA’s event and brand activation services.',
     salary: 'Competitive & Negotiable',
     salarySubtext: 'Based on Experience + Commission',
     experience: '2+ Years Experience',
     deadline: '', // Overridden by getTwoWeeksDeadline()
     responsibilities: [
-        'Identify and pursue new business opportunities, pitching Nomina’s creative and event organizer services to prospective clients.',
-        'Build, maintain, and nurture strong, long-lasting client relationships.',
-        'Collaborate with the creative and project teams to develop compelling proposals and pitch decks.',
-        'Monitor market trends, competitor activities, and industry developments to refine sales strategies.',
+        'Business Development: Identify and pursue new sales opportunities, pitching NOMINA’s creative and event organizer services to prospective clients.',
+        'Client Management: Build, maintain, and nurture strong, long-lasting partnerships with corporate clients.',
+        'Proposal Collaboration: Work alongside creative and project teams to develop compelling proposals, budgets, and pitch decks.',
+        'Market Insights: Monitor industry trends and market dynamics to refine sales strategies and stay competitive.',
     ],
     qualifications: [
-        'Proven track record in B2B sales, account management, or business development within the creative, agency, or events industry.',
-        'Strong presentation, persuasion, and negotiation skills.',
-        'Extensive network of corporate clients and brand managers in Jakarta.',
-        'Target-oriented mindset with the ability to close deals effectively.',
+        'Proven track record in B2B sales, account management, or business development within an agency or event industry.',
+        'Strong presentation, persuasion, and deal-closing skills with a target-oriented mindset.',
+        'Established network of corporate clients and brand managers in Jakarta.',
     ],
     benefits: [
         'Competitive base salary with an attractive commission structure.',
-        'Health insurance and professional development opportunities.',
-        'Flexible and highly collaborative agency environment.',
-        'Direct involvement in shaping the agency’s business growth.',
+        'Comprehensive health coverage and professional growth opportunities.',
+        'Flexible, collaborative agency environment with direct impact on business growth.',
     ]
 };
 

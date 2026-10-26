@@ -7,24 +7,47 @@ export function AboutSection() {
       className="bg-white px-6 md:px-12 pt-20"
       aria-label="About NOMINA Creative: Event Organizer Jakarta"
     >
-      <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div className="max-w-5xl mx-auto text-center flex flex-col items-center">
         <h2
-          className="font-heading font-bold text-nomina-black uppercase leading-[0.95] tracking-tight mb-6 md:mb-8"
-          style={{ fontSize: "clamp(3rem, 6vw, 6.5rem)" }}
+          className="font-heading font-normal text-nomina-black uppercase leading-[1.05] tracking-tight mb-4 md:mb-6"
+          style={{ fontSize: "clamp(1.75rem, 4.6vw, 4.25rem)" }}
         >
-          NOMINA: More, than just
+          NOMINA — More Than Just a Creative Agency
         </h2>
 
-        <p
-          className="leading-relaxed text-nomina-black max-w-xl mx-auto mb-8 text-center"
+        <h3
+          className="font-body text-nomina-orange mb-6 md:mb-8"
           style={{
-            fontSize: "clamp(1rem, 2vw, 1.25rem)",
-            fontFamily: "var(--font-body)",
-            fontWeight: 700,
+            fontSize: "clamp(1.125rem, 2vw, 1.5rem)",
+            fontWeight: 600,
+            lineHeight: 1.3,
           }}
         >
-          Since 2016 we have worked alongside brands to build solid, recognisable communication projects that stand the test of time. Strategy, Creativity, and Events are all part of a single approach, designed to create authentic connections between people and brands.
-        </p>
+          We Design Communication Ecosystems
+        </h3>
+
+        <div className="flex flex-col gap-4 max-w-2xl mx-auto mb-8">
+          <p
+            className="leading-relaxed text-nomina-black"
+            style={{
+              fontSize: "clamp(1rem, 1.4vw, 1.125rem)",
+              fontFamily: "var(--font-body)",
+              fontWeight: 500,
+            }}
+          >
+            Since 2016, NOMINA Creative has been the trusted partner for leading brands across Indonesia—delivering everything from high-impact brand activations and corporate conferences to custom technical productions.
+          </p>
+          <p
+            className="leading-relaxed text-nomina-black"
+            style={{
+              fontSize: "clamp(1rem, 1.4vw, 1.125rem)",
+              fontFamily: "var(--font-body)",
+              fontWeight: 500,
+            }}
+          >
+            By seamlessly integrating <strong style={{ fontWeight: 700 }}>Strategy, Content, Live Events, and Technology</strong>, we bring ideas to life and create authentic, memorable connections between people and brands that stand the test of time.
+          </p>
+        </div>
 
         {/* Indonesian SEO keywords - invisible visually, indexed by Google */}
         <span className="sr-only">

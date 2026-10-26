@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import { MapPin } from "lucide-react";
 import { WeatherIcon, ClockIcon } from "@/components/icons";
 import { cn } from "@/lib/utils";
 
 interface WeatherData {
   temperature: string;
-  precipitation: string;
-  humidity: string;
-  wind: string;
 }
 
 interface WeatherWidgetProps {
@@ -16,7 +14,7 @@ interface WeatherWidgetProps {
 }
 
 const LOCATION = {
-  label: "NOMINA.JAKARTA SELATAN",
+  label: "JAKARTA SELATAN",
   timezone: "Asia/Jakarta",
   timezoneLabel: "WIB",
   lat: -6.2615,
@@ -31,9 +29,6 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
   const [time, setTime] = useState("");
   const [weather, setWeather] = useState<WeatherData>({
     temperature: "--°C",
-    precipitation: "-- MM",
-    humidity: "--%",
-    wind: "-- KM/H",
   });
 
   // Live clock — updates every second
@@ -61,7 +56,7 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
       const url =
         `https://api.open-meteo.com/v1/forecast` +
         `?latitude=${LOCATION.lat}&longitude=${LOCATION.lon}` +
-        `&current=temperature_2m,relative_humidity_2m,precipitation,wind_speed_10m` +
+        `&current=temperature_2m` +
         `&timezone=${encodeURIComponent(LOCATION.timezone)}`;
 
       const res = await fetch(url);
@@ -72,9 +67,6 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
 
       setWeather({
         temperature: `${Math.round(current.temperature_2m)}°C`,
-        precipitation: `${current.precipitation} MM`,
-        humidity: `${current.relative_humidity_2m}%`,
-        wind: `${Math.round(current.wind_speed_10m)} KM/H`,
       });
     } catch {
       // Silently fail — keep showing placeholder or last known data
@@ -91,15 +83,13 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
   return (
     <div
       className={cn(
-        "flex items-center gap-4 text-nomina-black text-[11px] font-bold uppercase tracking-wide",
+        "flex items-center gap-4 text-white text-[11px] font-bold uppercase tracking-wide",
         className
       )}
     >
-      {/* Red square accent dot */}
-      <span className="hidden md:block w-2.5 h-2.5 bg-nomina-red shrink-0" />
-
-      {/* Location label */}
-      <span className="hidden md:inline whitespace-nowrap">
+      {/* Location pin + label */}
+      <span className="hidden md:inline-flex items-center gap-1.5 whitespace-nowrap">
+        <MapPin className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
         {LOCATION.label}
       </span>
 
@@ -115,12 +105,6 @@ export function WeatherWidget({ className }: WeatherWidgetProps) {
         {weather.temperature}
       </span>
 
-      {/* Extra weather details */}
-      <div className="hidden lg:flex flex-col text-[9px] leading-tight whitespace-nowrap">
-        <span>PRECIPITATION: {weather.precipitation}</span>
-        <span>HUMIDITY: {weather.humidity}</span>
-        <span>WIND: {weather.wind}</span>
-      </div>
     </div>
   );
 }
