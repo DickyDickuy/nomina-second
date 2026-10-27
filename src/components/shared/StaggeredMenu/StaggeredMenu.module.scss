@@ -208,11 +208,11 @@
 
 .panelItem:hover,
 .panelItem:focus-visible {
-    color: var(--sm-accent, #ff5a1f);
+    color: var(--sm-accent, #fb5102);
 }
 
 .panelItem:focus-visible {
-    outline: 2px solid var(--sm-accent, #ff5a1f);
+    outline: 2px solid var(--sm-accent, #fb5102);
     outline-offset: 4px;
     border-radius: 6px;
 }
@@ -235,7 +235,7 @@
     right: 2.8em;
     font-size: 18px;
     font-weight: 400;
-    color: var(--sm-accent, #ff5a1f);
+    color: var(--sm-accent, #fb5102);
     letter-spacing: 0;
     pointer-events: none;
     user-select: none;
@@ -254,7 +254,7 @@
     margin: 0;
     font-size: 1rem;
     font-weight: 500;
-    color: var(--sm-accent, #ff5a1f);
+    color: var(--sm-accent, #fb5102);
 }
 
 .socialsList {
@@ -281,11 +281,11 @@
 
 .socialsLink:hover,
 .socialsLink:focus-visible {
-    color: var(--sm-accent, #ff5a1f);
+    color: var(--sm-accent, #fb5102);
 }
 
 .socialsLink:focus-visible {
-    outline: 2px solid var(--sm-accent, #ff5a1f);
+    outline: 2px solid var(--sm-accent, #fb5102);
     outline-offset: 3px;
 }
 

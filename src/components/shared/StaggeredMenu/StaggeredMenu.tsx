@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { navigateWithTransition } from "../PageTransition/PageTransition";
 
 import styles from "./StaggeredMenu.module.scss";
 
@@ -48,7 +49,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     logoUrl = "/assets/img/logo/logo-white.png",
     menuButtonColor = "#ffffff",
     openMenuButtonColor = "#111111",
-    accentColor = "#ff5a1f",
+    accentColor = "#fb5102",
     changeMenuColorOnOpen = true,
     isFixed = true,
     closeOnClickAway = true,
@@ -422,7 +423,7 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                                     <a className={styles.panelItem} href={item.link} aria-label={item.ariaLabel} data-index={index + 1} onClick={(e) => {
                                         e.preventDefault();
                                         closeMenu();
-                                        window.location.href = item.link;
+                                        navigateWithTransition(item.link);
                                     }}>
                                         <span className={styles.panelItemLabel}>{item.label}</span>
                                     </a>

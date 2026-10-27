@@ -299,7 +299,6 @@ const Skiper49 = () => {
         className=""
         images={CAROUSEL_SLIDES}
         showPagination
-        autoplay
         loop
       />
     </div>

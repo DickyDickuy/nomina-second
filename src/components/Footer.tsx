@@ -1,5 +1,6 @@
 "use client";
 
+import { navigateWithTransition } from "@/components/shared/PageTransition/PageTransition";
 
 const QUICK_LINKS = [
   { label: "HOME", href: "/" },
@@ -8,6 +9,13 @@ const QUICK_LINKS = [
   { label: "CAREER", href: "/career" },
   { label: "CAREER APPLICATION", href: "/job-application" },
   { label: "CONTACT US", href: "/contact" },
+];
+
+const OPEN_ROLES = [
+  { label: "PROJECT MANAGER", href: "/career-project-manager" },
+  { label: "PRODUCTION MANAGER", href: "/career-production-manager" },
+  { label: "SALES & ACCOUNT MANAGER", href: "/career-sales-account-manager" },
+  { label: "3D VISUALIZER", href: "/career-3d-visualizer" },
 ];
 
 const SOCIAL_LINKS = [
@@ -44,32 +52,40 @@ const SOCIAL_LINKS = [
   },
 ];
 
-export function Footer() {
+interface UnifiedFooterProps {
+  bgColor?: string;
+  className?: string;
+}
+
+export function Footer({ bgColor = "#121315", className = "" }: UnifiedFooterProps = {}) {
   return (
     <footer
+      className={`nomina-unified-footer ${className}`.trim()}
       style={{
-        backgroundColor: "#121315",
+        position: "relative",
+        zIndex: 2,
+        backgroundColor: bgColor,
         color: "#f9f9f9",
         fontFamily: "var(--font-body), 'Aspekta', sans-serif",
+        width: "100%",
+        boxSizing: "border-box",
       }}
     >
       {/* Main footer content */}
-      <div
-        className="px-6 md:px-[60px] pt-20 md:pt-[160px] pb-10 md:pb-[35px] grid grid-cols-1 md:grid-cols-[4fr_5fr_3fr] gap-12 md:gap-0 items-start"
-      >
+      <div className="nomina-footer-main">
         {/* Left column — Heading + Social */}
-        <div className="flex flex-col justify-between md:pb-10">
+        <div className="nomina-footer-col-left">
           <h2
             style={{
               fontFamily: "var(--font-heading), 'Nasalization', sans-serif",
               fontStyle: "normal",
               fontWeight: 700,
-              fontSize: "clamp(45px, 8vw, 80px)",
-              lineHeight: 1,
-              letterSpacing: "-0.06em",
+              fontSize: "clamp(42px, 6.2vw, 76px)",
+              lineHeight: 1.02,
+              letterSpacing: "-0.04em",
               color: "#f9f9f9",
               margin: 0,
-              marginBottom: 30,
+              marginBottom: 28,
             }}
           >
             Making
@@ -82,7 +98,7 @@ export function Footer() {
           </h2>
 
           {/* Social icons */}
-          <div style={{ display: "flex", alignItems: "center", gap: 3, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, flexWrap: "wrap" }}>
             {SOCIAL_LINKS.map((social) => (
               <a
                 key={social.label}
@@ -99,8 +115,6 @@ export function Footer() {
                   display: "inline-flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginBottom: 8,
-                  marginRight: 3,
                   transition: "background-color 0.25s ease",
                   flexShrink: 0,
                 }}
@@ -112,13 +126,13 @@ export function Footer() {
         </div>
 
         {/* Center column — Quick Links & Open Roles */}
-        <div className="md:pl-[150px] md:pr-[50px] md:pb-10">
+        <div className="nomina-footer-col-center">
           <h3
             style={{
               fontSize: 18,
               fontWeight: 600,
               color: "#ffffff",
-              marginBottom: 25,
+              marginBottom: 22,
               marginTop: 0,
               letterSpacing: "-0.02em",
               lineHeight: 1,
@@ -132,7 +146,7 @@ export function Footer() {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                 backgroundColor: "#E85002",
+                backgroundColor: "#fb5102",
                 display: "inline-block",
                 flexShrink: 0,
                 transform: "translateY(-1px)",
@@ -140,31 +154,29 @@ export function Footer() {
             />
             Quick links
           </h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 0, marginBottom: 40 }}>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 34 }}>
             {QUICK_LINKS.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = link.href;
+                  navigateWithTransition(link.href);
                 }}
                 className="footer-quick-link"
                 style={{
                   display: "inline-block",
-                  padding: "13px 20px",
+                  padding: "12px 20px",
                   borderRadius: 20,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   color: "#ffffff",
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: 500,
                   textDecoration: "none",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.01em",
                   lineHeight: 1,
                   transition: "background-color 0.25s ease, color 0.25s ease",
                   textTransform: "uppercase",
-                  marginBottom: 8,
-                  marginRight: 8,
                 }}
               >
                 {link.label}
@@ -177,7 +189,7 @@ export function Footer() {
               fontSize: 18,
               fontWeight: 600,
               color: "#ffffff",
-              marginBottom: 25,
+              marginBottom: 22,
               marginTop: 0,
               letterSpacing: "-0.02em",
               lineHeight: 1,
@@ -191,7 +203,7 @@ export function Footer() {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                 backgroundColor: "#E85002",
+                backgroundColor: "#fb5102",
                 display: "inline-block",
                 flexShrink: 0,
                 transform: "translateY(-1px)",
@@ -199,36 +211,29 @@ export function Footer() {
             />
             Open Roles
           </h3>
-          <div style={{ display: "flex", flexWrap: "wrap", gap: 0 }}>
-            {[
-              { label: "PROJECT MANAGER", href: "/career-project-manager" },
-              { label: "PRODUCTION MANAGER", href: "/career-production-manager" },
-              { label: "SALES & ACCOUNT MANAGER", href: "/career-sales-account-manager" },
-              { label: "3D VISUALIZER", href: "/career-3d-visualizer" },
-            ].map((link) => (
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+            {OPEN_ROLES.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = link.href;
+                  navigateWithTransition(link.href);
                 }}
                 className="footer-quick-link"
                 style={{
                   display: "inline-block",
-                  padding: "13px 20px",
+                  padding: "12px 20px",
                   borderRadius: 20,
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
                   color: "#ffffff",
-                  fontSize: 14,
+                  fontSize: 13,
                   fontWeight: 500,
                   textDecoration: "none",
-                  letterSpacing: "-0.02em",
+                  letterSpacing: "-0.01em",
                   lineHeight: 1,
                   transition: "background-color 0.25s ease, color 0.25s ease",
                   textTransform: "uppercase",
-                  marginBottom: 8,
-                  marginRight: 8,
                 }}
               >
                 {link.label}
@@ -238,7 +243,7 @@ export function Footer() {
         </div>
 
         {/* Right column — Contact */}
-        <div className="md:pl-5 pb-10 md:mb-[30px]">
+        <div className="nomina-footer-col-right">
           <h3
             style={{
               fontSize: 18,
@@ -258,7 +263,7 @@ export function Footer() {
                 width: 8,
                 height: 8,
                 borderRadius: "50%",
-                 backgroundColor: "#E85002",
+                backgroundColor: "#fb5102",
                 display: "inline-block",
                 flexShrink: 0,
                 transform: "translateY(-1px)",
@@ -322,44 +327,89 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Giant NOMINA text */}
+      {/* Giant NOMINA wordmark — fills the full display width edge-to-edge */}
       <div
         style={{
           overflow: "hidden",
-          backgroundColor: "#121315",
+          backgroundColor: bgColor,
           width: "100%",
+          padding: "14px 0 0 0",
+          boxSizing: "border-box",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-end",
         }}
       >
         <div
           style={{
-            fontSize: "23vw",
+            fontSize: "22.5vw",
             fontWeight: 900,
-            color: "#E85002",
+            color: "#fb5102",
             textAlign: "center",
-            letterSpacing: "-0.03em",
-            lineHeight: 0.8,
+            letterSpacing: "-0.02em",
+            lineHeight: 0.75,
             fontFamily: "var(--font-heading), 'Nasalization', sans-serif",
             whiteSpace: "nowrap",
-            width: "100%",
-            display: "block",
-            margin: "0 auto",
+            margin: 0,
+            userSelect: "none",
           }}
         >
           NOMINA
         </div>
       </div>
 
-      {/* Hover styles */}
+      {/* Unlayered scoped styles immune to Agntix * { padding: 0; margin: 0 } reset */}
       <style>{`
+        .nomina-unified-footer .nomina-footer-main {
+          display: grid !important;
+          grid-template-columns: 1fr !important;
+          gap: 36px !important;
+          align-items: start !important;
+          padding: 56px 24px 32px 24px !important;
+          box-sizing: border-box !important;
+          width: 100% !important;
+        }
+        .nomina-unified-footer .nomina-footer-col-left,
+        .nomina-unified-footer .nomina-footer-col-center,
+        .nomina-unified-footer .nomina-footer-col-right {
+          padding: 0 !important;
+          margin: 0 !important;
+          box-sizing: border-box !important;
+        }
+        @media (min-width: 768px) {
+          .nomina-unified-footer .nomina-footer-main {
+            grid-template-columns: 4fr 5fr 3fr !important;
+            gap: 0 !important;
+            padding: 84px 60px 32px 60px !important;
+          }
+          .nomina-unified-footer .nomina-footer-col-left {
+            padding-bottom: 24px !important;
+          }
+          .nomina-unified-footer .nomina-footer-col-center {
+            padding-left: 90px !important;
+            padding-right: 40px !important;
+            padding-bottom: 24px !important;
+          }
+          .nomina-unified-footer .nomina-footer-col-right {
+            padding-left: 20px !important;
+            padding-bottom: 24px !important;
+          }
+        }
+        @media (min-width: 1200px) {
+          .nomina-unified-footer .nomina-footer-col-center {
+            padding-left: 130px !important;
+            padding-right: 48px !important;
+          }
+        }
         .footer-social-icon:hover {
-          background-color: #E85002 !important;
+          background-color: #fb5102 !important;
         }
         .footer-quick-link:hover {
-          background-color: #E85002 !important;
+          background-color: #fb5102 !important;
           color: #f9f9f9 !important;
         }
         .footer-contact-link:hover {
-          color: #E85002 !important;
+          color: #fb5102 !important;
         }
       `}</style>
     </footer>

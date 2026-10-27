@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { NominaLogo } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import StaggeredMenu from "./shared/StaggeredMenu/StaggeredMenu";
+import { navigateWithTransition } from "./shared/PageTransition/PageTransition";
 
 const NAV_LINKS = [
   { label: "ABOUT", href: "#about" },
@@ -88,7 +89,7 @@ export function Navbar() {
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <Link href="/" onClick={(e) => { e.preventDefault(); window.location.href = '/'; }} className="h-9 flex items-center">
+            <Link href="/" onClick={(e) => { e.preventDefault(); navigateWithTransition('/'); }} className="h-9 flex items-center">
               <NominaLogo className="h-full w-auto hover:opacity-80 transition-opacity" />
             </Link>
           </div>
@@ -106,10 +107,10 @@ export function Navbar() {
                   onClick={(e) => {
                     if (isHashLink && !isLandingPage) {
                       e.preventDefault();
-                      window.location.href = targetHref;
+                      navigateWithTransition(targetHref);
                     } else if (!isHashLink) {
                       e.preventDefault();
-                      window.location.href = targetHref;
+                      navigateWithTransition(targetHref);
                     }
                   }}
                   className="nav-bar-link h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"
@@ -125,7 +126,7 @@ export function Navbar() {
             <StaggeredMenu
               isFixed={true}
               position="right"
-              colors={["#e85002", "#fb5102", "#f9f9f9"]}
+              colors={["#000000", "#333333", "#fb5102"]}
               items={staggeredMenuItems}
               displaySocials={false}
               menuButtonColor="#111111"

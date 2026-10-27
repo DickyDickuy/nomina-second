@@ -6,14 +6,15 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:**
-  0. **Slide 11 (`The Visionaries`) Tuntas — Unified Originkit 3D Coverflow + Pixelated & Greyscale Effect:**
-     - **Penyatuan Desktop & Mobile:** Menghapus pemisahan versi desktop (grid 2 kolom + floating hover image) dan mobile (`TeamMobileCoverflow`), digantikan oleh komponen tunggal [Smooth3DSlideshow.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/Smooth3DSlideshow.tsx) di [TeamSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/TeamSection.tsx).
-     - **Efek Pixelated & Greyscale (`!isActive`) → Sharp Full Color (`isActive`):** Menggunakan `<PixelatedSlideImage>` canvas yang merender kartu di luar tengah dalam kondisi greyscale dan piksel kotak tajam (`imageSmoothingEnabled = false`, `image-rendering: pixelated`), lalu secara mulus menghilangkan piksel dan mengembalikan warna asli saat kartu berada di tengah (`isActive`).
-     - **Teks Nama & Posisi Hanya di Kartu Tengah:** Overlay nama (`slide.title`) dan jabatan (`slide.role`) hanya muncul ketika kartu berada di tengah (`opacity: isActive ? 1 : 0`).
-  1. Seluruh 19 slide feedback (Slide 0 s/d 18) kini telah selesai 100%.
-  2. `npm run check` (`eslint`, `tsc --noEmit`, dan `next build`) lulus 100% dengan 0 error.
-- **Fokus Utama:** Konfirmasi hasil visual `The Visionaries` di halaman `/about` bersama user.
-- **Menunggu dari user:** Feedback visual atau instruksi lanjutan.
+  0. **Kalibrasi Kecepatan & Stagger Transisi Antar-Halaman (Tuntas):**
+     - Memperlambat durasi animasi transisi di [PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx) dari `0.32s - 0.42s` menjadi `0.68s - 0.72s` dengan stagger diperlebar dari `0.065s` ke `0.18s`.
+     - Ditambahkan jeda hold `0.08s - 0.1s` pada layer warna teratas `#fb5102` Nomina Orange sebelum membuka/menavigasi.
+     - Setiap pita warna (#000000 Black → #333333 Dark Gray → #fb5102 Orange) kini terlihat jelas bergerak secara berurutan dan elegan baik saat klik link maupun saat menekan tombol Back/Forward di browser.
+  1. **Support Transisi Antar-Halaman untuk Tombol Browser Back & Forward (Tuntas):**
+     - Menangani `popstate`, deteksi perubahan route saat history navigasi, `pageshow` (bfcache di Safari/mobile), serta `performance.getEntriesByType("navigation")[0].type === "back_forward"`.
+  2. **Migrasi Warna Oranye ke `#fb5102` & Wordmark `NOMINA` Full-Display (Tuntas).**
+  3. Verifikasi `npm run typecheck` dan `npm run lint` lulus (`0 errors, 23 warnings`).
+- **Fokus Utama:** Menunggu feedback user atas timing dan visibilitas ketiga warna transisi.
 
 ---
 

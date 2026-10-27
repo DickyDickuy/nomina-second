@@ -26,7 +26,7 @@ const NOMINA_TENETS: BenefitStrip[] = [
       "At NOMINA Creative, we build high-impact brand activations and live event ecosystems through a culture of ownership, technical mastery, and fearless experimentation.",
     bgColor: "#f9f9f9",
     textColor: "#000000",
-    accentColor: "#e85002",
+    accentColor: "#fb5102",
     svgPath:
       "M 60 220 C 140 120, 240 320, 340 190 C 440 60, 520 280, 640 160",
   },
@@ -38,7 +38,7 @@ const NOMINA_TENETS: BenefitStrip[] = [
     highlightWord: "[Create]",
     description:
       "Direct exposure to Indonesia's leading corporate, banking, automotive, and entertainment brands—from concept ideation to live show execution.",
-    bgColor: "#e85002",
+    bgColor: "#fb5102",
     textColor: "#f9f9f9",
     accentColor: "#000000",
     svgPath:

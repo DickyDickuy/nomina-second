@@ -3,74 +3,160 @@
 import { ArrowButton } from "@/components/ArrowButton";
 import { cn } from "@/lib/utils";
 
-interface ClientLogo {
+export interface ClientLogo {
   name: string;
   src: string;
   /** Official client URL. Opens in a new tab when clicked. */
   href?: string;
 }
 
-const CLIENT_HREFS: Record<string, string> = {
-  "/images/client-KTM.png": "https://www.ktm.com",
-  "/images/client-astra.png": "https://www.astra.co.id",
-  "/images/client-bank-bni.png": "https://www.bni.co.id",
-  "/images/client-bank-bri.png": "https://bri.co.id",
-  "/images/client-bank-bsi.png": "https://www.bankbsi.co.id",
-  "/images/client-bank-hsbc.png": "https://www.hsbc.co.id",
-  "/images/client-citilink.png": "https://www.citilink.co.id",
-  "/images/client-dana.png": "https://www.dana.id",
-  "/images/client-dbs.png": "https://www.dbs.id",
-  "/images/client-djarum.png": "https://www.djarum.com",
-  "/images/client-flip.png": "https://flip.id",
-  "/images/client-garuda-airline.png": "https://www.garuda-indonesia.com",
-  "/images/client-kominfo.png": "https://www.komdigi.go.id",
-  "/images/client-motogp.png": "https://www.motogp.com",
-  "/images/client-noice.png": "https://www.noice.id",
-  "/images/client-ocbc.png": "https://www.ocbc.id",
-  "/images/client-pokemon.png": "https://asia.pokemon-card.com/id/",
-};
-
-const CLIENT_SRCS = [
-  "/images/client-KTM.png",
-  "/images/client-astra.png",
-  "/images/client-bank-bni.png",
-  "/images/client-bank-bri.png",
-  "/images/client-bank-bsi.png",
-  "/images/client-bank-hsbc.png",
-  "/images/client-citilink.png",
-  "/images/client-dana.png",
-  "/images/client-dbs.png",
-  "/images/client-djarum.png",
-  "/images/client-flip.png",
-  "/images/client-garuda-airline.png",
-  "/images/client-kominfo.png",
-  "/images/client-motogp.png",
-  "/images/client-noice.png",
-  "/images/client-ocbc.png",
-  "/images/client-pokemon.png",
+export const CLIENT_LOGOS: ClientLogo[] = [
+  {
+    name: "AXA Indonesia",
+    src: "/images/clients/axa.png",
+    href: "https://www.axa.co.id",
+  },
+  {
+    name: "Bank Indonesia",
+    src: "/images/clients/bank-indonesia.png",
+    href: "https://www.bi.go.id",
+  },
+  {
+    name: "Bank Mandiri",
+    src: "/images/clients/bank-mandiri.png",
+    href: "https://www.bankmandiri.co.id",
+  },
+  {
+    name: "Bluebird Group",
+    src: "/images/clients/bluebird.png",
+    href: "https://www.bluebirdgroup.com",
+  },
+  {
+    name: "Chemours",
+    src: "/images/clients/chemours.png",
+    href: "https://www.chemours.com",
+  },
+  {
+    name: "DKNY",
+    src: "/images/clients/dkny.png",
+    href: "https://www.dkny.com",
+  },
+  {
+    name: "Djarum Super",
+    src: "/images/clients/djarum-super.png",
+    href: "https://www.djarumsuper.com",
+  },
+  {
+    name: "ESMOD Jakarta",
+    src: "/images/clients/esmod-jakarta.png",
+    href: "https://www.esmodjakarta.com",
+  },
+  {
+    name: "Erigo",
+    src: "/images/clients/erigo.png",
+    href: "https://erigostore.co.id",
+  },
+  {
+    name: "Flip",
+    src: "/images/clients/flip.png",
+    href: "https://flip.id",
+  },
+  {
+    name: "GAIKINDO",
+    src: "/images/clients/gaikindo.png",
+    href: "https://www.gaikindo.or.id",
+  },
+  {
+    name: "Godrej Indonesia",
+    src: "/images/clients/godrej.png",
+    href: "https://www.godrejindonesia.com",
+  },
+  {
+    name: "Grab",
+    src: "/images/clients/grab.png",
+    href: "https://www.grab.com/id/",
+  },
+  {
+    name: "Grand Indonesia",
+    src: "/images/clients/grand-indonesia.png",
+    href: "https://www.grand-indonesia.com",
+  },
+  {
+    name: "HSBC Indonesia",
+    src: "/images/clients/hsbc.png",
+    href: "https://www.hsbc.co.id",
+  },
+  {
+    name: "Hitachi",
+    src: "/images/clients/hitachi.png",
+    href: "https://www.hitachi.com",
+  },
+  {
+    name: "JD.ID",
+    src: "/images/clients/jdid.png",
+    href: "https://www.instagram.com/jdid/",
+  },
+  {
+    name: "Kinder Joy",
+    src: "/images/clients/kinder-joy.png",
+    href: "https://www.kinder.com/id/id/",
+  },
+  {
+    name: "LUX",
+    src: "/images/clients/lux.png",
+    href: "https://www.lux.com",
+  },
+  {
+    name: "MotoGP",
+    src: "/images/clients/motogp.png",
+    href: "https://www.motogp.com",
+  },
+  {
+    name: "Nanovest",
+    src: "/images/clients/nanovest.png",
+    href: "https://www.nanovest.io",
+  },
+  {
+    name: "NOICE",
+    src: "/images/clients/noice.png",
+    href: "https://www.noice.id",
+  },
+  {
+    name: "OCBC Indonesia",
+    src: "/images/clients/ocbc.png",
+    href: "https://www.ocbc.id",
+  },
+  {
+    name: "Opteon",
+    src: "/images/clients/opteon.png",
+    href: "https://www.opteon.com",
+  },
+  {
+    name: "Pegadaian",
+    src: "/images/clients/pegadaian.png",
+    href: "https://www.pegadaian.co.id",
+  },
+  {
+    name: "PNM",
+    src: "/images/clients/pnm.png",
+    href: "https://www.pnm.co.id",
+  },
+  {
+    name: "Soyjoy Indonesia",
+    src: "/images/clients/soyjoy.png",
+    href: "https://www.soyjoy.id",
+  },
+  {
+    name: "Traveloka",
+    src: "/images/clients/traveloka.png",
+    href: "https://www.traveloka.com",
+  },
+  {
+    name: "Yoshimoto",
+    src: "/images/clients/yoshimoto.png",
+    href: "https://yoshimoto-international.com/",
+  },
 ];
-
-function getClientName(src: string): string {
-  const filename = src.split("/").pop() || "";
-  const rawName = filename
-    .replace(/^client-/, "")
-    .replace(/\.[^.]+$/, "")
-    .replace(/-/g, " ");
-  return rawName
-    .split(" ")
-    .map((w) =>
-      w.length <= 4
-        ? w.toUpperCase()
-        : w.charAt(0).toUpperCase() + w.slice(1)
-    )
-    .join(" ");
-}
-
-const CLIENT_LOGOS: ClientLogo[] = CLIENT_SRCS.map((src) => ({
-  name: getClientName(src) || "Client",
-  src,
-  href: CLIENT_HREFS[src],
-}));
 
 // Helper to create offset arrays so each row looks distinct
 function getOffsetLogos(offset: number): ClientLogo[] {
@@ -79,10 +165,10 @@ function getOffsetLogos(offset: number): ClientLogo[] {
 
 const ROWS = [
   { id: 1, logos: getOffsetLogos(0), reverse: false },
-  { id: 2, logos: getOffsetLogos(4), reverse: true },
-  { id: 3, logos: getOffsetLogos(8), reverse: false },
-  { id: 4, logos: getOffsetLogos(12), reverse: true },
-  { id: 5, logos: getOffsetLogos(15), reverse: false },
+  { id: 2, logos: getOffsetLogos(6), reverse: true },
+  { id: 3, logos: getOffsetLogos(12), reverse: false },
+  { id: 4, logos: getOffsetLogos(18), reverse: true },
+  { id: 5, logos: getOffsetLogos(24), reverse: false },
 ];
 
 export function ClientsSection() {
@@ -111,7 +197,7 @@ export function ClientsSection() {
                   "flex w-max items-center gap-16 md:gap-24 px-8 md:px-12",
                   row.reverse ? "animate-marquee-reverse" : "animate-marquee"
                 )}
-                style={{ animationPlayState: "inherit" }}
+                style={{ animationDuration: "90s", animationPlayState: "inherit" }}
               >
                 {[...row.logos, ...row.logos].map((client, idx) => {
                   const img = (
@@ -119,7 +205,7 @@ export function ClientsSection() {
                     <img
                       src={client.src}
                       alt={`${client.name} — Client of NOMINA Event Organizer Jakarta`}
-                      className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+                      className="h-9 md:h-11 lg:h-12 w-auto object-contain max-w-[140px] md:max-w-[170px]"
                     />
                   );
                   const wrapperClass =

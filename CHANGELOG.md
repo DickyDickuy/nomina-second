@@ -7,7 +7,39 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
+- **Brand Orange Token Migration to Bright Orange `#fb5102` ([globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css), [agntix-globals.scss](file:///Users/dicky/Work/nomina-second/src/app/(agntix)/agntix-globals.scss), [_colors.scss](file:///Users/dicky/Work/nomina-second/public/assets/scss/utils/_colors.scss), [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx), [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx), [AboutSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/AboutSection.tsx), [PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [StaggeredMenu.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/StaggeredMenu/StaggeredMenu.tsx), [CareerBenifit.tsx](file:///Users/dicky/Work/nomina-second/src/components/benefits/CareerBenifit.tsx)):**
+  - Updated all brand orange instances across the codebase (`--color-nomina-orange`, `--color-nomina-red`, `--primary`, `--ring`, `--sidebar-primary`, `--tp-common-red`, `--tp-common-red-3`, footer bullets/links/wordmark, navbar hover states, service row hover, about text highlight, and the 3-layer page transition curtain) from `#e85002` to `#fb5102`.
+
 ### [Added]
+- **Support Transisi Antar-Halaman untuk Tombol Browser Back & Forward ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx)):**
+  - Menambahkan listener `popstate`, deteksi perubahan `pathname` dari history, `pageshow` (bfcache restore), dan sinkronisasi `performance.getEntriesByType("navigation")[0].type === "back_forward"`.
+  - Ketika user menekan tombol Back (`<`) atau Forward (`>`) di browser maupun swipe gesture di mobile/trackpad, sistem otomatis memainkan transisi 3-layer (#000000 Black → #333333 Dark Gray → #fb5102 Orange) naik menutupi layar dan berbalik membuka ke bawah untuk menampilkan halaman sebelumnya.
+- **Staggered 3-Color Page Transition Overlay ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx), [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx), [StaggeredMenu.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/StaggeredMenu/StaggeredMenu.tsx), [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx)):**
+  - Built a lightweight, hardware-accelerated 3-layer page transition component (`#000000` Black → `#333333` Dark Gray → `#fb5102` Nomina Orange from the Slide 2 palette) modeled after `StaggeredMenu.tsx`.
+  - When the user navigates to another page (via Navbar, StaggeredMenu, Footer, or any internal `<a>` / `<Link>`), the 3 layers sweep from **bottom to top** (`yPercent: 100 -> 0`, `power4.out`, `0.065s` stagger), ending on solid `#fb5102` Orange.
+  - Added a synchronous pre-paint script and `html[data-pt-covered="true"]` style in [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx) so the `#fb5102` Orange overlay stays locked at `translate3d(0, 0%, 0)` with zero flash while the destination page loads and renders behind it, then plays the exact **reverse animation** (`#fb5102` → `#333333` → `#000000` sliding back down `yPercent: 0 -> 100`, `power4.inOut`) to reveal the rendered page.
+  - Uses pure GPU-composited `transform: translate3d` (`force3D: true`, `will-change: transform`, `backface-visibility: hidden`, zero blur/filters) and `pageshow` bfcache cleanup so iOS and Android run it at 60/120fps without lag.
+
+### [Fixed]
+- **Footer Unification, Sub-pixel Seam Elimination, CSS Layer Reset Immunity & Full-Display Wordmark ([Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx), [CreativeAgencyFooter.tsx](file:///Users/dicky/Work/nomina-second/src/layouts/footers/CreativeAgencyFooter.tsx), [useScrollSmooth.ts](file:///Users/dicky/Work/nomina-second/src/hooks/useScrollSmooth.ts), [AnimationWrapper.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/Animation/AnimationWrapper.tsx), [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css)):**
+  - **Unified Footer across `/` and `(agntix)` inner pages:** Replaced the separate Bootstrap/Agntix markup in [CreativeAgencyFooter.tsx](file:///Users/dicky/Work/nomina-second/src/layouts/footers/CreativeAgencyFooter.tsx) (`tp-footer-area` + `tp-copyright-area`) with the single unified [Footer](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx) component (`zIndex: 2`). This eliminates the 1px horizontal seam line above `NOMINA` during `ScrollSmoother` sub-pixel scrolling on `/about`, prevents `.tp-vertical-lines-overlay` from drawing over the footer, and makes the `#E85002` orange bullets, typography, and 3-column layout 100% identical across all pages.
+  - **Fixed Footer Cut-Off on Inner Pages vs. Oversized Padding on Landing Page:** Resolved CSS Cascade Layer collision where Agntix's unlayered `* { margin: 0; padding: 0; }` in `public/assets/scss/theme/_common.scss` overrode Tailwind v4 `@layer utilities` padding classes (`px-[60px]`, `pt-[160px]`, `md:pl-[150px]`) to `0px` on `/about` and `/career` (causing top/left text clipping), while `/` rendered an overly tall `160px` top gap. Replaced Tailwind padding utilities on [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx) with unlayered scoped CSS rules (`padding: 84px 60px 32px 60px !important` on desktop, `56px 24px 32px 24px !important` on mobile).
+  - **Full-Display Giant Orange `NOMINA` Wordmark:** Scaled the `NOMINA` wordmark to `fontSize: "22.5vw"` (`letterSpacing: "-0.02em"`, `lineHeight: 0.75`, `padding: "14px 0 0 0"`, flex-centered with zero horizontal padding) so `NOMINA` fills ~97% of the display width edge-to-edge without the right `A` getting pushed off-screen.
+  - **GSAP `ScrollSmoother` & `AnimationWrapper` Route Lifecycle:** Added `[pathname]` dependency, `ResizeObserver` on `#smooth-content`, and `revertOnUpdate: true` cleanup in [useScrollSmooth.ts](file:///Users/dicky/Work/nomina-second/src/hooks/useScrollSmooth.ts) (`ScrollSmoother.get()?.kill()`, `window.scrollTo(0, 0)`, and body style cleanup) and wrapped async font-ready animations with `contextSafe` in [AnimationWrapper.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/Animation/AnimationWrapper.tsx) so `ScrollTrigger` and `SplitText` instances clean up properly across page transitions.
+- **Speed Calibration on Clients Marquee & Career Coverflow:**
+  - **Clients Marquee ([ClientsSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/ClientsSection.tsx) & [globals.css](file:///Users/dicky/Work/nomina-second/src/app/globals.css)):** Fixed sudden velocity doubling caused by inserting 29 logos (longer row width in the same 40s duration). Calibrated animation duration to `90s` so the marquee scrolls smoothly and at a calm brand pace.
+  - **Career Coverflow ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):** Removed unwanted `autoplay` (2s interval) from `Skiper49` to adhere 1:1 to reference source code, preventing aggressive auto-swiping.
+
+### [Added]
+- **Brands We’ve Grown With 29 Transparent Client Logos Refresh ([ClientsSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/ClientsSection.tsx)):**
+  - Migrated and optimized 29 background-free client logos from `/Users/dicky/Downloads/Logo Client Nomina/` into dedicated directory `public/images/clients/` (reduced total size to 3.0MB with high-DPI Lanczos downsampling).
+  - Autocropped transparent bounding box padding across all logos, fixing the microscopic rendering issue on `grand-indonesia.png` (which previously had 550px+ of transparent vertical padding) and `chemours.png`.
+  - Updated [ClientsSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/ClientsSection.tsx) to render the 29 new client logos across 5 dynamic marquee rows with verified official client URLs.
+  - Finalized client link mapping per user review: JD.ID (`https://www.instagram.com/jdid/`), Hitachi (`https://www.hitachi.com`), and Yoshimoto (`https://yoshimoto-international.com/`).
 - **The Visionaries Unified Originkit 3D Coverflow with Pixelated & Greyscale Effect (Slide 11 — [Smooth3DSlideshow.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/Smooth3DSlideshow.tsx), [TeamSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/TeamSection.tsx), [TeamSection.module.scss](file:///Users/dicky/Work/nomina-second/src/components/team/TeamSection.module.scss)):**
   - Unified desktop and mobile views of `The Visionaries` into a single responsive Originkit `Smooth3DSlideshow` 3D Coverflow Gallery component, removing the old split desktop 2-column hover list and mobile coverflow.
   - Added `<PixelatedSlideImage>` canvas overlay that renders non-centered cards (`!isActive`) in greyscale with crisp mosaic pixelation (`imageSmoothingEnabled = false`, `image-rendering: pixelated`), and smoothly resolves the pixel blocks while restoring full color when a card moves to the center (`isActive`).
@@ -38,6 +70,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Precision Card Click Detection:** Upgraded click handler in `onTouchUp` with WebGL world-space coordinate raycasting, accurately detecting and opening the clicked project card (center, left, or right) in the lightbox preview.
   - **Performance Optimization & Culling:** Reduced plane geometry segments from 32x64 down to 16x24 (85% reduction in triangle count) and added off-screen mesh visibility culling (`this.plane.visible = isVisible`), reducing active draw calls from 44 to 4-6 for locked 60fps performance on all devices.
 
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
+
 ### [Added]
 - **Fase 3 & 4 Motion Architecture (Refined per User Feedback — Clean White Landing Page, OGL WebGL CircularGallery, & Skiper49 Carousel_003):**
   - **Intro / About Clean White Section with Sequential Text & Color Animation (Slide 6 — [AboutSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/AboutSection.tsx)):** Removed the dark isometric background and floating box; kept the landing page pure white (`bg-white`) and applied only the sequential line reveal and orange-to-black color transition animation from the Slide 6 video reference.
@@ -45,6 +82,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - **Portfolio / Archive Hardware-Accelerated OGL WebGL `CircularGallery` (Slide 10 — [CircularGallery.tsx](file:///Users/dicky/Work/nomina-second/src/components/portfolio/CircularGallery.tsx) & [Skiper30.tsx](file:///Users/dicky/Work/nomina-second/src/components/portfolio/Skiper30.tsx)):** Implemented the OGL WebGL `CircularGallery` (`bend={3}`, `borderRadius={0.05}`, `scrollEase={0.05}`) on a single `<canvas>` for butter-smooth 60fps performance across all 22 project cards, with click-to-preview lightbox support.
   - **Careers `Skiper49` / `Carousel_003` Swiper Coverflow (`CareerOpening.tsx` & `CareerMain.tsx`):** Removed `CareerBenifit` ("Our Culture & Benefits") from `/career` and replaced `CareerOpening.tsx` with the `Skiper49` / `Carousel_003` Swiper Coverflow component (`rotate: 40`, `depth: 100`, `slideShadows: true`) using real high-res NOMINA event photos plus the clean role table below.
   - **Statement Section Scroll Reveal (Slide 3 — [StatementSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/StatementSection.tsx)):** Added staggered line mask reveal and viewport-linked transitions.
+
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
+
+### [Added]
+- **Support Transisi Antar-Halaman untuk Tombol Browser Back & Forward ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx)):**
+  - Menambahkan listener `popstate`, deteksi perubahan `pathname` dari history, `pageshow` (bfcache restore), dan sinkronisasi `performance.getEntriesByType("navigation")[0].type === "back_forward"`.
+  - Ketika user menekan tombol Back (`<`) atau Forward (`>`) di browser maupun swipe gesture di mobile/trackpad, sistem otomatis memainkan transisi 3-layer (#000000 Black → #333333 Dark Gray → #fb5102 Orange) naik menutupi layar dan berbalik membuka ke bawah untuk menampilkan halaman sebelumnya.
 
 ### [Changed]
 - **Fase 2 Feedback Implementation (Slides 4, 5, 7, 9, 11, 12, 14-18):**
@@ -67,6 +114,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - `--color-nomina-black`: `#000000`, `--color-nomina-white`: `#f9f9f9`
     - `--color-nomina-gray`: `#646464`, `--color-nomina-light-gray`: `#a7a7a7`, `--color-nomina-dark-gray`: `#333333`
     - `--color-nomina-surface`: `#cdcdcb`, `--color-nomina-navy`: `#1c1e2a`
+
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
 
 ### [Added]
 - **Career Detail Pages for Project Manager, Production Manager, Sales and Account Manager:**
@@ -97,6 +149,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### [Removed]
 - **Tetris Decorative Strip (`src/components/Footer.tsx`):** Menghapus strip animasi self-playing Tetris putih 80px beserta import modul Tetris dari Footer utama, membuat tampilan footer lebih bersih, modern, dan selaras dengan estetika minimalis gelap NOMINA.
 
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
+
 ### [Added]
 - **Brand Identity & Favicon Refresh (`public/nomina_logo.png`, `src/components/icons.tsx`, `src/app/layout.tsx`):**
   - **3D Layered Logo Integration:** Mengganti fallback teks lama `"nomina."` + `"10 YEARS OF PEOPLE."` pada komponen [NominaLogo](file:///Users/dicky/Work/nomina-second/src/components/icons.tsx) dan `NominaLogoDark` dengan aset logo 3D layered resmi [nomina_logo.png](file:///Users/dicky/Work/nomina-second/public/nomina_logo.png) menggunakan Next.js `Image` berfitur `priority` dan `object-contain`.
@@ -114,6 +171,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Navbar Centering & Video Vignette Removal:**
   - **Navbar Centering (`src/components/Navbar.tsx`):** Memperbaiki posisi menu navigasi desktop (`ABOUT`, `ARCHIVE`, `SERVICES`, `CLIENTS`, `CAREERS`, `CONTACT`, `PORTOFOLIO`) menjadi presisi di tengah layar secara horizontal menggunakan `absolute left-1/2 -translate-x-1/2 h-full z-10`, menghilangkan pergeseran asimetris ke kanan yang sebelumnya disebabkan oleh lebar elemen logo di sisi kiri tanpa elemen penyeimbang di sisi kanan.
   - **Video Vignette Removal (`src/components/HeroSection.tsx`):** Menghapus layer overlay scrim gradient vignette (`bg-gradient-to-b from-black/50 via-transparent to-black/60`) dan mengembalikan `opacity` video hero menjadi 100% natural tanpa penggelapan.
+
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
 
 ### [Added]
 - **Integrasi Komponen Shared Element Gallery (`src/components/ui/shared-element-gallery.tsx` & `src/components/portfolio/Skiper30.tsx`):**
@@ -199,6 +261,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Integrated AI Context System (`llms.txt`, `BRAIN.md`, `CHANGELOG.md`, `AGENTS.md`) for persistent cross-session memory and context synchronization.
 - Created `llms.txt` navigation map for LLMs and agent tooling.
 - Created `BRAIN.md` as dynamic persistent memory tracking current context, active brainstorming, and architectural decisions.
+
+### [Changed]
+- **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
+  - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.
+  - Each distinct color band (#000000 Black → #333333 Dark Gray → #fb5102 Orange) is now clearly and visibly distinguished as it sweeps across the screen and peels away to reveal the destination page.
+
+### [Added]
+- **Support Transisi Antar-Halaman untuk Tombol Browser Back & Forward ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [layout.tsx](file:///Users/dicky/Work/nomina-second/src/app/layout.tsx)):**
+  - Menambahkan listener `popstate`, deteksi perubahan `pathname` dari history, `pageshow` (bfcache restore), dan sinkronisasi `performance.getEntriesByType("navigation")[0].type === "back_forward"`.
+  - Ketika user menekan tombol Back (`<`) atau Forward (`>`) di browser maupun swipe gesture di mobile/trackpad, sistem otomatis memainkan transisi 3-layer (#000000 Black → #333333 Dark Gray → #fb5102 Orange) naik menutupi layar dan berbalik membuka ke bawah untuk menampilkan halaman sebelumnya.
 
 ### [Changed]
 - Migrated Hero section background video from local 36MB static asset (`/videos/special20-showreel-1080.mp4`) to Cloudinary CDN URL (`https://res.cloudinary.com/v764bbhk/video/upload/v1787297781/special20-showreel-1080.mp4`) for fast edge streaming, lower bandwidth consumption, and enhanced initial load performance.

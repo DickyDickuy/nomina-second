@@ -14,9 +14,9 @@
   --font-sans: var(--font-body);
 
   /* NOMINA brand colors (Slide 2 Palette) */
-  --color-nomina-orange: #e85002;
+  --color-nomina-orange: #fb5102;
   --color-nomina-orange-bright: #fb5102;
-  --color-nomina-red: #e85002;
+  --color-nomina-red: #fb5102;
   --color-nomina-black: #000000;
   --color-nomina-white: #f9f9f9;
   --color-nomina-gray: #646464;
@@ -83,7 +83,7 @@
   --card-foreground: #000000;
   --popover: #f9f9f9;
   --popover-foreground: #000000;
-  --primary: #e85002;
+  --primary: #fb5102;
   --primary-foreground: #f9f9f9;
   --secondary: #cdcdcb;
   --secondary-foreground: #000000;
@@ -94,7 +94,7 @@
   --destructive: oklch(0.577 0.245 27.325);
   --border: #a7a7a7;
   --input: #a7a7a7;
-  --ring: #e85002;
+  --ring: #fb5102;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -103,12 +103,12 @@
   --radius: 0.625rem;
   --sidebar: #f9f9f9;
   --sidebar-foreground: #000000;
-  --sidebar-primary: #e85002;
+  --sidebar-primary: #fb5102;
   --sidebar-primary-foreground: #f9f9f9;
   --sidebar-accent: #cdcdcb;
   --sidebar-accent-foreground: #000000;
   --sidebar-border: #a7a7a7;
-  --sidebar-ring: #e85002;
+  --sidebar-ring: #fb5102;
 }
 
 .dark {
@@ -118,7 +118,7 @@
   --card-foreground: #f9f9f9;
   --popover: #1c1e2a;
   --popover-foreground: #f9f9f9;
-  --primary: #e85002;
+  --primary: #fb5102;
   --primary-foreground: #f9f9f9;
   --secondary: #333333;
   --secondary-foreground: #f9f9f9;
@@ -129,7 +129,7 @@
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: #e85002;
+  --ring: #fb5102;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -137,12 +137,12 @@
   --chart-5: oklch(0.269 0 0);
   --sidebar: #1c1e2a;
   --sidebar-foreground: #f9f9f9;
-  --sidebar-primary: #e85002;
+  --sidebar-primary: #fb5102;
   --sidebar-primary-foreground: #f9f9f9;
   --sidebar-accent: #333333;
   --sidebar-accent-foreground: #f9f9f9;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: #e85002;
+  --sidebar-ring: #fb5102;
 }
 
 @layer base {
@@ -198,7 +198,7 @@
 }
 
 .service-row:hover {
-  background-color: #e85002;
+  background-color: #fb5102;
   color: #f9f9f9;
 }
 
@@ -223,7 +223,7 @@
 }
 
 .nav-bar-link:hover {
-  background-color: #e85002 !important;
+  background-color: #fb5102 !important;
   color: #f9f9f9 !important;
 }
 
@@ -340,8 +340,8 @@
 .tp-contact-form-input input:focus,
 .tp-contact-form-input textarea:focus {
   background: #ffffff !important;
-  border-color: #e85002 !important;
-  box-shadow: 0 0 0 3px rgba(232, 80, 2, 0.15) !important;
+  border-color: #fb5102 !important;
+  box-shadow: 0 0 0 3px rgba(251, 81, 2, 0.15) !important;
   outline: none !important;
 }
 
@@ -411,7 +411,7 @@
 }
 
 .tp-footer-style-6 .tp-footer-widget-info a:hover {
-  color: #e85002 !important;
+  color: #fb5102 !important;
 }
 
 .tp-footer-style-6 .tp-footer-widget-menu ul li a,
@@ -423,7 +423,7 @@
 
 .tp-footer-style-6 .tp-footer-widget-menu ul li a:hover,
 .footer-main .tp-footer-widget-menu ul li a:hover {
-  background-color: #e85002 !important;
+  background-color: #fb5102 !important;
   color: #ffffff !important;
 }
 
@@ -441,7 +441,7 @@
 }
 
 .tp-footer-style-6 .tp-footer-widget-social a:hover {
-  background-color: #e85002 !important;
+  background-color: #fb5102 !important;
   color: #ffffff !important;
 }
 
@@ -451,7 +451,7 @@
 
 .tp-copyright-style-6 .tp-footer-static-logo,
 .tp-copyright-style-6 .tp-copyright-big-text span {
-  color: #e85002 !important;
+  color: #fb5102 !important;
 }
 
 /* Marquee infinite scroll */
@@ -466,11 +466,11 @@
 }
 
 .animate-marquee {
-  animation: marquee 40s linear infinite;
+  animation: marquee 90s linear infinite;
 }
 
 .animate-marquee-reverse {
-  animation: marquee-reverse 40s linear infinite;
+  animation: marquee-reverse 90s linear infinite;
 }
 
 /* ==========================================================================
@@ -503,6 +503,20 @@
 #nomina-home .font-body {
   font-family: var(--font-body) !important;
 }
+
+/* Protect Tailwind spacing utilities inside #nomina-home from Agntix spacing.css pixel overrides */
+#nomina-home .pt-5  { padding-top: 1.25rem !important; }
+#nomina-home .pb-5  { padding-bottom: 1.25rem !important; }
+#nomina-home .mt-5  { margin-top: 1.25rem !important; }
+#nomina-home .mb-5  { margin-bottom: 1.25rem !important; }
+#nomina-home .pt-10 { padding-top: 2.5rem !important; }
+#nomina-home .pb-10 { padding-bottom: 2.5rem !important; }
+#nomina-home .mt-10 { margin-top: 2.5rem !important; }
+#nomina-home .mb-10 { margin-bottom: 2.5rem !important; }
+#nomina-home .pt-20 { padding-top: 5rem !important; }
+#nomina-home .pb-20 { padding-bottom: 5rem !important; }
+#nomina-home .mt-20 { margin-top: 5rem !important; }
+#nomina-home .mb-20 { margin-bottom: 5rem !important; }
 
 /* Trigger CSS recompile - Scarlet Red #FF3800 */
 /* ─── Global Skeleton Shimmer Keyframe (used by inline-style components) ─── */

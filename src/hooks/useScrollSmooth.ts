@@ -1,93 +1,81 @@
-// "use client";
-// import { ScrollSmoother } from "gsap/ScrollSmoother";
-// import { useGSAP } from "@gsap/react";
-// import { useState } from "react";
-// import { gsap } from "gsap";
-
-// export default function useScrollSmooth() {
-//   const [isScrollSmooth] = useState<boolean>(true);
-
-//   useGSAP(() => {
-//     // Register plugins
-//     gsap.registerPlugin(ScrollSmoother);
-
-//     const smoothWrapper = document.getElementById("smooth-wrapper");
-//     const smoothContent = document.getElementById("smooth-content");
-
-//     if (smoothWrapper && smoothContent && isScrollSmooth) {
-//       gsap.config({
-//         nullTargetWarn: false,
-//       });
-
-//       ScrollSmoother.create({
-//         smooth: 2,
-//         effects: true,
-//         smoothTouch: 0.1,
-//         normalizeScroll: false,
-//         ignoreMobileResize: true,
-//       });
-//     }
-//   }, [isScrollSmooth]);
-// }
-
 "use client";
+
+import { usePathname } from "next/navigation";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 
 export default function useScrollSmooth() {
-    useGSAP(() => {
-        // Register plugins
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  const pathname = usePathname();
 
-        const smoothWrapper = document.getElementById("smooth-wrapper");
-        const smoothContent = document.getElementById("smooth-content");
+  useGSAP(
+    () => {
+      gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+      gsap.config({ nullTargetWarn: false });
 
-        if (!smoothWrapper || !smoothContent) return;
+      // Kill any stale smoother instance before creating a new one
+      ScrollSmoother.get()?.kill();
+      window.scrollTo(0, 0);
 
-        const isDesktop = window.innerWidth >= 768;
+      const smoothWrapper = document.getElementById("smooth-wrapper");
+      const smoothContent = document.getElementById("smooth-content");
 
-        if (isDesktop) {
-            ScrollSmoother.create({
-                wrapper: smoothWrapper,
-                content: smoothContent,
-                smooth: 1.2,
-                effects: true,
-                smoothTouch: false,
-                normalizeScroll: false,
-                ignoreMobileResize: true,
-            });
-        } else {
-            gsap.config({ nullTargetWarn: false });
-        }
-        const shapeElement = document.querySelector(".shape");
-        if (shapeElement) {
-            ScrollTrigger.create({
-                trigger: shapeElement,
-                pin: true,
-                start: "center center",
-                end: "+=300",
-                markers: false,
-            });
-        }
+      if (!smoothWrapper || !smoothContent) return;
 
-        // Throttle resize handler with rAF to avoid excessive ScrollTrigger.refresh calls
-        let resizeRafId: number | null = null;
-        const handleResize = () => {
-            if (resizeRafId) return;
-            resizeRafId = requestAnimationFrame(() => {
-                ScrollTrigger.refresh();
-                resizeRafId = null;
-            });
-        };
+      const isDesktop = window.innerWidth >= 768;
+      let smoother: ScrollSmoother | null = null;
 
-        window.addEventListener("resize", handleResize);
+      if (isDesktop) {
+        smoother = ScrollSmoother.create({
+          wrapper: smoothWrapper,
+          content: smoothContent,
+          smooth: 1.2,
+          effects: true,
+          smoothTouch: false,
+          normalizeScroll: false,
+          ignoreMobileResize: true,
+        });
+      }
 
-        return () => {
-            window.removeEventListener("resize", handleResize);
-            if (resizeRafId) cancelAnimationFrame(resizeRafId);
-        };
-    }, []);
+      const shapeElement = document.querySelector(".shape");
+      let shapeTrigger: ScrollTrigger | null = null;
+      if (shapeElement) {
+        shapeTrigger = ScrollTrigger.create({
+          trigger: shapeElement,
+          pin: true,
+          start: "center center",
+          end: "+=300",
+          markers: false,
+        });
+      }
+
+      let resizeRafId: number | null = null;
+      const handleResize = () => {
+        if (resizeRafId) return;
+        resizeRafId = requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+          resizeRafId = null;
+        });
+      };
+
+      const resizeObserver = new ResizeObserver(() => {
+        handleResize();
+      });
+      resizeObserver.observe(smoothContent);
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        resizeObserver.disconnect();
+        window.removeEventListener("resize", handleResize);
+        if (resizeRafId) cancelAnimationFrame(resizeRafId);
+        shapeTrigger?.kill();
+        smoother?.kill();
+        document.body.style.removeProperty("height");
+        document.body.style.removeProperty("overflow");
+      };
+    },
+    { dependencies: [pathname], revertOnUpdate: true },
+  );
 }
-

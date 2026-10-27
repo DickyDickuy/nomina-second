@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { PageTransition } from "@/components/shared/PageTransition/PageTransition";
 
 const nasalization = localFont({
   src: "../fonts/Nasalization-Regular.otf",
@@ -130,11 +131,36 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html
-        lang="id"
-        className={`${nasalization.variable} ${aspekta.variable} antialiased scroll-smooth`}
-      >
-        <body className="min-h-full flex flex-col font-body">{children}</body>
-      </html>
+    <html
+      lang="id"
+      suppressHydrationWarning
+      className={`${nasalization.variable} ${aspekta.variable} antialiased scroll-smooth`}
+    >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var n=window.performance&&performance.getEntriesByType&&performance.getEntriesByType("navigation")[0];var isBack=n&&n.type==="back_forward";if(sessionStorage.getItem("nomina_pt_reveal")==="1"||isBack){document.documentElement.setAttribute("data-pt-covered","true");}}catch(e){}`,
+          }}
+        />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+              html[data-pt-covered="true"] .nomina-pt-wrapper {
+                visibility: visible !important;
+                opacity: 1 !important;
+                pointer-events: all !important;
+              }
+              html[data-pt-covered="true"] .nomina-pt-layer {
+                transform: translate3d(0, 0%, 0) !important;
+              }
+            `,
+          }}
+        />
+      </head>
+      <body className="min-h-full flex flex-col font-body">
+        <PageTransition />
+        {children}
+      </body>
+    </html>
   );
 }

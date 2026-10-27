@@ -9,7 +9,7 @@ export function AboutSection() {
   const isInView = useInView(sectionRef, { amount: 0.35, once: false });
 
   // Reference video (Slide 6): Text lines reveal sequentially, and the highlight phrase
-  // pulses/transitions cleanly between brand orange (#e85002) and black (#000000).
+  // pulses/transitions cleanly between brand orange (#fb5102) and black (#000000).
   const [highlightOrange, setHighlightOrange] = useState(true);
 
   useEffect(() => {
@@ -69,7 +69,7 @@ export function AboutSection() {
                 ? {
                     y: "0%",
                     opacity: 1,
-                    color: highlightOrange ? "#e85002" : "#000000",
+                    color: highlightOrange ? "#fb5102" : "#000000",
                   }
                 : { y: "100%", opacity: 0 }
             }
@@ -119,7 +119,7 @@ export function AboutSection() {
             By seamlessly integrating{" "}
             <motion.strong
               animate={{
-                color: highlightOrange ? "#e85002" : "#000000",
+                color: highlightOrange ? "#fb5102" : "#000000",
               }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
               style={{ fontWeight: 700 }}
