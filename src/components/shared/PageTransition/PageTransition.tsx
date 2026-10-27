@@ -250,18 +250,19 @@ export function PageTransition() {
         return;
       }
 
-      const isSamePage =
-        resolvedUrl.pathname === window.location.pathname &&
-        resolvedUrl.search === window.location.search;
+      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+      const targetPath = resolvedUrl.pathname.replace(/\/+$/, "") || "/";
 
-      if (isSamePage) {
+      // If navigating within the SAME page (e.g. #about, #services, #clients, or clicking current route):
+      if (currentPath === targetPath) {
+        // Absolutely NO page transition on the same page!
         if (resolvedUrl.hash) {
           const targetEl = document.querySelector(resolvedUrl.hash);
           if (targetEl) {
             targetEl.scrollIntoView({ behavior: "smooth" });
-          } else {
-            window.location.hash = resolvedUrl.hash;
           }
+        } else {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }
         return;
       }
@@ -347,12 +348,22 @@ export function PageTransition() {
 
       if (url.origin !== window.location.origin) return;
 
-      const isSamePage =
-        url.pathname === window.location.pathname &&
-        url.search === window.location.search;
+      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+      const targetPath = url.pathname.replace(/\/+$/, "") || "/";
 
-      if (isSamePage) return;
+      // If on the SAME page (e.g. in-page anchor like /#about or clicking current page):
+      if (currentPath === targetPath) {
+        if (url.hash) {
+          const targetEl = document.querySelector(url.hash);
+          if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+        return;
+      }
 
+      // ONLY different page (different pathname) triggers page transition!
       e.preventDefault();
       e.stopPropagation();
       triggerCoverAndNavigate(url.pathname + url.search + url.hash);
@@ -360,13 +371,28 @@ export function PageTransition() {
 
     // Handle Browser Back / Forward button navigation (popstate)
     const handlePopState = () => {
+      const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+      const lastPath = lastPathnameRef.current ? lastPathnameRef.current.replace(/\/+$/, "") || "/" : "";
+
+      // If popstate is just a hash change or anchor jump on the SAME page:
+      if (currentPath === lastPath) {
+        // Absolutely NO page transition!
+        return;
+      }
+
+      lastPathnameRef.current = window.location.pathname;
       playSweepTransition();
     };
 
     // Handle iOS Safari / Android bfcache restore on swipe-back
     const handlePageShow = (e: PageTransitionEvent) => {
       if (e.persisted) {
-        playSweepTransition();
+        const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+        const lastPath = lastPathnameRef.current ? lastPathnameRef.current.replace(/\/+$/, "") || "/" : "";
+        if (currentPath !== lastPath) {
+          lastPathnameRef.current = window.location.pathname;
+          playSweepTransition();
+        }
       }
     };
 
@@ -386,12 +412,14 @@ export function PageTransition() {
 
   // Handle route changes when navigating via Next.js router.push or history
   useEffect(() => {
-    if (lastPathnameRef.current !== pathname) {
-      const prev = lastPathnameRef.current;
-      lastPathnameRef.current = pathname;
+    const current = (pathname || "/").replace(/\/+$/, "") || "/";
+    const last = lastPathnameRef.current ? lastPathnameRef.current.replace(/\/+$/, "") || "/" : "";
 
-      if (prev && !busyRef.current) {
-        // Soft route change not triggered by our link click handler (e.g. Next.js history pop)
+    if (current !== last) {
+      lastPathnameRef.current = pathname || "/";
+
+      if (last && !busyRef.current) {
+        // Soft route change to a DIFFERENT page
         playSweepTransition();
       }
     }

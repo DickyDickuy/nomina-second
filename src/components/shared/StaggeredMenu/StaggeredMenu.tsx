@@ -420,11 +420,35 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         {items.length ? (
                             items.map((item, index) => (
                                 <li className={styles.panelItemWrap} key={`${item.label}-${index}`}>
-                                    <a className={styles.panelItem} href={item.link} aria-label={item.ariaLabel} data-index={index + 1} onClick={(e) => {
-                                        e.preventDefault();
-                                        closeMenu();
-                                        navigateWithTransition(item.link);
-                                    }}>
+                                    <a
+                                        className={styles.panelItem}
+                                        href={item.link}
+                                        aria-label={item.ariaLabel}
+                                        data-index={index + 1}
+                                        onClick={(e) => {
+                                            const isHash = item.link.startsWith('#');
+                                            const isSamePageHash =
+                                                isHash || (item.link.startsWith('/#') && window.location.pathname === '/');
+
+                                            if (isSamePageHash) {
+                                                // Anchor navigation on current page: close menu & smooth-scroll, NO transition!
+                                                e.preventDefault();
+                                                closeMenu();
+                                                const hashId = isHash ? item.link : item.link.replace(/^\//, '');
+                                                const targetEl = document.querySelector(hashId);
+                                                if (targetEl) {
+                                                    setTimeout(() => {
+                                                        targetEl.scrollIntoView({ behavior: 'smooth' });
+                                                    }, 300);
+                                                }
+                                                return;
+                                            }
+
+                                            e.preventDefault();
+                                            closeMenu();
+                                            navigateWithTransition(item.link);
+                                        }}
+                                    >
                                         <span className={styles.panelItemLabel}>{item.label}</span>
                                     </a>
                                 </li>

@@ -161,6 +161,12 @@ export function Footer({ bgColor = "#121315", className = "" }: UnifiedFooterPro
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
+                  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+                  const targetPath = link.href.replace(/\/+$/, "") || "/";
+                  if (currentPath === targetPath) {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    return;
+                  }
                   navigateWithTransition(link.href);
                 }}
                 className="footer-quick-link"
@@ -218,6 +224,12 @@ export function Footer({ bgColor = "#121315", className = "" }: UnifiedFooterPro
                 href={link.href}
                 onClick={(e) => {
                   e.preventDefault();
+                  const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+                  const targetPath = link.href.replace(/\/+$/, "") || "/";
+                  if (currentPath === targetPath) {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    return;
+                  }
                   navigateWithTransition(link.href);
                 }}
                 className="footer-quick-link"

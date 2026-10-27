@@ -89,7 +89,19 @@ export function Navbar() {
               scrolled ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >
-            <Link href="/" onClick={(e) => { e.preventDefault(); navigateWithTransition('/'); }} className="h-9 flex items-center">
+            <Link
+              href="/"
+              onClick={(e) => {
+                if (isLandingPage) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                } else {
+                  e.preventDefault();
+                  navigateWithTransition('/');
+                }
+              }}
+              className="h-9 flex items-center"
+            >
               <NominaLogo className="h-full w-auto hover:opacity-80 transition-opacity" />
             </Link>
           </div>
@@ -105,12 +117,26 @@ export function Navbar() {
                   key={link.label}
                   href={targetHref}
                   onClick={(e) => {
-                    if (isHashLink && !isLandingPage) {
+                    if (isLandingPage && isHashLink) {
+                      // Anchor navigation on the landing page: smooth-scroll only, NO transition!
+                      e.preventDefault();
+                      const targetEl = document.querySelector(link.href);
+                      if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: "smooth" });
+                      }
+                    } else if (isHashLink && !isLandingPage) {
+                      // Navigating from subpage to landing section: different page, run transition
                       e.preventDefault();
                       navigateWithTransition(targetHref);
                     } else if (!isHashLink) {
-                      e.preventDefault();
-                      navigateWithTransition(targetHref);
+                      // Navigating to subpage (/career, /contact, etc.)
+                      if (pathname === targetHref) {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else {
+                        e.preventDefault();
+                        navigateWithTransition(targetHref);
+                      }
                     }
                   }}
                   className="nav-bar-link h-full px-4 lg:px-6 flex items-center text-[11px] lg:text-[13px] font-bold uppercase tracking-wider text-nomina-black hover:bg-nomina-red hover:text-white transition-colors duration-200"

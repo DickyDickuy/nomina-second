@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Fixed]
+- **Exclusion of Page Transition for Same-Page & In-Page Anchor Navigation ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx), [StaggeredMenu.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/StaggeredMenu/StaggeredMenu.tsx), [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx)):**
+  - Guaranteed that page transitions **ONLY** trigger when navigating to a different page route (`targetPath !== currentPath`).
+  - Anchor section links on the landing page (`#about`, `#services`, `#clients`, `#special-20`), clicks on the current page's logo, footer links pointing to the current page, and browser back/forward history between in-page anchor fragments are now 100% excluded from the transition—they smooth-scroll directly to the target element without triggering any overlay animation.
+  - Added strict `currentPath !== lastPath` pathname checks on `popstate` and `usePathname()` so hash changes on the same page never fire `playSweepTransition()`.
+
 ### [Changed]
 - **Page Transition Timing & Stagger Calibration ([PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx)):**
   - Slowed down the 3-layer page transition and increased stagger from `0.065s` to `0.18s` (duration `0.72s`, ease `power3.out` / `power3.inOut`) with a `0.08s - 0.1s` hold on the top Nomina Orange layer.

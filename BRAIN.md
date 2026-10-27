@@ -6,15 +6,17 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:**
-  0. **Kalibrasi Kecepatan & Stagger Transisi Antar-Halaman (Tuntas):**
-     - Memperlambat durasi animasi transisi di [PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx) dari `0.32s - 0.42s` menjadi `0.68s - 0.72s` dengan stagger diperlebar dari `0.065s` ke `0.18s`.
-     - Ditambahkan jeda hold `0.08s - 0.1s` pada layer warna teratas `#fb5102` Nomina Orange sebelum membuka/menavigasi.
-     - Setiap pita warna (#000000 Black → #333333 Dark Gray → #fb5102 Orange) kini terlihat jelas bergerak secara berurutan dan elegan baik saat klik link maupun saat menekan tombol Back/Forward di browser.
-  1. **Support Transisi Antar-Halaman untuk Tombol Browser Back & Forward (Tuntas):**
+  0. **Isolasi Transisi Halaman: Hanya Berjalan Jika Berpindah Halaman/Route Berbeda (Tuntas):**
+     - Memperbaiki [PageTransition.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/PageTransition/PageTransition.tsx), [Navbar.tsx](file:///Users/dicky/Work/nomina-second/src/components/Navbar.tsx), [StaggeredMenu.tsx](file:///Users/dicky/Work/nomina-second/src/components/shared/StaggeredMenu/StaggeredMenu.tsx), dan [Footer.tsx](file:///Users/dicky/Work/nomina-second/src/components/Footer.tsx).
+     - Menjamin transisi 3-layer HANYA aktif jika `targetPath !== currentPath`.
+     - Klik link anchor/section di landing page (`#about`, `#services`, `#clients`, `#special-20`), klik logo saat sudah di `/`, klik link footer yang merujuk ke halaman yang sedang dibuka, serta perubahan hash di browser history kini 100% TIDAK memicu transisi melainkan langsung melakukan smooth-scroll ke elemen tujuan.
+  1. **Kalibrasi Kecepatan & Stagger Transisi Antar-Halaman (Tuntas):**
+     - Durasi transisi `0.68s - 0.72s` dengan stagger `0.18s` dan hold `0.08s - 0.1s` agar warna Hitam, Abu Gelap, dan Nomina Oranye terlihat jelas.
+  2. **Support Transisi Antar-Halaman untuk Tombol Browser Back & Forward (Tuntas):**
      - Menangani `popstate`, deteksi perubahan route saat history navigasi, `pageshow` (bfcache di Safari/mobile), serta `performance.getEntriesByType("navigation")[0].type === "back_forward"`.
-  2. **Migrasi Warna Oranye ke `#fb5102` & Wordmark `NOMINA` Full-Display (Tuntas).**
-  3. Verifikasi `npm run typecheck` dan `npm run lint` lulus (`0 errors, 23 warnings`).
-- **Fokus Utama:** Menunggu feedback user atas timing dan visibilitas ketiga warna transisi.
+  3. **Migrasi Warna Oranye ke `#fb5102` & Wordmark `NOMINA` Full-Display (Tuntas).**
+  4. Verifikasi `npm run typecheck` dan `npm run lint` lulus (`0 errors, 23 warnings`).
+- **Fokus Utama:** Konfirmasi user bahwa navigasi anchor section di landing page tidak lagi memicu transisi.
 
 ---
 
