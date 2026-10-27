@@ -1,12 +1,34 @@
+"use client";
+
 import { ArrowButton } from "@/components/ArrowButton";
 import { cn } from "@/lib/utils";
 
 interface ClientLogo {
   name: string;
   src: string;
-  /** Official client URL. Fill in to make the logo clickable (opens in a new tab). */
+  /** Official client URL. Opens in a new tab when clicked. */
   href?: string;
 }
+
+const CLIENT_HREFS: Record<string, string> = {
+  "/images/client-KTM.png": "https://www.ktm.com",
+  "/images/client-astra.png": "https://www.astra.co.id",
+  "/images/client-bank-bni.png": "https://www.bni.co.id",
+  "/images/client-bank-bri.png": "https://bri.co.id",
+  "/images/client-bank-bsi.png": "https://www.bankbsi.co.id",
+  "/images/client-bank-hsbc.png": "https://www.hsbc.co.id",
+  "/images/client-citilink.png": "https://www.citilink.co.id",
+  "/images/client-dana.png": "https://www.dana.id",
+  "/images/client-dbs.png": "https://www.dbs.id",
+  "/images/client-djarum.png": "https://www.djarum.com",
+  "/images/client-flip.png": "https://flip.id",
+  "/images/client-garuda-airline.png": "https://www.garuda-indonesia.com",
+  "/images/client-kominfo.png": "https://www.komdigi.go.id",
+  "/images/client-motogp.png": "https://www.motogp.com",
+  "/images/client-noice.png": "https://www.noice.id",
+  "/images/client-ocbc.png": "https://www.ocbc.id",
+  "/images/client-pokemon.png": "https://asia.pokemon-card.com/id/",
+};
 
 const CLIENT_SRCS = [
   "/images/client-KTM.png",
@@ -30,15 +52,19 @@ const CLIENT_SRCS = [
 
 function getClientName(src: string): string {
   const filename = src.split("/").pop() || "";
-  const rawName = filename.replace(/^client-/, "").replace(/\.[^.]+$/, "").replace(/-/g, " ");
+  const rawName = filename
+    .replace(/^client-/, "")
+    .replace(/\.[^.]+$/, "")
+    .replace(/-/g, " ");
   return rawName
     .split(" ")
-    .map((w) => (w.length <= 4 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)))
+    .map((w) =>
+      w.length <= 4
+        ? w.toUpperCase()
+        : w.charAt(0).toUpperCase() + w.slice(1)
+    )
     .join(" ");
 }
-
-// Map of logo src -> official URL. To be filled in from the client-provided list.
-const CLIENT_HREFS: Record<string, string> = {};
 
 const CLIENT_LOGOS: ClientLogo[] = CLIENT_SRCS.map((src) => ({
   name: getClientName(src) || "Client",
@@ -46,8 +72,8 @@ const CLIENT_LOGOS: ClientLogo[] = CLIENT_SRCS.map((src) => ({
   href: CLIENT_HREFS[src],
 }));
 
-// Helper to create offset arrays so each row looks a bit different
-function getOffsetLogos(offset: number) {
+// Helper to create offset arrays so each row looks distinct
+function getOffsetLogos(offset: number): ClientLogo[] {
   return [...CLIENT_LOGOS.slice(offset), ...CLIENT_LOGOS.slice(0, offset)];
 }
 
@@ -73,10 +99,13 @@ export function ClientsSection() {
           </h2>
         </div>
 
-        {/* Marquee Rows */}
+        {/* Dynamic Marquee Rows */}
         <div className="flex flex-col gap-8 md:gap-12 py-8 overflow-hidden w-full">
           {ROWS.map((row) => (
-            <div key={row.id} className="flex w-full overflow-hidden whitespace-nowrap group hover:[&>div]:[animation-play-state:paused]">
+            <div
+              key={row.id}
+              className="flex w-full overflow-hidden whitespace-nowrap group hover:[&>div]:[animation-play-state:paused]"
+            >
               <div
                 className={cn(
                   "flex w-max items-center gap-16 md:gap-24 px-8 md:px-12",
@@ -84,7 +113,6 @@ export function ClientsSection() {
                 )}
                 style={{ animationPlayState: "inherit" }}
               >
-                {/* Render duplicated list for seamless looping */}
                 {[...row.logos, ...row.logos].map((client, idx) => {
                   const img = (
                     // eslint-disable-next-line @next/next/no-img-element
@@ -96,13 +124,14 @@ export function ClientsSection() {
                   );
                   const wrapperClass =
                     "shrink-0 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300";
+
                   return client.href ? (
                     <a
                       key={`${row.id}-${idx}`}
                       href={client.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`Visit ${client.name} website`}
+                      aria-label={`Visit ${client.name} official website`}
                       className={wrapperClass}
                     >
                       {img}

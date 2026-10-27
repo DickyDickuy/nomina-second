@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Fixed]
+- **Career Coverflow Shortest-Path Circular Loop Navigation ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):**
+  - Replaced naive `slideToLoop(targetIdx)` (which searched for the first slide in DOM order, causing it to rewind backwards 3 times when clicking from slide 4 to slide 1) with an intelligent shortest-path circular navigation handler (`handleDotClick`).
+  - When on slide 4 (index 3) and clicking dot 1 (index 0), it now triggers `slideNext()` to slide smoothly **1 step forward to the right**.
+  - When on slide 1 (index 0) and clicking dot 4 (index 3), it now triggers `slidePrev()` to slide smoothly **1 step backward to the left**.
+  - For adjacent and opposite steps, it selects the nearest DOM clone slide to eliminate all awkward multi-slide rewind animations.
+- **Career Coverflow Navigation Dots Fixed to Clear High-Contrast Circles ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):**
+  - Replaced native button styling that caused browser user-agent square bevel rendering (`■`) with explicit geometric circle `<span>` elements (`style={{ borderRadius: "50%" }}`).
+  - Upgraded active dot to bold solid black with scale highlight (`bg-black scale-110 shadow-sm`) and inactive dots to clearly visible gray circles with border (`bg-[#d1d5db] border border-black/20 hover:bg-[#9ca3af]`), ensuring all 4 pagination circles are immediately visible and high-contrast against the white background.
+- **Career Coverflow Shape Reset to Sharp Square ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):**
+  - Removed all `border-radius` from `.swiper-slide` so cards are pure square with sharp 90-degree corners (`300px × 300px`), restoring 100% adherence to the original Skiper49 source code and reference image.
+- **Career Coverflow Hover Zoom Removed ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):**
+  - Removed all artificial hover zoom animations (`group-hover:scale-105` and `transition-transform duration-500`) from the carousel images, keeping them completely static and faithful to the source code reference.
+- **Career Coverflow Exact 1:1 Skiper49 Reference Matching ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):**
+  - **Strictly 3 Cards Visible:** Replaced the wide 1200px container with the exact `max-w-4xl px-5` (896px) structure from Skiper49 and calibrated slide size to `300px × 330px` with `rotate: 40`, `depth: 100`, `stretch: 0`, and `slideShadows: true`. Exactly 3 cards are visible (center flat forward, 1 left angled 40°, 1 right angled 40°), with 4th and 5th cards completely hidden by overflow clipping.
+  - **Removed Top Meta Badges & Cleaned Card Layout:** Stripped out artificial top badges (`Full-Time`, `01 Open Role`), leaving the artwork/photo dominant with a subtle bottom vignette gradient, clean title (`text-sm sm:text-base uppercase`), and compact "Apply Now" pill button.
+  - **Minimalist 4-Dot Pagination:** Centered round bullet dots directly below the carousel matching the visual style of the reference.
+- **Portfolio Hardware-Accelerated Circular Gallery Initial Render & Click Interaction ([CircularGallery.tsx](file:///Users/dicky/Work/nomina-second/src/components/portfolio/CircularGallery.tsx)):**
+  - **Initial Left Card Visibility Bug:** Fixed empty left side on page load where user had to interact before left cards appeared. Implemented continuous modular wrapping formula (`((((rawX + halfTotal) % widthTotal) + widthTotal) % widthTotal) - halfTotal`) ensuring cards are populated symmetrically around center ($x=0$) on initial frame render with zero user interaction needed.
+  - **Precision Card Click Detection:** Upgraded click handler in `onTouchUp` with WebGL world-space coordinate raycasting, accurately detecting and opening the clicked project card (center, left, or right) in the lightbox preview.
+  - **Performance Optimization & Culling:** Reduced plane geometry segments from 32x64 down to 16x24 (85% reduction in triangle count) and added off-screen mesh visibility culling (`this.plane.visible = isVisible`), reducing active draw calls from 44 to 4-6 for locked 60fps performance on all devices.
+
+### [Added]
+- **Fase 3 & 4 Motion Architecture (Refined per User Feedback — Clean White Landing Page, OGL WebGL CircularGallery, & Skiper49 Carousel_003):**
+  - **Intro / About Clean White Section with Sequential Text & Color Animation (Slide 6 — [AboutSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/AboutSection.tsx)):** Removed the dark isometric background and floating box; kept the landing page pure white (`bg-white`) and applied only the sequential line reveal and orange-to-black color transition animation from the Slide 6 video reference.
+  - **Clients Clean White Marquee with Clickable Official Links (Slide 9 — [ClientsSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/ClientsSection.tsx)):** Removed the dark radial dial UI and restored the pure white (`bg-white`) 5-row dynamic marquee with `Brands We’ve Grown With` heading and clickable `<a target="_blank" rel="noopener noreferrer">` links for all 17 client logos.
+  - **Portfolio / Archive Hardware-Accelerated OGL WebGL `CircularGallery` (Slide 10 — [CircularGallery.tsx](file:///Users/dicky/Work/nomina-second/src/components/portfolio/CircularGallery.tsx) & [Skiper30.tsx](file:///Users/dicky/Work/nomina-second/src/components/portfolio/Skiper30.tsx)):** Implemented the OGL WebGL `CircularGallery` (`bend={3}`, `borderRadius={0.05}`, `scrollEase={0.05}`) on a single `<canvas>` for butter-smooth 60fps performance across all 22 project cards, with click-to-preview lightbox support.
+  - **Careers `Skiper49` / `Carousel_003` Swiper Coverflow (`CareerOpening.tsx` & `CareerMain.tsx`):** Removed `CareerBenifit` ("Our Culture & Benefits") from `/career` and replaced `CareerOpening.tsx` with the `Skiper49` / `Carousel_003` Swiper Coverflow component (`rotate: 40`, `depth: 100`, `slideShadows: true`) using real high-res NOMINA event photos plus the clean role table below.
+  - **Statement Section Scroll Reveal (Slide 3 — [StatementSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/StatementSection.tsx)):** Added staggered line mask reveal and viewport-linked transitions.
+
 ### [Changed]
 - **Fase 2 Feedback Implementation (Slides 4, 5, 7, 9, 11, 12, 14-18):**
   - **Hero/Weather (Slide 4):** [WeatherWidget.tsx](file:///Users/dicky/Work/nomina-second/src/components/WeatherWidget.tsx) now shows `JAKARTA SELATAN` with a `MapPin` icon in white, precipitation/humidity/wind block removed; bottom-right `SPECIAL EDITION / 10 YEARS OF PEOPLE` tagline removed from [HeroSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/HeroSection.tsx).

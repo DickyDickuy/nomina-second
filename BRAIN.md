@@ -6,14 +6,15 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:**
-  0. **Feedback Audit & Fase 1 + Fase 2 + Services Motion (Selesai):**
-     - **12 Slide 100% COMPLETE:** Slide 0, 1, 2, 4, 5, 7, 12, 14, 15, 16, 17, 18.
-     - **Slide dengan Progress Aktif:** Slide 8 (85% — interactive spring hover accordion selesai), Slide 9 (70% — judul & struktur data URL selesai), Slide 11 (50% — judul The Visionaries selesai), Slide 3 (30% — pondasi motion aktif).
-     - **Slide Sisa untuk Fase 3 & 4 (Motion):** Slide 6 (About Card/Logo Reveal), Slide 9 (Clients Radial Wheel), Slide 10 (Portfolio 3D Carousel), Slide 11 (Team Pixel Grid), Slide 13 (Careers Horizontal Accordion), Slide 3 (Seamless Scroll/Timer Transitions).
-     - Dokumen perencanaan dan progress tracking diperbarui di artifact `IMPLEMENTATION_PLAN.md`.
-     - `npm run check` lulus 100% tanpa error.
-- **Fokus Utama:** **Fase 3** (Lanjut ke komponen motion berikutnya: Slide 6, 9, 10, 11, atau 13).
-- **Menunggu dari user:** Daftar URL resmi 17 klien untuk melengkapi `CLIENT_HREFS` di `ClientsSection.tsx`.
+  0. **Penyelarasan 1:1 Career Coverflow Sesuai Referensi Skiper49:**
+     - **Navigasi Shortest-Path Circular Loop (Tuntas):** Mengganti `slideToLoop(idx)` dengan `handleDotClick` berbasis shortest path. Sekarang jika sedang di gambar 4 dan mengklik titik gambar 1, slider langsung bergeser **ke kanan 1 kali** (`slideNext()`), dan jika di gambar 1 mengklik gambar 4, slider langsung bergeser **ke kiri 1 kali** (`slidePrev()`). Tidak ada lagi perputaran mundur 3x yang canggung.
+     - **Navigasi Bulat Sempurna (True Circles):** 4 titik bulat kontras tinggi yang jelas terlihat di atas latar putih.
+     - **Bentuk Kartu Persegi Tajam (Square):** Sudut siku-siku tajam 90° murni (`width: 300px; height: 300px;`) tanpa `border-radius`.
+     - **Hover Zoom Dihapus:** Gambar kartu tetap diam dan statis saat kursor diarahkan.
+     - **Tepat Hanya 3 Kartu yang Tampil:** Kontainer `max-w-4xl px-5` (896px) dengan ukuran slide `300px × 300px`, rotasi `40°`, depth `100`, dan `stretch: 0`.
+  1. `tsc --noEmit`, `eslint`, dan `npm run build` lulus 100% dengan 0 error.
+- **Fokus Utama:** Konfirmasi kepuasan navigasi loop dots bersama user di browser `localhost:3000/career`.
+- **Menunggu dari user:** Feedback visual atas transisi 1-langkah navigasi titik loop di `/career`.
 
 ---
 
