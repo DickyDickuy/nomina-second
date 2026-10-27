@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [Added]
+- **The Visionaries Unified Originkit 3D Coverflow with Pixelated & Greyscale Effect (Slide 11 — [Smooth3DSlideshow.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/Smooth3DSlideshow.tsx), [TeamSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/TeamSection.tsx), [TeamSection.module.scss](file:///Users/dicky/Work/nomina-second/src/components/team/TeamSection.module.scss)):**
+  - Unified desktop and mobile views of `The Visionaries` into a single responsive Originkit `Smooth3DSlideshow` 3D Coverflow Gallery component, removing the old split desktop 2-column hover list and mobile coverflow.
+  - Added `<PixelatedSlideImage>` canvas overlay that renders non-centered cards (`!isActive`) in greyscale with crisp mosaic pixelation (`imageSmoothingEnabled = false`, `image-rendering: pixelated`), and smoothly resolves the pixel blocks while restoring full color when a card moves to the center (`isActive`).
+  - Configured the member Name (`slide.title`) and Position (`slide.role`) overlay to appear exclusively on the centered card (`opacity: isActive ? 1 : 0`).
+- **Audit Komprehensif Status 19 Slide Feedback:**
+  - Membuat dokumen audit artifact lengkap `AUDIT_SLIDE_STATUS.md` yang memetakan status kepatuhan Slide 0 s/d 18 terhadap deck dan video referensi.
+  - Mengidentifikasi status: 15 slide 100% sesuai, 2 slide disesuaikan atas instruksi eksplisit user (Slide 6 & Slide 9 - White Landing Page Theme), dan 1 slide tersisa yang belum sesuai (Slide 11 - The Visionaries Pixel Grid Reveal Effect).
+
 ### [Fixed]
 - **Career Coverflow Shortest-Path Circular Loop Navigation ([CareerOpening.tsx](file:///Users/dicky/Work/nomina-second/src/components/career/CareerOpening.tsx)):**
   - Replaced naive `slideToLoop(targetIdx)` (which searched for the first slide in DOM order, causing it to rewind backwards 3 times when clicking from slide 4 to slide 1) with an intelligent shortest-path circular navigation handler (`handleDotClick`).

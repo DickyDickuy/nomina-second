@@ -6,15 +6,14 @@ Sistem memori persisten dinamis untuk melacak konteks aktif, brainstorming, dan 
 
 # Current Context & Focus
 - **Status Saat Ini:**
-  0. **Penyelarasan 1:1 Career Coverflow Sesuai Referensi Skiper49:**
-     - **Navigasi Shortest-Path Circular Loop (Tuntas):** Mengganti `slideToLoop(idx)` dengan `handleDotClick` berbasis shortest path. Sekarang jika sedang di gambar 4 dan mengklik titik gambar 1, slider langsung bergeser **ke kanan 1 kali** (`slideNext()`), dan jika di gambar 1 mengklik gambar 4, slider langsung bergeser **ke kiri 1 kali** (`slidePrev()`). Tidak ada lagi perputaran mundur 3x yang canggung.
-     - **Navigasi Bulat Sempurna (True Circles):** 4 titik bulat kontras tinggi yang jelas terlihat di atas latar putih.
-     - **Bentuk Kartu Persegi Tajam (Square):** Sudut siku-siku tajam 90° murni (`width: 300px; height: 300px;`) tanpa `border-radius`.
-     - **Hover Zoom Dihapus:** Gambar kartu tetap diam dan statis saat kursor diarahkan.
-     - **Tepat Hanya 3 Kartu yang Tampil:** Kontainer `max-w-4xl px-5` (896px) dengan ukuran slide `300px × 300px`, rotasi `40°`, depth `100`, dan `stretch: 0`.
-  1. `tsc --noEmit`, `eslint`, dan `npm run build` lulus 100% dengan 0 error.
-- **Fokus Utama:** Konfirmasi kepuasan navigasi loop dots bersama user di browser `localhost:3000/career`.
-- **Menunggu dari user:** Feedback visual atas transisi 1-langkah navigasi titik loop di `/career`.
+  0. **Slide 11 (`The Visionaries`) Tuntas — Unified Originkit 3D Coverflow + Pixelated & Greyscale Effect:**
+     - **Penyatuan Desktop & Mobile:** Menghapus pemisahan versi desktop (grid 2 kolom + floating hover image) dan mobile (`TeamMobileCoverflow`), digantikan oleh komponen tunggal [Smooth3DSlideshow.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/Smooth3DSlideshow.tsx) di [TeamSection.tsx](file:///Users/dicky/Work/nomina-second/src/components/team/TeamSection.tsx).
+     - **Efek Pixelated & Greyscale (`!isActive`) → Sharp Full Color (`isActive`):** Menggunakan `<PixelatedSlideImage>` canvas yang merender kartu di luar tengah dalam kondisi greyscale dan piksel kotak tajam (`imageSmoothingEnabled = false`, `image-rendering: pixelated`), lalu secara mulus menghilangkan piksel dan mengembalikan warna asli saat kartu berada di tengah (`isActive`).
+     - **Teks Nama & Posisi Hanya di Kartu Tengah:** Overlay nama (`slide.title`) dan jabatan (`slide.role`) hanya muncul ketika kartu berada di tengah (`opacity: isActive ? 1 : 0`).
+  1. Seluruh 19 slide feedback (Slide 0 s/d 18) kini telah selesai 100%.
+  2. `npm run check` (`eslint`, `tsc --noEmit`, dan `next build`) lulus 100% dengan 0 error.
+- **Fokus Utama:** Konfirmasi hasil visual `The Visionaries` di halaman `/about` bersama user.
+- **Menunggu dari user:** Feedback visual atau instruksi lanjutan.
 
 ---
 
