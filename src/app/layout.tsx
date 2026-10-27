@@ -145,13 +145,48 @@ export default function RootLayout({
         <style
           dangerouslySetInnerHTML={{
             __html: `
+              .nomina-pt-wrapper {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                z-index: 1000000;
+                pointer-events: none;
+                visibility: hidden;
+                opacity: 0;
+                overflow: hidden;
+              }
+              .nomina-pt-layer {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                transform: translate3d(0, 100%, 0);
+                will-change: transform;
+                backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
+              }
+              html[data-pt-covered="true"]::before {
+                content: "";
+                position: fixed;
+                inset: 0;
+                width: 100vw;
+                height: 100vh;
+                height: 100dvh;
+                background-color: #fb5102;
+                z-index: 999999;
+                pointer-events: all;
+              }
               html[data-pt-covered="true"] .nomina-pt-wrapper {
-                visibility: visible !important;
-                opacity: 1 !important;
-                pointer-events: all !important;
+                visibility: visible;
+                opacity: 1;
+                pointer-events: all;
               }
               html[data-pt-covered="true"] .nomina-pt-layer {
-                transform: translate3d(0, 0%, 0) !important;
+                transform: translate3d(0, 0%, 0);
               }
             `,
           }}

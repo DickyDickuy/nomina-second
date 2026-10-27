@@ -100,6 +100,7 @@ class Title {
   textColor: string;
   font: string;
   mesh!: Mesh;
+  aspect: number = 1;
 
   constructor({
     gl,
@@ -126,6 +127,7 @@ class Title {
       this.font,
       this.textColor
     );
+    this.aspect = width / height;
     const geometry = new Plane(this.gl);
     const program = new Program(this.gl, {
       vertex: `
@@ -153,13 +155,29 @@ class Title {
       transparent: true,
     });
     this.mesh = new Mesh(this.gl, { geometry, program });
-    const aspect = width / height;
-    const textHeightScaled = this.plane.scale.y * 0.12;
-    const textWidthScaled = textHeightScaled * aspect;
-    this.mesh.scale.set(textWidthScaled, textHeightScaled, 1);
-    this.mesh.position.y =
-      -this.plane.scale.y * 0.5 - textHeightScaled * 0.6 - 0.05;
     this.mesh.setParent(this.plane);
+  }
+
+  onResize(planeScaleX: number, planeScaleY: number, isMobile: boolean) {
+    if (!this.mesh || planeScaleX <= 0 || planeScaleY <= 0) return;
+
+    // Target world-space height and width for crisp 1:1 text aspect ratio
+    let worldTextHeight = planeScaleY * (isMobile ? 0.085 : 0.075);
+    let worldTextWidth = worldTextHeight * this.aspect;
+
+    // Clamp width so long titles never exceed 92% of the card width or collide with neighbors
+    const maxWorldWidth = planeScaleX * 0.92;
+    if (worldTextWidth > maxWorldWidth) {
+      worldTextWidth = maxWorldWidth;
+      worldTextHeight = worldTextWidth / this.aspect;
+    }
+
+    // Convert world dimensions into local space of the scaled parent plane
+    const localScaleX = worldTextWidth / planeScaleX;
+    const localScaleY = worldTextHeight / planeScaleY;
+
+    this.mesh.scale.set(localScaleX, localScaleY, 1);
+    this.mesh.position.y = -0.5 - localScaleY * 0.65 - 0.025;
   }
 }
 
@@ -357,18 +375,24 @@ class Media {
       halfTotal;
 
     const x = this.plane.position.x;
-    const H = this.viewport.width / 2;
+    const isMobile = this.screen.width < 768;
+    // Clamp the virtual half-chord H so narrow mobile viewports maintain a gentle, wide arc radius
+    // instead of collapsing R and tilting cards at 60 degrees into each other.
+    const H = Math.max(this.viewport.width / 2, 18);
 
     if (this.bend === 0) {
       this.plane.position.y = 0;
       this.plane.rotation.z = 0;
     } else {
-      const B_abs = Math.abs(this.bend);
+      const effectiveBend = isMobile
+        ? Math.sign(this.bend) * Math.min(Math.abs(this.bend), 1.8)
+        : this.bend;
+      const B_abs = Math.abs(effectiveBend);
       const R = (H * H + B_abs * B_abs) / (2 * B_abs);
       const effectiveX = Math.min(Math.abs(x), H);
 
       const arc = R - Math.sqrt(Math.max(0, R * R - effectiveX * effectiveX));
-      if (this.bend > 0) {
+      if (effectiveBend > 0) {
         this.plane.position.y = -arc;
         this.plane.rotation.z = -Math.sign(x) * Math.asin(effectiveX / R);
       } else {
@@ -398,16 +422,30 @@ class Media {
     if (viewport) {
       this.viewport = viewport;
     }
-    this.scale = this.screen.height / 1500;
-    this.plane.scale.y =
-      (this.viewport.height * (900 * this.scale)) / this.screen.height;
-    this.plane.scale.x =
-      (this.viewport.width * (700 * this.scale)) / this.screen.width;
+    const isMobile = this.screen.width < 768;
+    if (isMobile) {
+      this.plane.scale.x = Math.min(
+        this.viewport.width * 0.64,
+        this.viewport.height * 0.44
+      );
+      this.plane.scale.y = this.plane.scale.x * 1.24;
+      this.padding = Math.max(this.plane.scale.x * 0.22, 1.3);
+    } else {
+      this.scale = this.screen.height / 1500;
+      this.plane.scale.y =
+        (this.viewport.height * (900 * this.scale)) / this.screen.height;
+      this.plane.scale.x =
+        (this.viewport.width * (700 * this.scale)) / this.screen.width;
+      this.padding = 2;
+    }
+
     this.plane.program.uniforms.uPlaneSizes.value = [
       this.plane.scale.x,
       this.plane.scale.y,
     ];
-    this.padding = 2;
+    if (this.title) {
+      this.title.onResize(this.plane.scale.x, this.plane.scale.y, isMobile);
+    }
     this.width = this.plane.scale.x + this.padding;
     this.widthTotal = this.width * this.length;
     this.x = this.width * this.index;

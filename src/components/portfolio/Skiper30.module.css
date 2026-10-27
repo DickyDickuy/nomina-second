@@ -26,8 +26,8 @@
   z-index: 10;
 
   /* Razor-sharp, high-end architectural ghost text */
-  color: #ff3800;
-  -webkit-text-stroke: 1px #ff3800;
+  color: #fb5102;
+  -webkit-text-stroke: 1px #fb5102;
 
   user-select: none;
   transition: letter-spacing 0.4s cubic-bezier(0.22, 1, 0.36, 1), text-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
@@ -35,7 +35,7 @@
 
 .spacerTitle:hover {
   letter-spacing: 0.015em;
-  text-shadow: 0 10px 28px rgba(255, 56, 0, 0.22);
+  text-shadow: 0 10px 28px rgba(251, 81, 2, 0.22);
 }
 
 .scrollTextContainer {
@@ -190,6 +190,15 @@
 
 /* Hide circle tooltip on mobile/tablet, show mobile labels instead */
 @media (max-width: 767px) {
+  .spacer {
+    height: 62svh;
+    min-height: 360px;
+  }
+
+  .scrollTextContainer {
+    bottom: 12%;
+  }
+
   .cursorCircle {
     display: none;
   }

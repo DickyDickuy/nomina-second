@@ -130,8 +130,8 @@ const Skiper30 = () => {
       </div>
 
       {/* Hardware-Accelerated WebGL Circular Gallery (60fps for all 22 cards) */}
-      <div className="w-full bg-white py-10 md:py-16">
-        <div style={{ height: "600px", position: "relative" }}>
+      <div className="w-full bg-white py-6 sm:py-10 md:py-16">
+        <div className="relative h-[460px] sm:h-[520px] md:h-[600px]">
           <CircularGallery
             items={NOMINA_PORTFOLIO}
             bend={3}

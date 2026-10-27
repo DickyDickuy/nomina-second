@@ -71,16 +71,16 @@ export function PageTransition() {
     const layers = getValidLayers();
     if (!wrapper || layers.length === 0) return;
 
-    // Remove pre-paint attribute first so CSS !important doesn't block GSAP
-    document.documentElement.removeAttribute("data-pt-covered");
-    try {
-      sessionStorage.removeItem(STORAGE_KEY);
-    } catch {
-      // Ignore storage errors
-    }
-
+    // 1. Explicitly lock inline styles to covered (0%) BEFORE removing the HTML attribute
+    //    so there is never even a 1-nanosecond gap between CSS rule removal and GSAP control.
+    wrapper.style.visibility = "visible";
+    wrapper.style.opacity = "1";
+    wrapper.style.pointerEvents = "none";
+    layers.forEach((layer) => {
+      layer.style.transform = "translate3d(0px, 0%, 0px)";
+    });
     gsap.set(wrapper, { autoAlpha: 1, pointerEvents: "none" });
-    gsap.set(layers, { yPercent: 0, force3D: true });
+    gsap.set(layers, { y: 0, yPercent: 0, force3D: true });
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -93,17 +93,28 @@ export function PageTransition() {
     // Reverse order: top layer (Orange) drops down first, then middle, then bottom
     const reversedLayers = [...layers].reverse();
     reversedLayers.forEach((layer, idx) => {
-      tl.to(
+      tl.fromTo(
         layer,
+        { y: 0, yPercent: 0, force3D: true },
         {
+          y: 0,
           yPercent: 100,
           duration: 0.72,
           ease: "power3.inOut",
           force3D: true,
+          immediateRender: true,
         },
         idx * 0.18
       );
     });
+
+    // 2. Now that GSAP has synchronously written 0% inline transforms, remove the HTML curtain
+    document.documentElement.removeAttribute("data-pt-covered");
+    try {
+      sessionStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // Ignore storage errors
+    }
 
     activeTlRef.current = tl;
   }, [getValidLayers]);
@@ -228,8 +239,15 @@ export function PageTransition() {
 
     if (shouldReveal) {
       busyRef.current = true;
+      document.documentElement.setAttribute("data-pt-covered", "true");
+      wrapper.style.visibility = "visible";
+      wrapper.style.opacity = "1";
+      wrapper.style.pointerEvents = "all";
+      layers.forEach((layer) => {
+        layer.style.transform = "translate3d(0px, 0%, 0px)";
+      });
       gsap.set(wrapper, { autoAlpha: 1, pointerEvents: "all" });
-      gsap.set(layers, { yPercent: 0, force3D: true });
+      gsap.set(layers, { y: 0, yPercent: 0, force3D: true });
       scheduleRevealAfterRender();
     } else {
       resetToHidden();
@@ -371,6 +389,7 @@ export function PageTransition() {
 
     // Handle Browser Back / Forward button navigation (popstate)
     const handlePopState = () => {
+      if (busyRef.current) return;
       const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
       const lastPath = lastPathnameRef.current ? lastPathnameRef.current.replace(/\/+$/, "") || "/" : "";
 
@@ -386,6 +405,7 @@ export function PageTransition() {
 
     // Handle iOS Safari / Android bfcache restore on swipe-back
     const handlePageShow = (e: PageTransitionEvent) => {
+      if (busyRef.current) return;
       if (e.persisted) {
         const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
         const lastPath = lastPathnameRef.current ? lastPathnameRef.current.replace(/\/+$/, "") || "/" : "";
@@ -438,7 +458,6 @@ export function PageTransition() {
         height: "100dvh",
         zIndex: 1000000,
         pointerEvents: "none",
-        visibility: "hidden",
         overflow: "hidden",
       }}
     >
@@ -456,7 +475,6 @@ export function PageTransition() {
             width: "100%",
             height: "100%",
             backgroundColor: color,
-            transform: "translate3d(0, 100%, 0)",
             willChange: "transform",
             backfaceVisibility: "hidden",
             WebkitBackfaceVisibility: "hidden",
