@@ -16,12 +16,13 @@
 }
 
 .spacerTitle {
-  font-family: 'dirtyline-36daysoftype-2022', sans-serif;
-  font-size: min(18vw, 250px);
-  font-weight: normal;
+  font-family: var(--font-heading), 'Nasalization', sans-serif;
+  font-size: min(13vw, 200px);
+  font-weight: 700;
   letter-spacing: -0.02em;
   /* Tight tracking for massive display text */
   line-height: 1;
+  text-transform: uppercase;
   white-space: nowrap;
   z-index: 10;
 
@@ -193,6 +194,11 @@
   .spacer {
     height: 62svh;
     min-height: 360px;
+  }
+
+  .spacerTitle {
+    font-size: min(12vw, 56px);
+    letter-spacing: -0.03em;
   }
 
   .scrollTextContainer {

@@ -125,7 +125,7 @@ const Skiper30 = () => {
           data-on-scroll="0"
           aria-label="Portfolio & Archive — NOMINA Event Organizer & Custom Production Projects Jakarta"
         >
-          portOfolio
+          PORTOFOLIO
         </h1>
       </div>
 
